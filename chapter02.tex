@@ -80,84 +80,84 @@ for (int i = 1; i <= n+5; i++) {
 
 \begin{lstlisting}
 for (int i = 1; i <= n; i += 2) {
-    // code
+    // código
 }
 \end{lstlisting}
 
-As another example,
-the time complexity of the following code is $O(n^2)$:
+Como otro ejemplo,
+la complejidad temporal del siguiente código es $O(n^2)$:
 
 \begin{lstlisting}
 for (int i = 1; i <= n; i++) {
     for (int j = i+1; j <= n; j++) {
-        // code
+        // código
     }
 }
 \end{lstlisting}
 
-\subsubsection*{Phases}
+\subsubsection*{Fases}
 
-If the algorithm consists of consecutive phases,
-the total time complexity is the largest
-time complexity of a single phase.
-The reason for this is that the slowest
-phase is usually the bottleneck of the code.
+Si el algoritmo consta de fases consecutivas,
+la complejidad temporal total es la mayor
+complejidad temporal de una sola fase.
+La razón de esto es que la fase más lenta
+suele ser el cuello de botella del código.
 
-For example, the following code consists
-of three phases with time complexities
-$O(n)$, $O(n^2)$ and $O(n)$.
-Thus, the total time complexity is $O(n^2)$.
+Por ejemplo, el siguiente código consta
+de tres fases con complejidades temporales
+$O(n)$, $O(n^2)$ y $O(n)$.
+Por lo tanto, la complejidad temporal total es $O(n^2)$.
 
 \begin{lstlisting}
 for (int i = 1; i <= n; i++) {
-    // code
+    // código
 }
 for (int i = 1; i <= n; i++) {
     for (int j = 1; j <= n; j++) {
-        // code
+        // código
     }
 }
 for (int i = 1; i <= n; i++) {
-    // code
+    // código
 }
 \end{lstlisting}
 
-\subsubsection*{Several variables}
+\subsubsection*{Varias variables}
 
-Sometimes the time complexity depends on
-several factors.
-In this case, the time complexity formula
-contains several variables.
+A veces la complejidad temporal depende de
+varios factores.
+En este caso, la fórmula de complejidad temporal
+contiene varias variables.
 
-For example, the time complexity of the
-following code is $O(nm)$:
+Por ejemplo, la complejidad temporal del
+siguiente código es $O(nm)$:
 
 \begin{lstlisting}
 for (int i = 1; i <= n; i++) {
     for (int j = 1; j <= m; j++) {
-        // code
+        // código
     }
 }
 \end{lstlisting}
 
-\subsubsection*{Recursion}
+\subsubsection*{Recursión}
 
-The time complexity of a recursive function
-depends on the number of times the function is called
-and the time complexity of a single call.
-The total time complexity is the product of
-these values.
+La complejidad temporal de una función recursiva
+depende del número de veces que se llama a la función
+y la complejidad temporal de una sola llamada.
+La complejidad temporal total es el producto de
+estos valores.
 
-For example, consider the following function:
+Por ejemplo, considere la siguiente función:
 \begin{lstlisting}
 void f(int n) {
     if (n == 1) return;
     f(n-1);
 }
 \end{lstlisting}
-The call $\texttt{f}(n)$ causes $n$ function calls,
-and the time complexity of each call is $O(1)$.
-Thus, the total time complexity is $O(n)$.
+La llamada $\texttt{f}(n)$ provoca $n$ llamadas a la función,
+y la complejidad temporal de cada llamada es $O(1)$.
+Por lo tanto, la complejidad temporal total es $O(n)$.
 
 As another example, consider the following function:
 \begin{lstlisting}
