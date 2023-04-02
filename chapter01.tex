@@ -280,38 +280,38 @@ de \texttt{a} a \texttt{long long} o
 cambiando la expresión a \texttt{(long long)a*a}.
 
 
-Usually contest problems are set so that the
-type \texttt{long long} is enough.
-Still, it is good to know that
-the \texttt{g++} compiler also provides
-a 128-bit type \texttt{\_\_int128\_t}
-with a value range of
-$-2^{127} \ldots 2^{127}-1$ or about $-10^{38} \ldots 10^{38}$.
-However, this type is not available in all contest systems.
+Por lo general, los problemas de concurso se establecen de tal manera que
+el tipo \texttt{long long} es suficiente.
+Aún así, es bueno saber que
+el compilador \texttt{g++} también proporciona
+un tipo de 128 bits \texttt{\_\_int128\_t}
+con un rango de valores de
+$-2^{127} \ldots 2^{127}-1$ o aproximadamente $-10^{38} \ldots 10^{38}$.
+Sin embargo, este tipo no está disponible en todos los sistemas de concurso.
 
-\subsubsection{Modular arithmetic}
+\subsubsection{Aritmética modular}
 
-\index{remainder}
-\index{modular arithmetic}
+\index{residuo}
+\index{aritmética modular}
 
-We denote by $x \bmod m$ the remainder
-when $x$ is divided by $m$.
-For example, $17 \bmod 5 = 2$,
-because $17 = 3 \cdot 5 + 2$.
+Denotamos por $x \bmod m$ el residuo
+cuando $x$ se divide por $m$.
+Por ejemplo, $17 \bmod 5 = 2$,
+porque $17 = 3 \cdot 5 + 2$.
 
-Sometimes, the answer to a problem is a
-very large number but it is enough to
-output it ''modulo $m$'', i.e.,
-the remainder when the answer is divided by $m$
-(for example, ''modulo $10^9+7$'').
-The idea is that even if the actual answer
-is very large,
-it suffices to use the types
-\texttt{int} and \texttt{long long}.
+A veces, la respuesta a un problema es un
+número muy grande, pero es suficiente
+darlo ''módulo $m$'', es decir,
+el residuo cuando la respuesta se divide por $m$
+(por ejemplo, ''módulo $10^9+7$'').
+La idea es que incluso si la respuesta real
+es muy grande,
+basta con utilizar los tipos
+\texttt{int} y \texttt{long long}.
 
-An important property of the remainder is that
-in addition, subtraction and multiplication,
-the remainder can be taken before the operation:
+Una propiedad importante del residuo es que
+en suma, resta y multiplicación,
+el residuo se puede tomar antes de la operación:
 
 \[
 \begin{array}{rcr}
@@ -321,11 +321,11 @@ the remainder can be taken before the operation:
 \end{array}
 \]
 
-Thus, we can take the remainder after every operation
-and the numbers will never become too large.
+Así, podemos tomar el residuo después de cada operación
+y los números nunca serán demasiado grandes.
 
-For example, the following code calculates $n!$,
-the factorial of $n$, modulo $m$:
+Por ejemplo, el siguiente código calcula $n!$,
+el factorial de $n$, módulo $m$:
 \begin{lstlisting}
 long long x = 1;
 for (int i = 2; i <= n; i++) {
@@ -334,34 +334,34 @@ for (int i = 2; i <= n; i++) {
 cout << x%m << "\n";
 \end{lstlisting}
 
-Usually we want the remainder to always
-be between $0\ldots m-1$.
-However, in C++ and other languages,
-the remainder of a negative number
-is either zero or negative.
-An easy way to make sure there
-are no negative remainders is to first calculate
-the remainder as usual and then add $m$
-if the result is negative:
+Por lo general, queremos que el residuo siempre
+esté entre $0\ldots m-1$.
+Sin embargo, en C++ y otros lenguajes,
+el residuo de un número negativo
+es cero o negativo.
+Una forma fácil de asegurarse de que no haya
+residuos negativos es calcular primero
+el residuo como de costumbre y luego agregar $m$
+si el resultado es negativo:
 \begin{lstlisting}
 x = x%m;
 if (x < 0) x += m;
 \end{lstlisting}
-However, this is only needed when there
-are subtractions in the code and the
-remainder may become negative.
+Sin embargo, esto solo es necesario cuando hay
+restas en el código y el
+residuo puede volverse negativo.
 
-\subsubsection{Floating point numbers}
+\subsubsection{Números de punto flotante}
 
-\index{floating point number}
+\index{número de punto flotante}
 
-The usual floating point types in
-competitive programming are
-the 64-bit \texttt{double}
-and, as an extension in the \texttt{g++} compiler,
-the 80-bit \texttt{long double}.
-In most cases, \texttt{double} is enough,
-but \texttt{long double} is more accurate.
+Los tipos de punto flotante habituales en
+programación competitiva son
+el \texttt{double} de 64 bits
+y, como una extensión en el compilador \texttt{g++},
+el \texttt{long double} de 80 bits.
+En la mayoría de los casos, \texttt{double} es suficiente,
+pero \texttt{long double} es más preciso.
 
 The required precision of the answer
 is usually given in the problem statement.
