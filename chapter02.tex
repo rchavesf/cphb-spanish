@@ -300,73 +300,72 @@ El punto de partida para las estimaciones es el hecho de que
 una computadora moderna puede realizar varios cientos de
 millones de operaciones en un segundo.
 
-For example, assume that the time limit for
-a problem is one second and the input size is $n=10^5$.
-If the time complexity is $O(n^2)$,
-the algorithm will perform about $(10^5)^2=10^{10}$ operations.
-This should take at least some tens of seconds,
-so the algorithm seems to be too slow for solving the problem.
+Por ejemplo, supongamos que el límite de tiempo para
+un problema es de un segundo y el tamaño de entrada es $n=10^5$.
+Si la complejidad temporal es $O(n^2)$,
+el algoritmo realizará aproximadamente $(10^5)^2=10^{10}$ operaciones.
+Esto debería tomar al menos unas decenas de segundos,
+por lo que el algoritmo parece ser demasiado lento para resolver el problema.
 
-On the other hand, given the input size,
-we can try to \emph{guess}
-the required time complexity of the algorithm
-that solves the problem.
-The following table contains some useful estimates
-assuming a time limit of one second.
+Por otro lado, dado el tamaño de entrada,
+podemos intentar \emph{adivinar}
+la complejidad temporal requerida del algoritmo
+que resuelve el problema.
+La siguiente tabla contiene algunas estimaciones útiles
+suponiendo un límite de tiempo de un segundo.
 
 \begin{center}
 \begin{tabular}{ll}
-input size & required time complexity \\
+tamaño de entrada & complejidad temporal requerida \\
 \hline
 $n \le 10$ & $O(n!)$ \\
 $n \le 20$ & $O(2^n)$ \\
 $n \le 500$ & $O(n^3)$ \\
 $n \le 5000$ & $O(n^2)$ \\
-$n \le 10^6$ & $O(n \log n)$ or $O(n)$ \\
-$n$ is large & $O(1)$ or $O(\log n)$ \\
+$n \le 10^6$ & $O(n \log n)$ o $O(n)$ \\
+$n$ es grande & $O(1)$ o $O(\log n)$ \\
 \end{tabular}
 \end{center}
 
-For example, if the input size is $n=10^5$,
-it is probably expected that the time
-complexity of the algorithm is $O(n)$ or $O(n \log n)$.
-This information makes it easier to design the algorithm,
-because it rules out approaches that would yield
-an algorithm with a worse time complexity.
+Por ejemplo, si el tamaño de entrada es $n=10^5$,
+probablemente se espera que la complejidad
+temporal del algoritmo sea $O(n)$ o $O(n \log n)$.
+Esta información facilita el diseño del algoritmo,
+porque descarta enfoques que generarían
+un algoritmo con una peor complejidad temporal.
 
-\index{constant factor}
+\index{factor constante}
 
-Still, it is important to remember that a
-time complexity is only an estimate of efficiency,
-because it hides the \emph{constant factors}.
-For example, an algorithm that runs in $O(n)$ time
-may perform $n/2$ or $5n$ operations.
-This has an important effect on the actual
-running time of the algorithm.
+Aun así, es importante recordar que una
+complejidad temporal es solo una estimación de la eficiencia,
+porque oculta los \emph{factores constantes}.
+Por ejemplo, un algoritmo que se ejecuta en tiempo $O(n)$
+puede realizar $n/2$ o $5n$ operaciones.
+Esto tiene un efecto importante en el tiempo de ejecución
+real del algoritmo.
 
-\section{Maximum subarray sum}
+\section{Suma máxima de subarreglo}
 
-\index{maximum subarray sum}
+\index{suma máxima de subarreglo}
 
-There are often several possible algorithms
-for solving a problem such that their
-time complexities are different.
-This section discusses a classic problem that
-has a straightforward $O(n^3)$ solution.
-However, by designing a better algorithm, it
-is possible to solve the problem in $O(n^2)$
-time and even in $O(n)$ time.
+A menudo hay varios algoritmos posibles
+para resolver un problema de manera que sus
+complejidades temporales sean diferentes.
+Esta sección analiza un problema clásico que
+tiene una solución directa de $O(n^3)$.
+Sin embargo, al diseñar un algoritmo mejor, es
+posible resolver el problema en tiempo $O(n^2)$
+e incluso en tiempo $O(n)$.
 
-Given an array of $n$ numbers,
-our task is to calculate the
-\key{maximum subarray sum}, i.e.,
-the largest possible sum of 
-a sequence of consecutive values
-in the array\footnote{J. Bentley's
-book \emph{Programming Pearls} \cite{ben86} made the problem popular.}.
-The problem is interesting when there may be
-negative values in the array.
-For example, in the array
+Dado un arreglo de $n$ números,
+nuestra tarea es calcular la
+\key{suma máxima de subarreglo}, es decir,
+la suma más grande posible de
+una secuencia de valores consecutivos
+en el arreglo\footnote{El libro de J. Bentley \emph{Programming Pearls} \cite{ben86} hizo popular el problema.}.
+El problema es interesante cuando puede haber
+valores negativos en el arreglo.
+Por ejemplo, en el arreglo
 \begin{center}
 \begin{tikzpicture}[scale=0.7]
 \draw (0,0) grid (8,1);
