@@ -771,36 +771,36 @@ tal que $y$ es menor que $x$.
 Esto es cierto en el conjunto de los números enteros,
 pero falso en el conjunto de los números naturales.
 
-Using the notation described above,
-we can express many kinds of logical propositions.
-For example,
+Usando la notación descrita anteriormente,
+podemos expresar muchos tipos de proposiciones lógicas.
+Por ejemplo,
 \[\forall x ((x>1 \land \lnot P(x)) \Rightarrow (\exists a (\exists b (a > 1 \land b > 1 \land x = ab))))\]
-means that if a number $x$ is larger than 1
-and not a prime number,
-then there are numbers $a$ and $b$
-that are larger than $1$ and whose product is $x$.
-This proposition is true in the set of integers.
+significa que si un número $x$ es mayor que 1
+y no es un número primo,
+entonces hay números $a$ y $b$
+que son mayores que $1$ y cuyo producto es $x$.
+Esta proposición es verdadera en el conjunto de los enteros.
 
-\subsubsection{Functions}
+\subsubsection{Funciones}
 
-The function $\lfloor x \rfloor$ rounds the number $x$
-down to an integer, and the function
-$\lceil x \rceil$ rounds the number $x$
-up to an integer. For example,
-\[ \lfloor 3/2 \rfloor = 1 \hspace{10px} \textrm{and} \hspace{10px} \lceil 3/2 \rceil = 2.\]
+La función $\lfloor x \rfloor$ redondea el número $x$
+hacia abajo a un entero, y la función
+$\lceil x \rceil$ redondea el número $x$
+hacia arriba a un entero. Por ejemplo,
+\[ \lfloor 3/2 \rfloor = 1 \hspace{10px} \textrm{y} \hspace{10px} \lceil 3/2 \rceil = 2.\]
 
-The functions $\min(x_1,x_2,\ldots,x_n)$
-and $\max(x_1,x_2,\ldots,x_n)$
-give the smallest and largest of values
+Las funciones $\min(x_1,x_2,\ldots,x_n)$
+y $\max(x_1,x_2,\ldots,x_n)$
+dan el valor más pequeño y el más grande de los valores
 $x_1,x_2,\ldots,x_n$.
-For example,
-\[ \min(1,2,3)=1 \hspace{10px} \textrm{and} \hspace{10px} \max(1,2,3)=3.\]
+Por ejemplo,
+\[ \min(1,2,3)=1 \hspace{10px} \textrm{y} \hspace{10px} \max(1,2,3)=3.\]
 
 \index{factorial}
 
-The \key{factorial} $n!$ can be defined
+El \key{factorial} $n!$ puede definirse
 \[\prod_{x=1}^n x = 1 \cdot 2 \cdot 3 \cdot \ldots \cdot n\]
-or recursively
+o recursivamente
 \[
 \begin{array}{lcl}
 0! & = & 1 \\
@@ -808,12 +808,12 @@ n! & = & n \cdot (n-1)! \\
 \end{array}
 \]
 
-\index{Fibonacci number}
+\index{número de Fibonacci}
 
-The \key{Fibonacci numbers}
-%\footnote{Fibonacci (c. 1175--1250) was an Italian mathematician.}
-arise in many situations.
-They can be defined recursively as follows:
+Los \key{números de Fibonacci}
+%\footnote{Fibonacci (c. 1175--1250) fue un matemático italiano.}
+aparecen en muchas situaciones.
+Se pueden definir recursivamente de la siguiente manera:
 \[
 \begin{array}{lcl}
 f(0) & = & 0 \\
@@ -821,16 +821,16 @@ f(1) & = & 1 \\
 f(n) & = & f(n-1)+f(n-2) \\
 \end{array}
 \]
-The first Fibonacci numbers are
+Los primeros números de Fibonacci son
 \[0, 1, 1, 2, 3, 5, 8, 13, 21, 34, 55, \ldots\]
-There is also a closed-form formula
-for calculating Fibonacci numbers, which is sometimes called
-\index{Binet's formula} \key{Binet's formula}:
+También existe una fórmula de forma cerrada
+para calcular los números de Fibonacci, que a veces se llama
+\index{fórmula de Binet} \key{fórmula de Binet}:
 \[f(n)=\frac{(1 + \sqrt{5})^n - (1-\sqrt{5})^n}{2^n \sqrt{5}}.\]
 
-\subsubsection{Logarithms}
+\subsubsection{Logaritmos}
 
-\index{logarithm}
+\index{logaritmo}
 
 The \key{logarithm} of a number $x$
 is denoted $\log_k(x)$, where $k$ is the base
