@@ -597,59 +597,60 @@ proporción entre números consecutivos es $k$.
 Por ejemplo,
 \[3+6+12+24=\frac{24 \cdot 2 - 3}{2-1} = 45.\]
 
-This formula can be derived as follows. Let
-\[ S = a + ak + ak^2 + \cdots + b .\]
-By multiplying both sides by $k$, we get
-\[ kS = ak + ak^2 + ak^3 + \cdots + bk,\]
-and solving the equation
-\[ kS-S = bk-a\]
-yields the formula.
 
-A special case of a sum of a geometric progression is the formula
+Esta fórmula se puede derivar de la siguiente manera. Sea
+\[ S = a + ak + ak^2 + \cdots + b .\]
+Al multiplicar ambos lados por $k$, obtenemos
+\[ kS = ak + ak^2 + ak^3 + \cdots + bk,\]
+y resolviendo la ecuación
+\[ kS-S = bk-a\]
+se obtiene la fórmula.
+
+Un caso especial de una suma de una progresión geométrica es la fórmula
 \[1+2+4+8+\ldots+2^{n-1}=2^n-1.\]
 
-\index{harmonic sum}
+\index{suma armónica}
 
-A \key{harmonic sum} is a sum of the form
+Una \key{suma armónica} es una suma de la forma
 \[ \sum_{x=1}^n \frac{1}{x} = 1+\frac{1}{2}+\frac{1}{3}+\ldots+\frac{1}{n}.\]
 
-An upper bound for a harmonic sum is $\log_2(n)+1$.
-Namely, we can
-modify each term $1/k$ so that $k$ becomes
-the nearest power of two that does not exceed $k$.
-For example, when $n=6$, we can estimate
-the sum as follows:
+Un límite superior para una suma armónica es $\log_2(n)+1$.
+Es decir, podemos
+modificar cada término $1/k$ de modo que $k$ se convierta
+en la potencia de dos más cercana que no exceda $k$.
+Por ejemplo, cuando $n=6$, podemos estimar
+la suma de la siguiente manera:
 \[ 1+\frac{1}{2}+\frac{1}{3}+\frac{1}{4}+\frac{1}{5}+\frac{1}{6} \le
 1+\frac{1}{2}+\frac{1}{2}+\frac{1}{4}+\frac{1}{4}+\frac{1}{4}.\]
-This upper bound consists of $\log_2(n)+1$ parts
+Este límite superior consta de $\log_2(n)+1$ partes
 ($1$, $2 \cdot 1/2$, $4 \cdot 1/4$, etc.),
-and the value of each part is at most 1.
+y el valor de cada parte es como máximo 1.
 
-\subsubsection{Set theory}
+\subsubsection{Teoría de conjuntos}
 
-\index{set theory}
-\index{set}
-\index{intersection}
-\index{union}
-\index{difference}
-\index{subset}
-\index{universal set}
-\index{complement}
+\index{teoría de conjuntos}
+\index{conjunto}
+\index{intersección}
+\index{unión}
+\index{diferencia}
+\index{subconjunto}
+\index{conjunto universal}
+\index{complemento}
 
-A \key{set} is a collection of elements.
-For example, the set
+Un \key{conjunto} es una colección de elementos.
+Por ejemplo, el conjunto
 \[X=\{2,4,7\}\]
-contains elements 2, 4 and 7.
-The symbol $\emptyset$ denotes an empty set,
-and $|S|$ denotes the size of a set $S$,
-i.e., the number of elements in the set.
-For example, in the above set, $|X|=3$.
+contiene los elementos 2, 4 y 7.
+El símbolo $\emptyset$ denota un conjunto vacío,
+y $|S|$ denota el tamaño de un conjunto $S$,
+es decir, la cantidad de elementos en el conjunto.
+Por ejemplo, en el conjunto anterior, $|X|=3$.
 
-If a set $S$ contains an element $x$,
-we write $x \in S$,
-and otherwise we write $x \notin S$.
-For example, in the above set
-\[4 \in X \hspace{10px}\textrm{and}\hspace{10px} 5 \notin X.\]
+Si un conjunto $S$ contiene un elemento $x$,
+escribimos $x \in S$,
+y de lo contrario escribimos $x \notin S$.
+Por ejemplo, en el conjunto anterior
+\[4 \in X \hspace{10px}\textrm{y}\hspace{10px} 5 \notin X.\]
 
 \begin{samepage}
 New sets can be constructed using set operations:
