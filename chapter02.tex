@@ -159,7 +159,7 @@ La llamada $\texttt{f}(n)$ provoca $n$ llamadas a la función,
 y la complejidad temporal de cada llamada es $O(1)$.
 Por lo tanto, la complejidad temporal total es $O(n)$.
 
-As another example, consider the following function:
+Como otro ejemplo, considere la siguiente función:
 \begin{lstlisting}
 void g(int n) {
     if (n == 1) return;
@@ -167,15 +167,15 @@ void g(int n) {
     g(n-1);
 }
 \end{lstlisting}
-In this case each function call generates two other
-calls, except for $n=1$.
-Let us see what happens when $g$ is called
-with parameter $n$.
-The following table shows the function calls
-produced by this single call:
+En este caso, cada llamada a la función genera dos otras
+llamadas, excepto para $n=1$.
+Veamos qué sucede cuando se llama a $g$
+con el parámetro $n$.
+La siguiente tabla muestra las llamadas a la función
+producidas por esta única llamada:
 \begin{center}
 \begin{tabular}{rr}
-function call & number of calls \\
+llamada a la función & número de llamadas \\
 \hline
 $g(n)$ & 1 \\
 $g(n-1)$ & 2 \\
@@ -184,57 +184,57 @@ $\cdots$ & $\cdots$ \\
 $g(1)$ & $2^{n-1}$ \\
 \end{tabular}
 \end{center}
-Based on this, the time complexity is
+Basándonos en esto, la complejidad temporal es
 \[1+2+4+\cdots+2^{n-1} = 2^n-1 = O(2^n).\]
 
-\section{Complexity classes}
+\section{Clases de complejidad}
 
-\index{complexity classes}
+\index{clases de complejidad}
 
-The following list contains common time complexities
-of algorithms:
+La siguiente lista contiene complejidades temporales comunes
+de los algoritmos:
 
 \begin{description}
 \item[$O(1)$]
-\index{constant-time algorithm}
-The running time of a \key{constant-time} algorithm
-does not depend on the input size.
-A typical constant-time algorithm is a direct
-formula that calculates the answer.
+\index{algoritmo de tiempo constante}
+El tiempo de ejecución de un algoritmo \key{de tiempo constante}
+no depende del tamaño de la entrada.
+Un algoritmo típico de tiempo constante es una fórmula directa
+que calcula la respuesta.
 
 \item[$O(\log n)$]
-\index{logarithmic algorithm}
-A \key{logarithmic} algorithm often halves
-the input size at each step.
-The running time of such an algorithm
-is logarithmic, because
-$\log_2 n$ equals the number of times
-$n$ must be divided by 2 to get 1.
+\index{algoritmo logarítmico}
+Un algoritmo \key{logarítmico} a menudo reduce a la mitad
+el tamaño de la entrada en cada paso.
+El tiempo de ejecución de dicho algoritmo
+es logarítmico, porque
+$\log_2 n$ es igual al número de veces
+que $n$ debe dividirse por 2 para obtener 1.
 
 \item[$O(\sqrt n)$]
-A \key{square root algorithm} is slower than
-$O(\log n)$ but faster than $O(n)$.
-A special property of square roots is that
-$\sqrt n = n/\sqrt n$, so the square root $\sqrt n$ lies,
-in some sense, in the middle of the input.
+Un \key{algoritmo de raíz cuadrada} es más lento que
+$O(\log n)$ pero más rápido que $O(n)$.
+Una propiedad especial de las raíces cuadradas es que
+$\sqrt n = n/\sqrt n$, por lo que la raíz cuadrada $\sqrt n$ se encuentra,
+en cierto sentido, en el medio de la entrada.
 
 \item[$O(n)$]
-\index{linear algorithm}
-A \key{linear} algorithm goes through the input
-a constant number of times.
-This is often the best possible time complexity,
-because it is usually necessary to access each
-input element at least once before
-reporting the answer.
+\index{algoritmo lineal}
+Un algoritmo \key{lineal} recorre la entrada
+un número constante de veces.
+Esta es a menudo la mejor complejidad temporal posible,
+ya que generalmente es necesario acceder a cada
+elemento de entrada al menos una vez antes de
+informar la respuesta.
 
 \item[$O(n \log n)$]
-This time complexity often indicates that the
-algorithm sorts the input,
-because the time complexity of efficient
-sorting algorithms is $O(n \log n)$.
-Another possibility is that the algorithm
-uses a data structure where each operation
-takes $O(\log n)$ time.
+Esta complejidad temporal a menudo indica que el
+algoritmo ordena la entrada,
+porque la complejidad temporal de los algoritmos de ordenamiento
+eficientes es $O(n \log n)$.
+Otra posibilidad es que el algoritmo
+utilice una estructura de datos en la que cada operación
+tarda $O(\log n)$ en tiempo.
 
 \item[$O(n^2)$]
 \index{quadratic algorithm}
