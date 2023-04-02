@@ -363,85 +363,85 @@ el \texttt{long double} de 80 bits.
 En la mayoría de los casos, \texttt{double} es suficiente,
 pero \texttt{long double} es más preciso.
 
-The required precision of the answer
-is usually given in the problem statement.
-An easy way to output the answer is to use
-the \texttt{printf} function
-and give the number of decimal places
-in the formatting string.
-For example, the following code prints
-the value of $x$ with 9 decimal places:
+La precisión requerida de la respuesta
+generalmente se proporciona en el enunciado del problema.
+Una forma fácil de mostrar la respuesta es utilizar
+la función \texttt{printf}
+e indicar el número de decimales
+en la cadena de formato.
+Por ejemplo, el siguiente código imprime
+el valor de $x$ con 9 decimales:
 
 \begin{lstlisting}
 printf("%.9f\n", x);
 \end{lstlisting}
 
-A difficulty when using floating point numbers
-is that some numbers cannot be represented
-accurately as floating point numbers,
-and there will be rounding errors.
-For example, the result of the following code
-is surprising:
+Una dificultad al usar números de punto flotante
+es que algunos números no pueden ser representados
+con precisión como números de punto flotante,
+y habrá errores de redondeo.
+Por ejemplo, el resultado del siguiente código
+es sorprendente:
 
 \begin{lstlisting}
 double x = 0.3*3+0.1;
 printf("%.20f\n", x); // 0.99999999999999988898
 \end{lstlisting}
 
-Due to a rounding error,
-the value of \texttt{x} is a bit smaller than 1,
-while the correct value would be 1.
+Debido a un error de redondeo,
+el valor de \texttt{x} es un poco menor que 1,
+mientras que el valor correcto sería 1.
 
-It is risky to compare floating point numbers
-with the \texttt{==} operator,
-because it is possible that the values should be
-equal but they are not because of precision errors.
-A better way to compare floating point numbers
-is to assume that two numbers are equal
-if the difference between them is less than $\varepsilon$,
-where $\varepsilon$ is a small number.
+Es arriesgado comparar números de punto flotante
+con el operador \texttt{==},
+porque es posible que los valores deban ser
+iguales pero no lo son debido a errores de precisión.
+Una mejor manera de comparar números de punto flotante
+es suponer que dos números son iguales
+si la diferencia entre ellos es menor que $\varepsilon$,
+donde $\varepsilon$ es un número pequeño.
 
-In practice, the numbers can be compared
-as follows ($\varepsilon=10^{-9}$):
+En la práctica, los números se pueden comparar
+de la siguiente manera ($\varepsilon=10^{-9}$):
 
 \begin{lstlisting}
 if (abs(a-b) < 1e-9) {
-    // a and b are equal
+    // a y b son iguales
 }
 \end{lstlisting}
 
-Note that while floating point numbers are inaccurate,
-integers up to a certain limit can still be
-represented accurately.
-For example, using \texttt{double},
-it is possible to accurately represent all
-integers whose absolute value is at most $2^{53}$.
+Tenga en cuenta que, aunque los números de punto flotante son inexactos,
+los enteros hasta cierto límite aún pueden ser
+representados con precisión.
+Por ejemplo, utilizando \texttt{double},
+es posible representar con precisión todos
+los enteros cuyo valor absoluto sea como máximo $2^{53}$.
 
-\section{Shortening code}
+\section{Acortando código}
 
-Short code is ideal in competitive programming,
-because programs should be written
-as fast as possible.
-Because of this, competitive programmers often define
-shorter names for datatypes and other parts of code.
+El código corto es ideal en programación competitiva,
+porque los programas deben escribirse
+lo más rápido posible.
+Por ello, los programadores competitivos suelen definir
+nombres más cortos para los tipos de datos y otras partes del código.
 
-\subsubsection{Type names}
+\subsubsection{Nombres de tipos}
 \index{tuppdef@\texttt{typedef}}
-Using the command \texttt{typedef}
-it is possible to give a shorter name
-to a datatype.
-For example, the name \texttt{long long} is long,
-so we can define a shorter name \texttt{ll}:
+Usando el comando \texttt{typedef}
+es posible dar un nombre más corto
+a un tipo de dato.
+Por ejemplo, el nombre \texttt{long long} es largo,
+así que podemos definir un nombre más corto \texttt{ll}:
 \begin{lstlisting}
 typedef long long ll;
 \end{lstlisting}
-After this, the code
+Después de esto, el código
 \begin{lstlisting}
 long long a = 123456789;
 long long b = 987654321;
 cout << a*b << "\n";
 \end{lstlisting}
-can be shortened as follows:
+puede acortarse de la siguiente manera:
 \begin{lstlisting}
 ll a = 123456789;
 ll b = 987654321;
