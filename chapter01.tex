@@ -832,77 +832,77 @@ para calcular los números de Fibonacci, que a veces se llama
 
 \index{logaritmo}
 
-The \key{logarithm} of a number $x$
-is denoted $\log_k(x)$, where $k$ is the base
-of the logarithm.
-According to the definition,
-$\log_k(x)=a$ exactly when $k^a=x$.
+El \key{logaritmo} de un número $x$
+se denota como $\log_k(x)$, donde $k$ es la base
+del logaritmo.
+Según la definición,
+$\log_k(x)=a$ exactamente cuando $k^a=x$.
 
-A useful property of logarithms is
-that $\log_k(x)$ equals the number of times
-we have to divide $x$ by $k$ before we reach 
-the number 1.
-For example, $\log_2(32)=5$
-because 5 divisions by 2 are needed:
+Una propiedad útil de los logaritmos es
+que $\log_k(x)$ es igual al número de veces
+que tenemos que dividir $x$ por $k$ antes de llegar
+al número 1.
+Por ejemplo, $\log_2(32)=5$
+porque se necesitan 5 divisiones por 2:
 
 \[32 \rightarrow 16 \rightarrow 8 \rightarrow 4 \rightarrow 2 \rightarrow 1 \]
 
-Logarithms are often used in the analysis of
-algorithms, because many efficient algorithms
-halve something at each step.
-Hence, we can estimate the efficiency of such algorithms
-using logarithms.
+Los logaritmos se utilizan a menudo en el análisis de
+algoritmos, porque muchos algoritmos eficientes
+dividen algo a la mitad en cada paso.
+Por lo tanto, podemos estimar la eficiencia de tales algoritmos
+usando logaritmos.
 
-The logarithm of a product is
+El logaritmo de un producto es
 \[\log_k(ab) = \log_k(a)+\log_k(b),\]
-and consequently,
+y en consecuencia,
 \[\log_k(x^n) = n \cdot \log_k(x).\]
-In addition, the logarithm of a quotient is
+Además, el logaritmo de un cociente es
 \[\log_k\Big(\frac{a}{b}\Big) = \log_k(a)-\log_k(b).\]
-Another useful formula is
+Otra fórmula útil es
 \[\log_u(x) = \frac{\log_k(x)}{\log_k(u)},\]
-and using this, it is possible to calculate
-logarithms to any base if there is a way to
-calculate logarithms to some fixed base.
+y usando esto, es posible calcular
+logaritmos en cualquier base si hay una forma de
+calcular logaritmos en alguna base fija.
 
-\index{natural logarithm}
+\index{logaritmo natural}
 
-The \key{natural logarithm} $\ln(x)$ of a number $x$
-is a logarithm whose base is $e \approx 2.71828$.
-Another property of logarithms is that
-the number of digits of an integer $x$ in base $b$ is
+El \key{logaritmo natural} $\ln(x)$ de un número $x$
+es un logaritmo cuya base es $e \approx 2.71828$.
+Otra propiedad de los logaritmos es que
+el número de dígitos de un entero $x$ en base $b$ es
 $\lfloor \log_b(x)+1 \rfloor$.
-For example, the representation of
-$123$ in base $2$ is 1111011 and
+Por ejemplo, la representación de
+$123$ en base $2$ es 1111011 y
 $\lfloor \log_2(123)+1 \rfloor = 7$.
 
-\section{Contests and resources}
+\section{Concursos y recursos}
 
 \subsubsection{IOI}
 
-The International Olympiad in Informatics (IOI)
-is an annual programming contest for
-secondary school students.
-Each country is allowed to send a team of
-four students to the contest.
-There are usually about 300 participants
-from 80 countries.
+La Olimpiada Internacional de Informática (IOI, por sus siglas en inglés)
+es un concurso anual de programación para
+estudiantes de secundaria.
+Cada país puede enviar un equipo de
+cuatro estudiantes al concurso.
+Suele haber unos 300 participantes
+de 80 países.
 
-The IOI consists of two five-hour long contests.
-In both contests, the participants are asked to
-solve three algorithm tasks of various difficulty.
-The tasks are divided into subtasks,
-each of which has an assigned score.
-Even if the contestants are divided into teams,
-they compete as individuals.
+La IOI consta de dos concursos de cinco horas de duración.
+En ambos concursos, se pide a los participantes que
+resuelvan tres tareas de algoritmos de dificultad variable.
+Las tareas se dividen en subtareas,
+cada una de las cuales tiene una puntuación asignada.
+Aunque los concursantes se dividen en equipos,
+compiten como individuos.
 
-The IOI syllabus \cite{iois} regulates the topics
-that may appear in IOI tasks.
-Almost all the topics in the IOI syllabus
-are covered by this book.
+El temario de la IOI \cite{iois} regula los temas
+que pueden aparecer en las tareas de la IOI.
+Casi todos los temas del temario de la IOI
+están cubiertos por este libro.
 
-Participants for the IOI are selected through
-national contests.
+Los participantes para la IOI se seleccionan a través de
+concursos nacionales.
 Before the IOI, many regional contests are organized,
 such as the Baltic Olympiad in Informatics (BOI),
 the Central European Olympiad in Informatics (CEOI)
