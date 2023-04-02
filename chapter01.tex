@@ -704,28 +704,28 @@ También podemos construir un conjunto usando una regla de la forma
 donde $f(n)$ es alguna función.
 Este conjunto contiene todos los elementos de la forma $f(n)$,
 donde $n$ es un elemento en $S$.
-For example, the set
+Por ejemplo, el conjunto
 \[X=\{2n : n \in \mathbb{Z}\}\]
-contains all even integers.
+contiene todos los números enteros pares.
 
-\subsubsection{Logic}
+\subsubsection{Lógica}
 
-\index{logic}
-\index{negation}
-\index{conjuction}
-\index{disjunction}
-\index{implication}
-\index{equivalence}
+\index{logica}
+\index{negación}
+\index{conjunción}
+\index{disyunción}
+\index{implicación}
+\index{equivalencia}
 
-The value of a logical expression is either
-\key{true} (1) or \key{false} (0).
-The most important logical operators are
-$\lnot$ (\key{negation}),
-$\land$ (\key{conjunction}),
-$\lor$ (\key{disjunction}),
-$\Rightarrow$ (\key{implication}) and
-$\Leftrightarrow$ (\key{equivalence}).
-The following table shows the meanings of these operators:
+El valor de una expresión lógica es
+\key{verdadero} (1) o \key{falso} (0).
+Los operadores lógicos más importantes son
+$\lnot$ (\key{negación}),
+$\land$ (\key{conjunción}),
+$\lor$ (\key{disyunción}),
+$\Rightarrow$ (\key{implicación}) y
+$\Leftrightarrow$ (\key{equivalencia}).
+La siguiente tabla muestra los significados de estos operadores:
 
 \begin{center}
 \begin{tabular}{rr|rrrrrrr}
@@ -738,38 +738,38 @@ $A$ & $B$ & $\lnot A$ & $\lnot B$ & $A \land B$ & $A \lor B$ & $A \Rightarrow B$
 \end{tabular}
 \end{center}
 
-The expression $\lnot A$ has the opposite value of $A$.
-The expression $A \land B$ is true if both $A$ and $B$
-are true,
-and the expression $A \lor B$ is true if $A$ or $B$ or both
-are true.
-The expression $A \Rightarrow B$ is true
-if whenever $A$ is true, also $B$ is true.
-The expression $A \Leftrightarrow B$ is true
-if $A$ and $B$ are both true or both false.
+La expresión $\lnot A$ tiene el valor opuesto de $A$.
+La expresión $A \land B$ es verdadera si tanto $A$ como $B$
+son verdaderos,
+y la expresión $A \lor B$ es verdadera si $A$ o $B$ o ambos
+son verdaderos.
+La expresión $A \Rightarrow B$ es verdadera
+si siempre que $A$ es verdadero, también lo es $B$.
+La expresión $A \Leftrightarrow B$ es verdadera
+si $A$ y $B$ son ambos verdaderos o ambos falsos.
 
-\index{predicate}
+\index{predicado}
 
-A \key{predicate} is an expression that is true or false
-depending on its parameters.
-Predicates are usually denoted by capital letters.
-For example, we can define a predicate $P(x)$
-that is true exactly when $x$ is a prime number.
-Using this definition, $P(7)$ is true but $P(8)$ is false.
+Un \key{predicado} es una expresión que es verdadera o falsa
+dependiendo de sus parámetros.
+Los predicados se denotan generalmente con letras mayúsculas.
+Por ejemplo, podemos definir un predicado $P(x)$
+que es verdadero exactamente cuando $x$ es un número primo.
+Usando esta definición, $P(7)$ es verdadero pero $P(8)$ es falso.
 
-\index{quantifier}
+\index{cuantificador}
 
-A \key{quantifier} connects a logical expression
-to the elements of a set.
-The most important quantifiers are
-$\forall$ (\key{for all}) and $\exists$ (\key{there is}).
-For example,
+Un \key{cuantificador} conecta una expresión lógica
+con los elementos de un conjunto.
+Los cuantificadores más importantes son
+$\forall$ (\key{para todo}) y $\exists$ (\key{existe}).
+Por ejemplo,
 \[\forall x (\exists y (y < x))\]
-means that for each element $x$ in the set,
-there is an element $y$ in the set
-such that $y$ is smaller than $x$.
-This is true in the set of integers,
-but false in the set of natural numbers.
+significa que para cada elemento $x$ en el conjunto,
+hay un elemento $y$ en el conjunto
+tal que $y$ es menor que $x$.
+Esto es cierto en el conjunto de los números enteros,
+pero falso en el conjunto de los números naturales.
 
 Using the notation described above,
 we can express many kinds of logical propositions.
