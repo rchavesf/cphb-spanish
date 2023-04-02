@@ -237,69 +237,68 @@ utilice una estructura de datos en la que cada operación
 tarda $O(\log n)$ en tiempo.
 
 \item[$O(n^2)$]
-\index{quadratic algorithm}
-A \key{quadratic} algorithm often contains
-two nested loops.
-It is possible to go through all pairs of
-the input elements in $O(n^2)$ time.
+\index{algoritmo cuadrático}
+Un algoritmo \key{cuadrático} a menudo contiene
+dos bucles anidados.
+Es posible recorrer todos los pares de
+los elementos de entrada en tiempo $O(n^2)$.
 
 \item[$O(n^3)$]
-\index{cubic algorithm}
-A \key{cubic} algorithm often contains
-three nested loops.
-It is possible to go through all triplets of
-the input elements in $O(n^3)$ time.
+\index{algoritmo cúbico}
+Un algoritmo \key{cúbico} a menudo contiene
+tres bucles anidados.
+Es posible recorrer todos los tríos de
+los elementos de entrada en tiempo $O(n^3)$.
 
 \item[$O(2^n)$]
-This time complexity often indicates that
-the algorithm iterates through all
-subsets of the input elements.
-For example, the subsets of $\{1,2,3\}$ are
+Esta complejidad temporal a menudo indica que
+el algoritmo itera a través de todos
+los subconjuntos de los elementos de entrada.
+Por ejemplo, los subconjuntos de $\{1,2,3\}$ son
 $\emptyset$, $\{1\}$, $\{2\}$, $\{3\}$, $\{1,2\}$,
-$\{1,3\}$, $\{2,3\}$ and $\{1,2,3\}$.
+$\{1,3\}$, $\{2,3\}$ y $\{1,2,3\}$.
 
 \item[$O(n!)$]
-This time complexity often indicates that
-the algorithm iterates through all
-permutations of the input elements.
-For example, the permutations of $\{1,2,3\}$ are
+Esta complejidad temporal a menudo indica que
+el algoritmo itera a través de todas
+las permutaciones de los elementos de entrada.
+Por ejemplo, las permutaciones de $\{1,2,3\}$ son
 $(1,2,3)$, $(1,3,2)$, $(2,1,3)$, $(2,3,1)$,
-$(3,1,2)$ and $(3,2,1)$.
+$(3,1,2)$ y $(3,2,1)$.
 
 \end{description}
 
-\index{polynomial algorithm}
-An algorithm is \key{polynomial}
-if its time complexity is at most $O(n^k)$
-where $k$ is a constant.
-All the above time complexities except
-$O(2^n)$ and $O(n!)$ are polynomial.
-In practice, the constant $k$ is usually small,
-and therefore a polynomial time complexity
-roughly means that the algorithm is \emph{efficient}.
+\index{algoritmo polinomial}
+Un algoritmo es \key{polinomial}
+si su complejidad temporal es como máximo $O(n^k)$
+donde $k$ es una constante.
+Todas las complejidades temporales anteriores excepto
+$O(2^n)$ y $O(n!)$ son polinomiales.
+En la práctica, la constante $k$ suele ser pequeña,
+y por lo tanto, una complejidad temporal polinomial
+significa aproximadamente que el algoritmo es \emph{eficiente}.
 
-\index{NP-hard problem}
+\index{problema NP-difícil}
 
-Most algorithms in this book are polynomial.
-Still, there are many important problems for which
-no polynomial algorithm is known, i.e.,
-nobody knows how to solve them efficiently.
-\key{NP-hard} problems are an important set
-of problems, for which no polynomial algorithm
-is known\footnote{A classic book on the topic is
-M. R. Garey's and D. S. Johnson's
+La mayoría de los algoritmos en este libro son polinomiales.
+Sin embargo, hay muchos problemas importantes para los cuales
+no se conoce ningún algoritmo polinomial, es decir,
+nadie sabe cómo resolverlos de manera eficiente.
+Los problemas \key{NP-difíciles} son un conjunto importante
+de problemas, para los cuales no se conoce ningún algoritmo
+polinomial\footnote{Un libro clásico sobre el tema es
 \emph{Computers and Intractability: A Guide to the Theory
-of NP-Completeness} \cite{gar79}.}.
+of NP-Completeness} de M. R. Garey y D. S. Johnson \cite{gar79}.}.
 
-\section{Estimating efficiency}
+\section{Estimación de la eficiencia}
 
-By calculating the time complexity of an algorithm,
-it is possible to check, before
-implementing the algorithm, that it is
-efficient enough for the problem.
-The starting point for estimations is the fact that
-a modern computer can perform some hundreds of
-millions of operations in a second.
+Al calcular la complejidad temporal de un algoritmo,
+es posible verificar, antes de
+implementar el algoritmo, que es
+suficientemente eficiente para el problema.
+El punto de partida para las estimaciones es el hecho de que
+una computadora moderna puede realizar varios cientos de
+millones de operaciones en un segundo.
 
 For example, assume that the time limit for
 a problem is one second and the input size is $n=10^5$.
