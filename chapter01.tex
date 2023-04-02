@@ -653,57 +653,57 @@ Por ejemplo, en el conjunto anterior
 \[4 \in X \hspace{10px}\textrm{y}\hspace{10px} 5 \notin X.\]
 
 \begin{samepage}
-New sets can be constructed using set operations:
+Se pueden construir nuevos conjuntos utilizando operaciones de conjuntos:
 \begin{itemize}
-\item The \key{intersection} $A \cap B$ consists of elements
-that are in both $A$ and $B$.
-For example, if $A=\{1,2,5\}$ and $B=\{2,4\}$,
-then $A \cap B = \{2\}$.
-\item The \key{union} $A \cup B$ consists of elements
-that are in $A$ or $B$ or both.
-For example, if $A=\{3,7\}$ and $B=\{2,3,8\}$,
-then $A \cup B = \{2,3,7,8\}$.
-\item The \key{complement} $\bar A$ consists of elements
-that are not in $A$.
-The interpretation of a complement depends on
-the \key{universal set}, which contains all possible elements.
-For example, if $A=\{1,2,5,7\}$ and the universal set is
-$\{1,2,\ldots,10\}$, then $\bar A = \{3,4,6,8,9,10\}$.
-\item The \key{difference} $A \setminus B = A \cap \bar B$
-consists of elements that are in $A$ but not in $B$.
-Note that $B$ can contain elements that are not in $A$.
-For example, if $A=\{2,3,7,8\}$ and $B=\{3,5,8\}$,
-then $A \setminus B = \{2,7\}$.
+\item La \key{intersección} $A \cap B$ consiste en elementos
+que están tanto en $A$ como en $B$.
+Por ejemplo, si $A=\{1,2,5\}$ y $B=\{2,4\}$,
+entonces $A \cap B = \{2\}$.
+\item La \key{unión} $A \cup B$ consiste en elementos
+que están en $A$ o en $B$ o en ambos.
+Por ejemplo, si $A=\{3,7\}$ y $B=\{2,3,8\}$,
+entonces $A \cup B = \{2,3,7,8\}$.
+\item El \key{complemento} $\bar A$ consiste en elementos
+que no están en $A$.
+La interpretación de un complemento depende del
+\key{conjunto universal}, que contiene todos los elementos posibles.
+Por ejemplo, si $A=\{1,2,5,7\}$ y el conjunto universal es
+$\{1,2,\ldots,10\}$, entonces $\bar A = \{3,4,6,8,9,10\}$.
+\item La \key{diferencia} $A \setminus B = A \cap \bar B$
+consiste en elementos que están en $A$ pero no en $B$.
+Nótese que $B$ puede contener elementos que no están en $A$.
+Por ejemplo, si $A=\{2,3,7,8\}$ y $B=\{3,5,8\}$,
+entonces $A \setminus B = \{2,7\}$.
 \end{itemize}
 \end{samepage}
 
-If each element of $A$ also belongs to $S$,
-we say that $A$ is a \key{subset} of $S$,
-denoted by $A \subset S$.
-A set $S$ always has $2^{|S|}$ subsets,
-including the empty set.
-For example, the subsets of the set $\{2,4,7\}$ are
+Si cada elemento de $A$ también pertenece a $S$,
+decimos que $A$ es un \key{subconjunto} de $S$,
+denotado por $A \subset S$.
+Un conjunto $S$ siempre tiene $2^{|S|}$ subconjuntos,
+incluido el conjunto vacío.
+Por ejemplo, los subconjuntos del conjunto $\{2,4,7\}$ son
 \begin{center}
 $\emptyset$,
-$\{2\}$, $\{4\}$, $\{7\}$, $\{2,4\}$, $\{2,7\}$, $\{4,7\}$ and $\{2,4,7\}$.
+$\{2\}$, $\{4\}$, $\{7\}$, $\{2,4\}$, $\{2,7\}$, $\{4,7\}$ y $\{2,4,7\}$.
 \end{center}
 
-Some often used sets are
-$\mathbb{N}$ (natural numbers),
-$\mathbb{Z}$ (integers),
-$\mathbb{Q}$ (rational numbers) and
-$\mathbb{R}$ (real numbers).
-The set $\mathbb{N}$
-can be defined in two ways, depending
-on the situation:
-either $\mathbb{N}=\{0,1,2,\ldots\}$
-or $\mathbb{N}=\{1,2,3,...\}$.
+Algunos conjuntos utilizados con frecuencia son
+$\mathbb{N}$ (números naturales),
+$\mathbb{Z}$ (enteros),
+$\mathbb{Q}$ (números racionales) y
+$\mathbb{R}$ (números reales).
+El conjunto $\mathbb{N}$
+se puede definir de dos maneras, dependiendo
+de la situación:
+ya sea $\mathbb{N}=\{0,1,2,\ldots\}$
+o $\mathbb{N}=\{1,2,3,\ldots\}$.
 
-We can also construct a set using a rule of the form
+También podemos construir un conjunto usando una regla de la forma
 \[\{f(n) : n \in S\},\]
-where $f(n)$ is some function.
-This set contains all elements of the form $f(n)$,
-where $n$ is an element in $S$.
+donde $f(n)$ es alguna función.
+Este conjunto contiene todos los elementos de la forma $f(n)$,
+donde $n$ es un elemento en $S$.
 For example, the set
 \[X=\{2n : n \in \mathbb{Z}\}\]
 contains all even integers.
