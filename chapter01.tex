@@ -200,69 +200,68 @@ El siguiente código imprime dos enteros:
 int a = 123, b = 456;
 printf("%d %d\n", a, b);
 \end{lstlisting}
-
-Sometimes the program should read a whole line
-from the input, possibly containing spaces.
-This can be accomplished by using the
-\texttt{getline} function:
+A veces, el programa debe leer una línea completa
+desde la entrada, posiblemente conteniendo espacios.
+Esto se puede lograr utilizando la
+función \texttt{getline}:
 
 \begin{lstlisting}
 string s;
 getline(cin, s);
 \end{lstlisting}
 
-If the amount of data is unknown, the following
-loop is useful:
+Si la cantidad de datos es desconocida, el siguiente
+bucle es útil:
 \begin{lstlisting}
 while (cin >> x) {
-    // code
+    // código
 }
 \end{lstlisting}
-This loop reads elements from the input
-one after another, until there is no
-more data available in the input.
+Este bucle lee elementos de la entrada
+uno tras otro, hasta que no haya
+más datos disponibles en la entrada.
 
-In some contest systems, files are used for
-input and output.
-An easy solution for this is to write
-the code as usual using standard streams,
-but add the following lines to the beginning of the code:
+En algunos sistemas de competencia, se utilizan archivos para
+entrada y salida.
+Una solución fácil para esto es escribir
+el código como de costumbre utilizando flujos estándar,
+pero agregue las siguientes líneas al comienzo del código:
 \begin{lstlisting}
 freopen("input.txt", "r", stdin);
 freopen("output.txt", "w", stdout);
 \end{lstlisting}
-After this, the program reads the input from the file
-''input.txt'' and writes the output to the file
+Después de esto, el programa lee la entrada del archivo
+''input.txt'' y escribe la salida en el archivo
 ''output.txt''.
 
-\section{Working with numbers}
+\section{Trabajando con números}
 
-\index{integer}
+\index{entero}
 
-\subsubsection{Integers}
+\subsubsection{Enteros}
 
-The most used integer type in competitive programming
-is \texttt{int}, which is a 32-bit type with
-a value range of $-2^{31} \ldots 2^{31}-1$
-or about $-2 \cdot 10^9 \ldots 2 \cdot 10^9$.
-If the type \texttt{int} is not enough,
-the 64-bit type \texttt{long long} can be used.
-It has a value range of $-2^{63} \ldots 2^{63}-1$
-or about $-9 \cdot 10^{18} \ldots 9 \cdot 10^{18}$.
+El tipo de entero más utilizado en la programación competitiva
+es \texttt{int}, que es un tipo de 32 bits con
+un rango de valores de $-2^{31} \ldots 2^{31}-1$
+o aproximadamente $-2 \cdot 10^9 \ldots 2 \cdot 10^9$.
+Si el tipo \texttt{int} no es suficiente,
+se puede utilizar el tipo de 64 bits \texttt{long long}.
+Tiene un rango de valores de $-2^{63} \ldots 2^{63}-1$
+o aproximadamente $-9 \cdot 10^{18} \ldots 9 \cdot 10^{18}$.
 
-The following code defines a
-\texttt{long long} variable:
+El siguiente código define una
+variable \texttt{long long}:
 \begin{lstlisting}
 long long x = 123456789123456789LL;
 \end{lstlisting}
-The suffix \texttt{LL} means that the
-type of the number is \texttt{long long}.
+El sufijo \texttt{LL} significa que el
+tipo de número es \texttt{long long}.
 
-A common mistake when using the type \texttt{long long}
-is that the type \texttt{int} is still used somewhere
-in the code.
-For example, the following code contains
-a subtle error:
+Un error común al usar el tipo \texttt{long long}
+es que el tipo \texttt{int} todavía se usa en alguna parte
+en el código.
+Por ejemplo, el siguiente código contiene
+un error sutil:
 
 \begin{lstlisting}
 int a = 123456789;
@@ -270,15 +269,16 @@ long long b = a*a;
 cout << b << "\n"; // -1757895751
 \end{lstlisting}
 
-Even though the variable \texttt{b} is of type \texttt{long long},
-both numbers in the expression \texttt{a*a}
-are of type \texttt{int} and the result is
-also of type \texttt{int}.
-Because of this, the variable \texttt{b} will
-contain a wrong result.
-The problem can be solved by changing the type
-of \texttt{a} to \texttt{long long} or
-by changing the expression to \texttt{(long long)a*a}.
+Aunque la variable \texttt{b} es de tipo \texttt{long long},
+ambos números en la expresión \texttt{a*a}
+son de tipo \texttt{int} y el resultado es
+también de tipo \texttt{int}.
+Debido a esto, la variable \texttt{b} contendrá
+un resultado incorrecto.
+El problema se puede solucionar cambiando el tipo
+de \texttt{a} a \texttt{long long} o
+cambiando la expresión a \texttt{(long long)a*a}.
+
 
 Usually contest problems are set so that the
 type \texttt{long long} is enough.
