@@ -1,80 +1,80 @@
-\chapter{Time complexity}
+\chapter{Complejidad temporal}
 
-\index{time complexity}
+\index{complejidad temporal}
 
-The efficiency of algorithms is important in competitive programming.
-Usually, it is easy to design an algorithm
-that solves the problem slowly,
-but the real challenge is to invent a
-fast algorithm.
-If the algorithm is too slow, it will get only
-partial points or no points at all.
+La eficiencia de los algoritmos es importante en la programación competitiva.
+Por lo general, es fácil diseñar un algoritmo
+que resuelve el problema lentamente,
+pero el verdadero desafío es inventar un
+algoritmo rápido.
+Si el algoritmo es demasiado lento, obtendrá solo
+puntos parciales o ningún punto en absoluto.
 
-The \key{time complexity} of an algorithm
-estimates how much time the algorithm will use
-for some input.
-The idea is to represent the efficiency
-as a function whose parameter is the size of the input.
-By calculating the time complexity,
-we can find out whether the algorithm is fast enough
-without implementing it.
+La \key{complejidad temporal} de un algoritmo
+estima cuánto tiempo utilizará el algoritmo
+para alguna entrada.
+La idea es representar la eficiencia
+como una función cuyo parámetro es el tamaño de la entrada.
+Al calcular la complejidad temporal,
+podemos averiguar si el algoritmo es lo suficientemente rápido
+sin implementarlo.
 
-\section{Calculation rules}
+\section{Reglas de cálculo}
 
-The time complexity of an algorithm
-is denoted $O(\cdots)$
-where the three dots represent some
-function.
-Usually, the variable $n$ denotes
-the input size.
-For example, if the input is an array of numbers,
-$n$ will be the size of the array,
-and if the input is a string,
-$n$ will be the length of the string.
+La complejidad temporal de un algoritmo
+se denota $O(\cdots)$
+donde los tres puntos representan alguna
+función.
+Por lo general, la variable $n$ denota
+el tamaño de la entrada.
+Por ejemplo, si la entrada es un conjunto de números,
+$n$ será el tamaño del conjunto,
+y si la entrada es una cadena,
+$n$ será la longitud de la cadena.
 
-\subsubsection*{Loops}
+\subsubsection*{Bucles}
 
-A common reason why an algorithm is slow is
-that it contains many loops that go through the input.
-The more nested loops the algorithm contains,
-the slower it is.
-If there are $k$ nested loops,
-the time complexity is $O(n^k)$.
+Una razón común por la que un algoritmo es lento es
+que contiene muchos bucles que recorren la entrada.
+Cuanto más bucles anidados contenga el algoritmo,
+más lento será.
+Si hay $k$ bucles anidados,
+la complejidad temporal es $O(n^k)$.
 
-For example, the time complexity of the following code is $O(n)$:
+Por ejemplo, la complejidad temporal del siguiente código es $O(n)$:
 \begin{lstlisting}
 for (int i = 1; i <= n; i++) {
-    // code
+    // código
 }
 \end{lstlisting}
 
-And the time complexity of the following code is $O(n^2)$:
+Y la complejidad temporal del siguiente código es $O(n^2)$:
 \begin{lstlisting}
 for (int i = 1; i <= n; i++) {
     for (int j = 1; j <= n; j++) {
-        // code
+        // código
     }
 }
 \end{lstlisting}
 
-\subsubsection*{Order of magnitude}
+\subsubsection*{Orden de magnitud}
 
-A time complexity does not tell us the exact number
-of times the code inside a loop is executed,
-but it only shows the order of magnitude.
-In the following examples, the code inside the loop
-is executed $3n$, $n+5$ and $\lceil n/2 \rceil$ times,
-but the time complexity of each code is $O(n)$.
+Una complejidad temporal no nos dice el número exacto
+de veces que se ejecuta el código dentro de un bucle,
+sino que solo muestra el orden de magnitud.
+En los siguientes ejemplos, el código dentro del bucle
+se ejecuta $3n$, $n+5$ y $\lceil n/2 \rceil$ veces,
+pero la complejidad temporal de cada código es $O(n)$.
 
 \begin{lstlisting}
 for (int i = 1; i <= 3*n; i++) {
-    // code
+    // código
 }
 \end{lstlisting}
 
 \begin{lstlisting}
 for (int i = 1; i <= n+5; i++) {
-    // code
+    // código
 }
 \end{lstlisting}
 
