@@ -381,7 +381,7 @@ Por ejemplo, en el arreglo
 \end{tikzpicture}
 \end{center}
 \begin{samepage}
-the following subarray produces the maximum sum $10$:
+el siguiente subarreglo produce la suma máxima $10$:
 \begin{center}
 \begin{tikzpicture}[scale=0.7]
 \fill[color=lightgray] (1,0) rectangle (6,1);
@@ -399,60 +399,60 @@ the following subarray produces the maximum sum $10$:
 \end{center}
 \end{samepage}
 
-We assume that an empty subarray is allowed,
-so the maximum subarray sum is always at least $0$.
+Asumimos que se permite un subarreglo vacío,
+así que la suma de subarreglo máximo es siempre al menos $0$.
 
-\subsubsection{Algorithm 1}
+\subsubsection{Algoritmo 1}
 
-A straightforward way to solve the problem
-is to go through all possible subarrays,
-calculate the sum of values in each subarray and maintain
-the maximum sum.
-The following code implements this algorithm:
+Una forma sencilla de resolver el problema
+es recorrer todos los subarreglos posibles,
+calcular la suma de valores en cada subarreglo y mantener
+la suma máxima.
+El siguiente código implementa este algoritmo:
 
 \begin{lstlisting}
-int best = 0;
+int mejor = 0;
 for (int a = 0; a < n; a++) {
     for (int b = a; b < n; b++) {
-        int sum = 0;
+        int suma = 0;
         for (int k = a; k <= b; k++) {
-            sum += array[k];
+            suma += array[k];
         }
-        best = max(best,sum);
+        mejor = max(mejor,suma);
     }
 }
-cout << best << "\n";
+cout << mejor << "\n";
 \end{lstlisting}
 
-The variables \texttt{a} and \texttt{b} fix the first and
-last index of the subarray,
-and the sum of values is calculated to the variable \texttt{sum}.
-The variable \texttt{best} contains the maximum sum found during the search.
+Las variables \texttt{a} y \texttt{b} fijan el primer y
+último índice del subarreglo,
+y la suma de valores se calcula en la variable \texttt{suma}.
+La variable \texttt{mejor} contiene la suma máxima encontrada durante la búsqueda.
 
-The time complexity of the algorithm is $O(n^3)$,
-because it consists of three nested loops 
-that go through the input.
+La complejidad en tiempo del algoritmo es $O(n^3)$,
+porque consiste en tres bucles anidados
+que recorren la entrada.
 
-\subsubsection{Algorithm 2}
+\subsubsection{Algoritmo 2}
 
-It is easy to make Algorithm 1 more efficient
-by removing one loop from it.
-This is possible by calculating the sum at the same
-time when the right end of the subarray moves.
-The result is the following code:
+Es fácil hacer que el Algoritmo 1 sea más eficiente
+eliminando un bucle de él.
+Esto es posible calculando la suma al mismo
+tiempo que se mueve el extremo derecho del subarreglo.
+El resultado es el siguiente código:
 
 \begin{lstlisting}
-int best = 0;
+int mejor = 0;
 for (int a = 0; a < n; a++) {
-    int sum = 0;
+    int suma = 0;
     for (int b = a; b < n; b++) {
-        sum += array[b];
-        best = max(best,sum);
+        suma += array[b];
+        mejor = max(mejor,suma);
     }
 }
-cout << best << "\n";
+cout << mejor << "\n";
 \end{lstlisting}
-After this change, the time complexity is $O(n^2)$.
+Después de este cambio, la complejidad en tiempo es $O(n^2)$.
 
 \subsubsection{Algorithm 3}
 
