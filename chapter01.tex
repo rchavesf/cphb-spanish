@@ -52,41 +52,41 @@ el 16 \% utilizó Python y
 el 8 \% utilizó Java \cite{goo17}.
 Algunas personas participantes también utilizaron varios lenguajes.
 
-Many people think that C++ is the best choice
-for a competitive programmer,
-and C++ is nearly always available in
-contest systems.
-The benefits of using C++ are that
-it is a very efficient language and
-its standard library contains a 
-large collection
-of data structures and algorithms.
+Muchas personas piensan que C++ es la mejor opción
+para una persona que participa en programación competitiva,
+y C++ está casi siempre disponible en
+sistemas de competencias.
+Los beneficios de usar C++ son que
+es un lenguaje muy eficiente y
+su biblioteca estándar contiene una
+gran colección
+de estructuras de datos y algoritmos.
 
-On the other hand, it is good to
-master several languages and understand
-their strengths.
-For example, if large integers are needed
-in the problem,
-Python can be a good choice, because it
-contains built-in operations for
-calculating with large integers.
-Still, most problems in programming contests
-are set so that
-using a specific programming language
-is not an unfair advantage.
+Por otro lado, es bueno
+dominar varios lenguajes y comprender
+sus fortalezas.
+Por ejemplo, si se necesitan enteros grandes
+en el problema,
+Python puede ser una buena opción, porque
+contiene operaciones integradas para
+calcular con enteros grandes.
+Aún así, la mayoría de los problemas en concursos de programación
+están establecidos de tal manera que
+usar un lenguaje de programación específico
+no representa una ventaja injusta.
 
-All example programs in this book are written in C++,
-and the standard library's
-data structures and algorithms are often used.
-The programs follow the C++11 standard,
-which can be used in most contests nowadays.
-If you cannot program in C++ yet,
-now is a good time to start learning.
+Todos los programas de ejemplo en este libro están escritos en C++,
+y se utilizan a menudo las estructuras de datos y algoritmos
+de la biblioteca estándar.
+Los programas siguen el estándar C++11,
+que se puede utilizar en la mayoría de los concursos en la actualidad.
+Si aún no puedes programar en C++, 
+ahora es un buen momento para comenzar a aprender.
 
-\subsubsection{C++ code template}
+\subsubsection{Plantilla de código C++}
 
-A typical C++ code template for competitive programming
-looks like this:
+Una plantilla típica de código C++ para programación competitiva
+se ve así:
 
 \begin{lstlisting}
 #include <bits/stdc++.h>
@@ -94,25 +94,26 @@ looks like this:
 using namespace std;
 
 int main() {
-    // solution comes here
+    // aquí va la solución
 }
 \end{lstlisting}
 
-The \texttt{\#include} line at the beginning
-of the code is a feature of the \texttt{g++} compiler
-that allows us to include the entire standard library.
-Thus, it is not needed to separately include
-libraries such as \texttt{iostream},
-\texttt{vector} and \texttt{algorithm},
-but rather they are available automatically.
+La línea \texttt{\#include} al principio
+del código es una característica del compilador \texttt{g++}
+que nos permite incluir toda la biblioteca estándar.
+Por lo tanto, no es necesario incluir por separado
+bibliotecas como \texttt{iostream},
+\texttt{vector} y \texttt{algorithm},
+sino que están disponibles automáticamente.
 
-The \texttt{using} line declares
-that the classes and functions
-of the standard library can be used directly
-in the code.
-Without the \texttt{using} line we would have
-to write, for example, \texttt{std::cout},
-but now it suffices to write \texttt{cout}.
+La línea \texttt{using} declara
+que las clases y funciones
+de la biblioteca estándar se pueden utilizar directamente
+en el código.
+Sin la línea \texttt{using}, tendríamos
+que escribir, por ejemplo, \texttt{std::cout},
+pero ahora es suficiente con escribir \texttt{cout}.
+
 
 The code can be compiled using the following command:
 
