@@ -454,36 +454,36 @@ cout << mejor << "\n";
 \end{lstlisting}
 Después de este cambio, la complejidad en tiempo es $O(n^2)$.
 
-\subsubsection{Algorithm 3}
+\subsubsection{Algoritmo 3}
 
-Surprisingly, it is possible to solve the problem
-in $O(n)$ time\footnote{In \cite{ben86}, this linear-time algorithm
-is attributed to J. B. Kadane, and the algorithm is sometimes
-called \index{Kadane's algorithm} \key{Kadane's algorithm}.}, which means
-that just one loop is enough.
-The idea is to calculate, for each array position,
-the maximum sum of a subarray that ends at that position.
-After this, the answer for the problem is the
-maximum of those sums.
+Sorprendentemente, es posible resolver el problema
+en tiempo $O(n)$\footnote{En \cite{ben86}, este algoritmo de tiempo lineal
+se atribuye a J. B. Kadane, y el algoritmo a veces se
+llama \index{Algoritmo de Kadane} \key{Algoritmo de Kadane}.}, lo que significa
+que solo se necesita un bucle.
+La idea es calcular, para cada posición del arreglo,
+la suma máxima de un subarreglo que termina en esa posición.
+Después de esto, la respuesta al problema es el
+máximo de esas sumas.
 
-Consider the subproblem of finding the maximum-sum subarray
-that ends at position $k$.
-There are two possibilities:
+Consideremos el subproblema de encontrar el subarreglo de suma máxima
+que termina en la posición $k$.
+Hay dos posibilidades:
 \begin{enumerate}
-\item The subarray only contains the element at position $k$.
-\item The subarray consists of a subarray that ends
-at position $k-1$, followed by the element at position $k$.
+\item El subarreglo solo contiene el elemento en la posición $k$.
+\item El subarreglo consta de un subarreglo que termina
+en la posición $k-1$, seguido del elemento en la posición $k$.
 \end{enumerate}
 
-In the latter case, since we want to
-find a subarray with maximum sum,
-the subarray that ends at position $k-1$
-should also have the maximum sum.
-Thus, we can solve the problem efficiently
-by calculating the maximum subarray sum
-for each ending position from left to right.
+En el último caso, dado que queremos
+encontrar un subarreglo con suma máxima,
+el subarreglo que termina en la posición $k-1$
+también debe tener la suma máxima.
+Por lo tanto, podemos resolver el problema de manera eficiente
+calculando la suma de subarreglos máxima
+para cada posición final de izquierda a derecha.
 
-The following code implements the algorithm:
+El siguiente código implementa el algoritmo:
 \begin{lstlisting}
 int best = 0, sum = 0;
 for (int k = 0; k < n; k++) {
@@ -493,28 +493,28 @@ for (int k = 0; k < n; k++) {
 cout << best << "\n";
 \end{lstlisting}
 
-The algorithm only contains one loop
-that goes through the input,
-so the time complexity is $O(n)$.
-This is also the best possible time complexity,
-because any algorithm for the problem
-has to examine all array elements at least once.
+El algoritmo solo contiene un bucle
+que recorre la entrada,
+por lo que la complejidad del tiempo es $O(n)$.
+Esta también es la mejor complejidad de tiempo posible,
+porque cualquier algoritmo para el problema
+tiene que examinar todos los elementos del arreglo al menos una vez.
 
-\subsubsection{Efficiency comparison}
+\subsubsection{Comparación de eficiencia}
 
-It is interesting to study how efficient 
-algorithms are in practice.
-The following table shows the running times
-of the above algorithms for different
-values of $n$ on a modern computer.
+Es interesante estudiar qué tan eficientes
+son los algoritmos en la práctica.
+La siguiente tabla muestra los tiempos de ejecución
+de los algoritmos anteriores para diferentes
+valores de $n$ en una computadora moderna.
 
-In each test, the input was generated randomly.
-The time needed for reading the input was not
-measured.
+En cada prueba, la entrada se generó al azar.
+El tiempo necesario para leer la entrada no fue
+medido.
 
 \begin{center}
 \begin{tabular}{rrrr}
-array size $n$ & Algorithm 1 & Algorithm 2 & Algorithm 3 \\
+tamaño del arreglo $n$ & Algoritmo 1 & Algoritmo 2 & Algoritmo 3 \\
 \hline
 $10^2$ & $0.0$ s & $0.0$ s & $0.0$ s \\
 $10^3$ & $0.1$ s & $0.0$ s & $0.0$ s \\
@@ -525,12 +525,12 @@ $10^7$ & > $10.0$ s & > $10.0$ s & $0.0$ s \\
 \end{tabular}
 \end{center}
 
-The comparison shows that all algorithms
-are efficient when the input size is small,
-but larger inputs bring out remarkable
-differences in the running times of the algorithms.
-Algorithm 1 becomes slow
-when $n=10^4$, and Algorithm 2
-becomes slow when $n=10^5$.
-Only Algorithm 3 is able to process
-even the largest inputs instantly.
+La comparación muestra que todos los algoritmos
+son eficientes cuando el tamaño de la entrada es pequeño,
+pero las entradas más grandes resaltan diferencias notables
+en los tiempos de ejecución de los algoritmos.
+El Algoritmo 1 se vuelve lento
+cuando $n=10^4$, y el Algoritmo 2
+se vuelve lento cuando $n=10^5$.
+Solo el Algoritmo 3 es capaz de procesar
+incluso las entradas más grandes al instante.
