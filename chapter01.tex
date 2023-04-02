@@ -537,65 +537,64 @@ corresponde al código
 cout << (3+3)*(3+3) << "\n"; // 36
 \end{lstlisting}
 
+\section{Matemáticas}
 
-\section{Mathematics}
+Las matemáticas juegan un papel importante en la
+programación competitiva, y no es posible convertirse
+en un programador competitivo exitoso sin
+tener buenas habilidades matemáticas.
+Esta sección trata algunos conceptos y fórmulas
+matemáticas importantes que
+serán necesarios más adelante en el libro.
 
-Mathematics plays an important role in competitive
-programming, and it is not possible to become
-a successful competitive programmer without
-having good mathematical skills.
-This section discusses some important
-mathematical concepts and formulas that
-are needed later in the book.
+\subsubsection{Fórmulas de suma}
 
-\subsubsection{Sum formulas}
-
-Each sum of the form
+Cada suma de la forma
 \[\sum_{x=1}^n x^k = 1^k+2^k+3^k+\ldots+n^k,\]
-where $k$ is a positive integer,
-has a closed-form formula that is a
-polynomial of degree $k+1$.
-For example\footnote{\index{Faulhaber's formula}
-There is even a general formula for such sums, called \key{Faulhaber's formula},
-but it is too complex to be presented here.},
+donde $k$ es un número entero positivo,
+tiene una fórmula cerrada que es un
+polinomio de grado $k+1$.
+Por ejemplo\footnote{\index{Fórmula de Faulhaber}
+Existe incluso una fórmula general para tales sumas, llamada \key{Fórmula de Faulhaber},
+pero es demasiado compleja para presentarla aquí.},
 \[\sum_{x=1}^n x = 1+2+3+\ldots+n = \frac{n(n+1)}{2}\]
-and
+y
 \[\sum_{x=1}^n x^2 = 1^2+2^2+3^2+\ldots+n^2 = \frac{n(n+1)(2n+1)}{6}.\]
 
-An \key{arithmetic progression} is a \index{arithmetic progression}
-sequence of numbers
-where the difference between any two consecutive
-numbers is constant.
-For example,
+Una \key{progresión aritmética} es una \index{progresión aritmética}
+secuencia de números
+donde la diferencia entre dos números consecutivos
+es constante.
+Por ejemplo,
 \[3, 7, 11, 15\]
-is an arithmetic progression with constant 4.
-The sum of an arithmetic progression can be calculated
-using the formula
-\[\underbrace{a + \cdots + b}_{n \,\, \textrm{numbers}} = \frac{n(a+b)}{2}\]
-where $a$ is the first number,
-$b$ is the last number and
-$n$ is the amount of numbers.
-For example,
+es una progresión aritmética con constante 4.
+La suma de una progresión aritmética se puede calcular
+usando la fórmula
+\[\underbrace{a + \cdots + b}_{n \,\, \textrm{números}} = \frac{n(a+b)}{2}\]
+donde $a$ es el primer número,
+$b$ es el último número y
+$n$ es la cantidad de números.
+Por ejemplo,
 \[3+7+11+15=\frac{4 \cdot (3+15)}{2} = 36.\]
-The formula is based on the fact
-that the sum consists of $n$ numbers and
-the value of each number is $(a+b)/2$ on average.
+La fórmula se basa en el hecho
+de que la suma consiste en $n$ números y
+el valor de cada número es $(a+b)/2$ en promedio.
 
-\index{geometric progression}
-A \key{geometric progression} is a sequence
-of numbers
-where the ratio between any two consecutive
-numbers is constant.
-For example,
+\index{progresión geométrica}
+Una \key{progresión geométrica} es una secuencia
+de números
+donde la proporción entre dos números consecutivos
+es constante.
+Por ejemplo,
 \[3,6,12,24\]
-is a geometric progression with constant 2.
-The sum of a geometric progression can be calculated
-using the formula
+es una progresión geométrica con constante 2.
+La suma de una progresión geométrica se puede calcular
+usando la fórmula
 \[a + ak + ak^2 + \cdots + b = \frac{bk-a}{k-1}\]
-where $a$ is the first number,
-$b$ is the last number and the
-ratio between consecutive numbers is $k$.
-For example,
+donde $a$ es el primer número,
+$b$ es el último número y la
+proporción entre números consecutivos es $k$.
+Por ejemplo,
 \[3+6+12+24=\frac{24 \cdot 2 - 3}{2-1} = 45.\]
 
 This formula can be derived as follows. Let
