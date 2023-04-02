@@ -448,12 +448,12 @@ ll b = 987654321;
 cout << a*b << "\n";
 \end{lstlisting}
 
-The command \texttt{typedef}
-can also be used with more complex types.
-For example, the following code gives
-the name \texttt{vi} for a vector of integers
-and the name \texttt{pi} for a pair
-that contains two integers.
+El comando \texttt{typedef}
+también se puede utilizar con tipos más complejos.
+Por ejemplo, el siguiente código proporciona
+el nombre \texttt{vi} para un vector de enteros
+y el nombre \texttt{pi} para un par
+que contiene dos enteros.
 \begin{lstlisting}
 typedef vector<int> vi;
 typedef pair<int,int> pi;
@@ -461,78 +461,78 @@ typedef pair<int,int> pi;
 
 \subsubsection{Macros}
 \index{macro}
-Another way to shorten code is to define
+Otra forma de acortar el código es definir
 \key{macros}.
-A macro means that certain strings in
-the code will be changed before the compilation.
-In C++, macros are defined using the
-\texttt{\#define} keyword.
+Un macro significa que ciertas cadenas en
+el código se cambiarán antes de la compilación.
+En C++, los macros se definen usando la
+palabra clave \texttt{\#define}.
 
-For example, we can define the following macros:
+Por ejemplo, podemos definir los siguientes macros:
 \begin{lstlisting}
 #define F first
 #define S second
 #define PB push_back
 #define MP make_pair
 \end{lstlisting}
-After this, the code
+Después de esto, el código
 \begin{lstlisting}
 v.push_back(make_pair(y1,x1));
 v.push_back(make_pair(y2,x2));
 int d = v[i].first+v[i].second;
 \end{lstlisting}
-can be shortened as follows:
+se puede acortar de la siguiente manera:
 \begin{lstlisting}
 v.PB(MP(y1,x1));
 v.PB(MP(y2,x2));
 int d = v[i].F+v[i].S;
 \end{lstlisting}
 
-A macro can also have parameters
-which makes it possible to shorten loops and other
-structures.
-For example, we can define the following macro:
+Un macro también puede tener parámetros
+lo que hace posible acortar bucles y otras
+estructuras.
+Por ejemplo, podemos definir el siguiente macro:
 \begin{lstlisting}
 #define REP(i,a,b) for (int i = a; i <= b; i++)
 \end{lstlisting}
-After this, the code
+Después de esto, el código
 \begin{lstlisting}
 for (int i = 1; i <= n; i++) {
     search(i);
 }
 \end{lstlisting}
-can be shortened as follows:
+se puede acortar de la siguiente manera:
 \begin{lstlisting}
 REP(i,1,n) {
     search(i);
 }
 \end{lstlisting}
 
-Sometimes macros cause bugs that may be difficult
-to detect. For example, consider the following macro
-that calculates the square of a number:
+A veces los macros causan errores que pueden ser difíciles
+de detectar. Por ejemplo, considere el siguiente macro
+que calcula el cuadrado de un número:
 \begin{lstlisting}
 #define SQ(a) a*a
 \end{lstlisting}
-This macro \emph{does not} always work as expected.
-For example, the code
+Este macro \emph{no} siempre funciona como se esperaba.
+Por ejemplo, el código
 \begin{lstlisting}
 cout << SQ(3+3) << "\n";
 \end{lstlisting}
-corresponds to the code
+corresponde al código
 \begin{lstlisting}
 cout << 3+3*3+3 << "\n"; // 15
 \end{lstlisting}
 
-A better version of the macro is as follows:
+Una mejor versión del macro es la siguiente:
 \begin{lstlisting}
 #define SQ(a) (a)*(a)
 \end{lstlisting}
-Now the code
+Ahora el código
 \begin{lstlisting}
 cout << SQ(3+3) << "\n";
 \end{lstlisting}
-corresponds to the code
+corresponde al código
 \begin{lstlisting}
 cout << (3+3)*(3+3) << "\n"; // 36
 \end{lstlisting}
