@@ -114,36 +114,35 @@ Sin la línea \texttt{using}, tendríamos
 que escribir, por ejemplo, \texttt{std::cout},
 pero ahora es suficiente con escribir \texttt{cout}.
 
-
-The code can be compiled using the following command:
+El código se puede compilar utilizando el siguiente comando:
 
 \begin{lstlisting}
 g++ -std=c++11 -O2 -Wall test.cpp -o test
 \end{lstlisting}
 
-This command produces a binary file \texttt{test}
-from the source code \texttt{test.cpp}.
-The compiler follows the C++11 standard
+Este comando produce un archivo binario \texttt{test}
+a partir del código fuente \texttt{test.cpp}.
+El compilador sigue el estándar C++11
 (\texttt{-std=c++11}),
-optimizes the code (\texttt{-O2})
-and shows warnings about possible errors (\texttt{-Wall}).
+optimiza el código (\texttt{-O2})
+y muestra advertencias sobre posibles errores (\texttt{-Wall}).
 
-\section{Input and output}
+\section{Entrada y salida}
 
-\index{input and output}
+\index{entrada y salida}
 
-In most contests, standard streams are used for
-reading input and writing output.
-In C++, the standard streams are
-\texttt{cin} for input and \texttt{cout} for output.
-In addition, the C functions
-\texttt{scanf} and \texttt{printf} can be used.
+En la mayoría de los concursos, se utilizan flujos estándar
+para leer la entrada y escribir la salida.
+En C++, los flujos estándar son
+\texttt{cin} para la entrada y \texttt{cout} para la salida.
+Además, se pueden usar las funciones C
+\texttt{scanf} y \texttt{printf}.
 
-The input for the program usually consists of
-numbers and strings that are separated with
-spaces and newlines.
-They can be read from the \texttt{cin} stream
-as follows:
+La entrada para el programa generalmente consiste en
+números y cadenas que están separados por
+espacios y saltos de línea.
+Se pueden leer del flujo \texttt{cin}
+de la siguiente manera:
 
 \begin{lstlisting}
 int a, b;
@@ -151,52 +150,52 @@ string x;
 cin >> a >> b >> x;
 \end{lstlisting}
 
-This kind of code always works,
-assuming that there is at least one space
-or newline between each element in the input.
-For example, the above code can read
-both of the following inputs:
+Este tipo de código siempre funciona,
+suponiendo que haya al menos un espacio
+o salto de línea entre cada elemento en la entrada.
+Por ejemplo, el código anterior puede leer
+ambas entradas siguientes:
 \begin{lstlisting}
-123 456 monkey
+123 456 mono
 \end{lstlisting}
 \begin{lstlisting}
 123    456
-monkey
+mono
 \end{lstlisting}
-The \texttt{cout} stream is used for output
-as follows:
+El flujo \texttt{cout} se utiliza para la salida
+de la siguiente manera:
 \begin{lstlisting}
 int a = 123, b = 456;
-string x = "monkey";
+string x = "mono";
 cout << a << " " << b << " " << x << "\n";
 \end{lstlisting}
 
-Input and output is sometimes
-a bottleneck in the program.
-The following lines at the beginning of the code
-make input and output more efficient:
+La entrada y salida a veces
+es un cuello de botella en el programa.
+Las siguientes líneas al comienzo del código
+hacen que la entrada y salida sean más eficientes:
 
 \begin{lstlisting}
 ios::sync_with_stdio(0);
 cin.tie(0);
 \end{lstlisting}
 
-Note that the newline \texttt{"\textbackslash n"}
-works faster than \texttt{endl},
-because \texttt{endl} always causes
-a flush operation.
+Tenga en cuenta que la línea nueva \texttt{"\textbackslash n"}
+funciona más rápido que \texttt{endl},
+porque \texttt{endl} siempre provoca
+una operación de vaciado.
 
-The C functions \texttt{scanf}
-and \texttt{printf} are an alternative
-to the C++ standard streams.
-They are usually a bit faster,
-but they are also more difficult to use.
-The following code reads two integers from the input:
+Las funciones C \texttt{scanf}
+y \texttt{printf} son una alternativa
+a los flujos estándar de C++.
+Por lo general, son un poco más rápidas,
+pero también son más difíciles de usar.
+El siguiente código lee dos enteros de la entrada:
 \begin{lstlisting}
 int a, b;
 scanf("%d %d", &a, &b);
 \end{lstlisting}
-The following code prints two integers:
+El siguiente código imprime dos enteros:
 \begin{lstlisting}
 int a = 123, b = 456;
 printf("%d %d\n", a, b);
