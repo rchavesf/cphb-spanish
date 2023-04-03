@@ -70,63 +70,62 @@ como máximo dos veces en una solución óptima,
 porque podríamos reemplazar
 monedas $2+2+2$ por monedas $5+1$ y
 monedas $20+20+20$ por monedas $50+10$.
-Moreover, an optimal solution cannot contain
-coins $2+2+1$ or $20+20+10$,
-because we could replace them by coins $5$ and $50$.
+Además, una solución óptima no puede contener
+monedas $2+2+1$ o $20+20+10$,
+porque podríamos reemplazarlas por monedas de $5$ y $50$.
 
-Using these observations,
-we can show for each coin $x$ that
-it is not possible to optimally construct
-a sum $x$ or any larger sum by only using coins
-that are smaller than $x$.
-For example, if $x=100$, the largest optimal
-sum using the smaller coins is  $50+20+20+5+2+2=99$.
-Thus, the greedy algorithm that always selects
-the largest coin produces the optimal solution.
+Usando estas observaciones,
+podemos demostrar para cada moneda $x$ que
+no es posible construir de manera óptima
+una suma $x$ o cualquier suma mayor utilizando únicamente monedas
+que sean más pequeñas que $x$.
+Por ejemplo, si $x=100$, la suma óptima más grande
+usando monedas más pequeñas es $50+20+20+5+2+2=99$.
+Por lo tanto, el algoritmo voraz que siempre selecciona
+la moneda más grande produce la solución óptima.
 
-This example shows that it can be difficult
-to argue that a greedy algorithm works,
-even if the algorithm itself is simple.
+Este ejemplo muestra que puede ser difícil
+argumentar que un algoritmo voraz funciona,
+incluso si el algoritmo en sí es simple.
 
-\subsubsection{General case}
+\subsubsection{Caso general}
 
-In the general case, the coin set can contain any coins
-and the greedy algorithm \emph{does not} necessarily produce
-an optimal solution.
+En el caso general, el conjunto de monedas puede contener cualquier moneda
+y el algoritmo voraz \emph{no} necesariamente produce
+una solución óptima.
 
-We can prove that a greedy algorithm does not work
-by showing a counterexample
-where the algorithm gives a wrong answer.
-In this problem we can easily find a counterexample:
-if the coins are $\{1,3,4\}$ and the target sum
-is 6, the greedy algorithm produces the solution
-$4+1+1$ while the optimal solution is $3+3$.
+Podemos demostrar que un algoritmo voraz no funciona
+mostrando un contraejemplo
+donde el algoritmo proporciona una respuesta incorrecta.
+En este problema, podemos encontrar fácilmente un contraejemplo:
+si las monedas son $\{1,3,4\}$ y la suma objetivo
+es 6, el algoritmo voraz produce la solución
+$4+1+1$ mientras que la solución óptima es $3+3$.
 
-It is not known if the general coin problem
-can be solved using any greedy algorithm\footnote{However, it is possible
-to \emph{check} in polynomial time
-if the greedy algorithm presented in this chapter works for
-a given set of coins \cite{pea05}.}.
-However, as we will see in Chapter 7,
-in some cases,
-the general problem can be efficiently
-solved using a dynamic
-programming algorithm that always gives the
-correct answer.
+No se sabe si el problema general de las monedas
+se puede resolver utilizando algún algoritmo voraz\footnote{Sin embargo, es posible
+\emph{verificar} en tiempo polinomial
+si el algoritmo voraz presentado en este capítulo funciona para
+un conjunto de monedas dado \cite{pea05}.}.
+Sin embargo, como veremos en el Capítulo 7,
+en algunos casos,
+el problema general se puede resolver de manera eficiente
+usando un algoritmo de programación dinámica que siempre proporciona la
+respuesta correcta.
 
-\section{Scheduling}
+\section{Planificación}
 
-Many scheduling problems can be solved
-using greedy algorithms.
-A classic problem is as follows:
-Given $n$ events with their starting and ending
-times, find a schedule
-that includes as many events as possible.
-It is not possible to select an event partially.
-For example, consider the following events:
+Muchos problemas de planificación se pueden resolver
+utilizando algoritmos voraces.
+Un problema clásico es el siguiente:
+Dado $n$ eventos con sus horas de inicio y finalización,
+encuentra un horario
+que incluya la mayor cantidad de eventos posible.
+No es posible seleccionar un evento parcialmente.
+Por ejemplo, considera los siguientes eventos:
 \begin{center}
 \begin{tabular}{lll}
-event & starting time & ending time \\
+evento & hora de inicio & hora de finalización \\
 \hline
 $A$ & 1 & 3 \\
 $B$ & 2 & 5 \\
@@ -134,9 +133,9 @@ $C$ & 3 & 9 \\
 $D$ & 6 & 8 \\
 \end{tabular}
 \end{center}
-In this case the maximum number of events is two.
-For example, we can select events $B$ and $D$
-as follows:
+En este caso, el número máximo de eventos es dos.
+Por ejemplo, podemos seleccionar los eventos $B$ y $D$
+de la siguiente manera:
 \begin{center}
 \begin{tikzpicture}[scale=.4]
   \begin{scope}
