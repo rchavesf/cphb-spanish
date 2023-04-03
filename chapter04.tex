@@ -647,27 +647,26 @@ podemos hacerlo de la siguiente manera:
 priority_queue<int,vector<int>,greater<int>> q;
 \end{lstlisting}
 
-\subsubsection{Policy-based data structures}
+\subsubsection{Estructuras de datos basadas en políticas}
 
-The \texttt{g++} compiler also supports
-some data structures that are not part
-of the C++ standard library.
-Such structures are called \emph{policy-based}
-data structures.
-To use these structures, the following lines
-must be added to the code:
+El compilador \texttt{g++} también admite
+algunas estructuras de datos que no forman parte
+de la biblioteca estándar de C++.
+Dichas estructuras se denominan estructuras de datos \emph{basadas en políticas}.
+Para utilizar estas estructuras, se deben
+agregar las siguientes líneas al código:
 \begin{lstlisting}
 #include <ext/pb_ds/assoc_container.hpp>
 using namespace __gnu_pbds; 
 \end{lstlisting}
-After this, we can define a data structure \texttt{indexed\_set} that
-is like \texttt{set} but can be indexed like an array.
-The definition for \texttt{int} values is as follows:
+Después de esto, podemos definir una estructura de datos \texttt{indexed\_set} que
+es como \texttt{set}, pero se puede indexar como un arreglo.
+La definición para valores de tipo \texttt{int} es la siguiente:
 \begin{lstlisting}
 typedef tree<int,null_type,less<int>,rb_tree_tag,
              tree_order_statistics_node_update> indexed_set; 
 \end{lstlisting}
-Now we can create a set as follows:
+Ahora podemos crear un conjunto de la siguiente manera:
 \begin{lstlisting}
 indexed_set s;
 s.insert(2);
@@ -675,52 +674,52 @@ s.insert(3);
 s.insert(7);
 s.insert(9);
 \end{lstlisting}
-The speciality of this set is that we have access to
-the indices that the elements would have in a sorted array.
-The function $\texttt{find\_by\_order}$ returns
-an iterator to the element at a given position:
+La especialidad de este conjunto es que tenemos acceso a
+los índices que los elementos tendrían en un arreglo ordenado.
+La función $\texttt{find\_by\_order}$ devuelve
+un iterador al elemento en una posición dada:
 \begin{lstlisting}
 auto x = s.find_by_order(2);
 cout << *x << "\n"; // 7
 \end{lstlisting}
-And the function $\texttt{order\_of\_key}$
-returns the position of a given element:
+Y la función $\texttt{order\_of\_key}$
+devuelve la posición de un elemento dado:
 \begin{lstlisting}
 cout << s.order_of_key(7) << "\n"; // 2
 \end{lstlisting}
-If the element does not appear in the set,
-we get the position that the element would have
-in the set:
+Si el elemento no aparece en el conjunto,
+obtenemos la posición que el elemento tendría
+en el conjunto:
 \begin{lstlisting}
 cout << s.order_of_key(6) << "\n"; // 2
 cout << s.order_of_key(8) << "\n"; // 3
 \end{lstlisting}
-Both the functions work in logarithmic time.
+Ambas funciones funcionan en tiempo logarítmico.
 
-\section{Comparison to sorting}
+\section{Comparación con la ordenación}
 
-It is often possible to solve a problem
-using either data structures or sorting.
-Sometimes there are remarkable differences
-in the actual efficiency of these approaches,
-which may be hidden in their time complexities.
+A menudo es posible resolver un problema
+utilizando estructuras de datos u ordenación.
+A veces hay diferencias notables
+en la eficiencia real de estos enfoques,
+que pueden estar ocultas en sus complejidades temporales.
 
-Let us consider a problem where
-we are given two lists $A$ and $B$
-that both contain $n$ elements.
-Our task is to calculate the number of elements
-that belong to both of the lists.
-For example, for the lists
-\[A = [5,2,8,9] \hspace{10px} \textrm{and} \hspace{10px} B = [3,2,9,5],\]
-the answer is 3 because the numbers 2, 5
-and 9 belong to both of the lists.
+Consideremos un problema en el que
+se nos dan dos listas $A$ y $B$
+que contienen $n$ elementos cada una.
+Nuestra tarea es calcular la cantidad de elementos
+que pertenecen a ambas listas.
+Por ejemplo, para las listas
+\[A = [5,2,8,9] \hspace{10px} \textrm{y} \hspace{10px} B = [3,2,9,5],\]
+la respuesta es 3 porque los números 2, 5
+y 9 pertenecen a ambas listas.
 
-A straightforward solution to the problem is
-to go through all pairs of elements in $O(n^2)$ time,
-but next we will focus on
-more efficient algorithms.
+Una solución directa al problema es
+recorrer todos los pares de elementos en tiempo $O(n^2)$,
+pero a continuación nos centraremos en
+algoritmos más eficientes.
 
-\subsubsection{Algorithm 1}
+\subsubsection{Algoritmo 1}
 
 We construct a set of the elements that appear in $A$,
 and after this, we iterate through the elements
