@@ -231,42 +231,42 @@ el número de inversiones es el mayor posible:
 Intercambiar un par de elementos consecutivos que están
 en el orden incorrecto elimina exactamente una inversión
 del arreglo.
-Hence, if a sorting algorithm can only
-swap consecutive elements, each swap removes
-at most one inversion, and the time complexity
-of the algorithm is at least $O(n^2)$.
+Por lo tanto, si un algoritmo de ordenamiento solo puede
+intercambiar elementos consecutivos, cada intercambio elimina
+como máximo una inversión, y la complejidad en tiempo
+del algoritmo es al menos $O(n^2)$.
 
-\subsubsection{$O(n \log n)$ algorithms}
+\subsubsection{$O(n \log n)$ algoritmos}
 
-\index{merge sort}
+\index{ordenamiento por mezcla}
 
-It is possible to sort an array efficiently
-in $O(n \log n)$ time using algorithms
-that are not limited to swapping consecutive elements.
-One such algorithm is \key{merge sort}\footnote{According to \cite{knu983},
-merge sort was invented by J. von Neumann in 1945.},
-which is based on recursion.
+Es posible ordenar un arreglo de manera eficiente
+en tiempo $O(n \log n)$ utilizando algoritmos
+que no se limitan a intercambiar elementos consecutivos.
+Un algoritmo de este tipo es el \key{ordenamiento por mezcla}\footnote{Según \cite{knu983},
+el ordenamiento por mezcla fue inventado por J. von Neumann en 1945.},
+que se basa en la recursión.
 
-Merge sort sorts a subarray \texttt{array}$[a \ldots b]$ as follows:
+El ordenamiento por mezcla ordena un subarreglo \texttt{array}$[a \ldots b]$ de la siguiente manera:
 
 \begin{enumerate}
-\item If $a=b$, do not do anything, because the subarray is already sorted.
-\item Calculate the position of the middle element: $k=\lfloor (a+b)/2 \rfloor$.
-\item Recursively sort the subarray \texttt{array}$[a \ldots k]$.
-\item Recursively sort the subarray \texttt{array}$[k+1 \ldots b]$.
-\item \emph{Merge} the sorted subarrays \texttt{array}$[a \ldots k]$ and
+\item Si $a=b$, no hacer nada, porque el subarreglo ya está ordenado.
+\item Calcular la posición del elemento medio: $k=\lfloor (a+b)/2 \rfloor$.
+\item Ordenar recursivamente el subarreglo \texttt{array}$[a \ldots k]$.
+\item Ordenar recursivamente el subarreglo \texttt{array}$[k+1 \ldots b]$.
+\item \emph{Mezclar} los subarreglos ordenados \texttt{array}$[a \ldots k]$ y
 \texttt{array}$[k+1 \ldots b]$
-into a sorted subarray \texttt{array}$[a \ldots b]$.
+en un subarreglo ordenado \texttt{array}$[a \ldots b]$.
 \end{enumerate}
 
-Merge sort is an efficient algorithm, because it
-halves the size of the subarray at each step.
-The recursion consists of $O(\log n)$ levels,
-and processing each level takes $O(n)$ time.
-Merging the subarrays \texttt{array}$[a \ldots k]$ and \texttt{array}$[k+1 \ldots b]$
-is possible in linear time, because they are already sorted.
+El ordenamiento por mezcla es un algoritmo eficiente, ya que
+reduce a la mitad el tamaño del subarreglo en cada paso.
+La recursión consta de $O(\log n)$ niveles,
+y procesar cada nivel toma $O(n)$ tiempo.
+Mezclar los subarreglos \texttt{array}$[a \ldots k]$ y \texttt{array}$[k+1 \ldots b]$
+es posible en tiempo lineal, porque ya están ordenados.
 
-For example, consider sorting the following array:
+Por ejemplo, considere ordenar el siguiente arreglo:
 \begin{center}
 \begin{tikzpicture}[scale=0.7]
 \draw (0,0) grid (8,1);
@@ -281,8 +281,8 @@ For example, consider sorting the following array:
 \end{tikzpicture}
 \end{center}
 
-The array will be divided into two subarrays
-as follows:
+El arreglo se dividirá en dos subarreglos
+de la siguiente manera:
 \begin{center}
 \begin{tikzpicture}[scale=0.7]
 \draw (0,0) grid (4,1);
