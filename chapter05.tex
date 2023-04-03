@@ -455,25 +455,24 @@ en una computadora moderna\footnote{No se conoce ninguna forma eficiente de
 calcular valores más grandes de $q(n)$. El récord actual es
 $q(27)=234907967154122528$, calculado en 2016 \cite{q27}.}.
 
-\section{Pruning the search}
+\section{Recorte de la búsqueda}
 
-We can often optimize backtracking
-by pruning the search tree.
-The idea is to add ''intelligence'' to the algorithm
-so that it will notice as soon as possible
-if a partial solution cannot be extended
-to a complete solution.
-Such optimizations can have a tremendous
-effect on the efficiency of the search.
+A menudo podemos optimizar backtracking podando el árbol de búsqueda.
+La idea es agregar ''inteligencia'' al algoritmo
+para que pueda notar lo más rápido posible
+si una solución parcial no puede extenderse
+a una solución completa.
+Dichas optimizaciones pueden tener un tremendo
+efecto en la eficiencia de la búsqueda.
 
-Let us consider the problem
-of calculating the number of paths
-in an $n \times n$ grid from the upper-left corner
-to the lower-right corner such that the
-path visits each square exactly once.
-For example, in a $7 \times 7$ grid,
-there are 111712 such paths.
-One of the paths is as follows:
+Consideremos el problema
+de calcular el número de caminos
+en una cuadrícula de $n \times n$ desde la esquina superior izquierda
+hasta la esquina inferior derecha, de tal manera que
+el camino visite cada cuadrado exactamente una vez.
+Por ejemplo, en una cuadrícula de $7 \times 7$,
+hay 111712 de estos caminos.
+Uno de los caminos es el siguiente:
 
 \begin{center}
 \begin{tikzpicture}[scale=.55]
@@ -491,34 +490,34 @@ One of the paths is as follows:
 \end{tikzpicture}
 \end{center}
 
-We focus on the $7 \times 7$ case,
-because its level of difficulty is appropriate to our needs.
-We begin with a straightforward backtracking algorithm,
-and then optimize it step by step using observations
-of how the search can be pruned.
-After each optimization, we measure the running time
-of the algorithm and the number of recursive calls,
-so that we clearly see the effect of each
-optimization on the efficiency of the search.
+Nos enfocamos en el caso de $7 \times 7$,
+porque su nivel de dificultad es apropiado para nuestras necesidades.
+Comenzamos con un algoritmo de backtracking sencillo,
+y luego lo optimizamos paso a paso utilizando observaciones
+sobre cómo se puede podar la búsqueda.
+Después de cada optimización, medimos el tiempo de ejecución
+del algoritmo y el número de llamadas recursivas,
+para que veamos claramente el efecto de cada
+optimización en la eficiencia de la búsqueda.
 
-\subsubsection{Basic algorithm}
+\subsubsection{Algoritmo básico}
 
-The first version of the algorithm does not contain
-any optimizations. We simply use backtracking to generate
-all possible paths from the upper-left corner to
-the lower-right corner and count the number of such paths.
+La primera versión del algoritmo no contiene
+ninguna optimización. Simplemente usamos backtracking para generar
+todos los caminos posibles desde la esquina superior izquierda hasta
+la esquina inferior derecha y contamos el número de tales caminos.
 
 \begin{itemize}
 \item
-running time: 483 seconds
+tiempo de ejecución: 483 segundos
 \item
-number of recursive calls: 76 billion
+número de llamadas recursivas: 76 mil millones
 \end{itemize}
 
-\subsubsection{Optimization 1}
+\subsubsection{Optimización 1}
 
-In any solution, we first move one step
-down or right.
+En cualquier solución, primero avanzamos un paso
+hacia abajo o hacia la derecha.
 There are always two paths that 
 are symmetric
 about the diagonal of the grid
