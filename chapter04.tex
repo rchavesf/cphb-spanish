@@ -159,13 +159,13 @@ no están disponibles en \texttt{unordered\_set}.
 Por otro lado, \texttt{unordered\_set}
 puede ser más eficiente.
 
-The following code creates a set
-that contains integers,
-and shows some of the operations.
-The function \texttt{insert} adds an element to the set,
-the function \texttt{count} returns the number of occurrences
-of an element in the set,
-and the function \texttt{erase} removes an element from the set.
+El siguiente código crea un conjunto
+que contiene enteros,
+y muestra algunas de las operaciones.
+La función \texttt{insert} agrega un elemento al conjunto,
+la función \texttt{count} devuelve el número de ocurrencias
+de un elemento en el conjunto,
+y la función \texttt{erase} elimina un elemento del conjunto.
 
 \begin{lstlisting}
 set<int> s;
@@ -180,12 +180,12 @@ cout << s.count(3) << "\n"; // 0
 cout << s.count(4) << "\n"; // 1
 \end{lstlisting}
 
-A set can be used mostly like a vector,
-but it is not possible to access
-the elements using the \texttt{[]} notation.
-The following code creates a set,
-prints the number of elements in it, and then
-iterates through all the elements:
+Un conjunto se puede utilizar principalmente como un vector,
+pero no es posible acceder
+a los elementos utilizando la notación \texttt{[]}.
+El siguiente código crea un conjunto,
+imprime el número de elementos en él y luego
+itera a través de todos los elementos:
 \begin{lstlisting}
 set<int> s = {2,5,6,8};
 cout << s.size() << "\n"; // 4
@@ -194,15 +194,15 @@ for (auto x : s) {
 }
 \end{lstlisting}
 
-An important property of sets is
-that all their elements are \emph{distinct}.
-Thus, the function \texttt{count} always returns
-either 0 (the element is not in the set)
-or 1 (the element is in the set),
-and the function \texttt{insert} never adds
-an element to the set if it is
-already there.
-The following code illustrates this:
+Una propiedad importante de los conjuntos es
+que todos sus elementos son \emph{distintos}.
+Por lo tanto, la función \texttt{count} siempre devuelve
+0 (el elemento no está en el conjunto)
+o 1 (el elemento está en el conjunto),
+y la función \texttt{insert} nunca agrega
+un elemento al conjunto si ya está
+presente.
+El siguiente código ilustra esto:
 
 \begin{lstlisting}
 set<int> s;
@@ -212,13 +212,13 @@ s.insert(5);
 cout << s.count(5) << "\n"; // 1
 \end{lstlisting}
 
-C++ also contains the structures
-\texttt{multiset} and \texttt{unordered\_multiset}
-that otherwise work like \texttt{set}
-and \texttt{unordered\_set}
-but they can contain multiple instances of an element.
-For example, in the following code all three instances
-of the number 5 are added to a multiset:
+C++ también contiene las estructuras
+\texttt{multiset} y \texttt{unordered\_multiset}
+que funcionan de manera similar a \texttt{set}
+y \texttt{unordered\_set}
+pero pueden contener múltiples instancias de un elemento.
+Por ejemplo, en el siguiente código, se agregan las tres instancias
+del número 5 a un multiset:
 
 \begin{lstlisting}
 multiset<int> s;
@@ -227,15 +227,15 @@ s.insert(5);
 s.insert(5);
 cout << s.count(5) << "\n"; // 3
 \end{lstlisting}
-The function \texttt{erase} removes
-all instances of an element
-from a multiset:
+La función \texttt{erase} elimina
+todas las instancias de un elemento
+de un multiset:
 \begin{lstlisting}
 s.erase(5);
 cout << s.count(5) << "\n"; // 0
 \end{lstlisting}
-Often, only one instance should be removed,
-which can be done as follows:
+A menudo, solo se debe eliminar una instancia,
+lo cual se puede hacer de la siguiente manera:
 \begin{lstlisting}
 s.erase(s.find(5));
 cout << s.count(5) << "\n"; // 2
