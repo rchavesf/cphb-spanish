@@ -485,56 +485,56 @@ pero solo se puede usar cuando la constante $c$
 es lo suficientemente pequeña, de modo que los elementos del arreglo puedan
 usarse como índices en el arreglo de registro.
 
-\section{Sorting in C++}
+\section{Ordenamiento en C++}
 
 \index{sort@\texttt{sort}}
 
-It is almost never a good idea to use
-a home-made sorting algorithm
-in a contest, because there are good
-implementations available in programming languages.
-For example, the C++ standard library contains
-the function \texttt{sort} that can be easily used for
-sorting arrays and other data structures.
+Casi nunca es una buena idea usar
+un algoritmo de ordenamiento casero
+en un concurso, porque hay buenas
+implementaciones disponibles en los lenguajes de programación.
+Por ejemplo, la biblioteca estándar de C++ contiene
+la función \texttt{sort} que se puede utilizar fácilmente para
+ordenar arreglos y otras estructuras de datos.
 
-There are many benefits in using a library function.
-First, it saves time because there is no need to
-implement the function.
-Second, the library implementation is
-certainly correct and efficient: it is not probable
-that a home-made sorting function would be better.
+Hay muchos beneficios al usar una función de biblioteca.
+En primer lugar, ahorra tiempo porque no hay necesidad de
+implementar la función.
+En segundo lugar, la implementación de la biblioteca es
+ciertamente correcta y eficiente: no es probable
+que una función de ordenamiento casera sea mejor.
 
-In this section we will see how to use the
-C++ \texttt{sort} function.
-The following code sorts
-a vector in increasing order:
+En esta sección veremos cómo utilizar la
+función \texttt{sort} de C++.
+El siguiente código ordena
+un vector en orden creciente:
 \begin{lstlisting}
 vector<int> v = {4,2,5,3,5,8,3};
 sort(v.begin(),v.end());
 \end{lstlisting}
-After the sorting, the contents of the
-vector will be
+Después del ordenamiento, el contenido del
+vector será
 $[2,3,3,4,5,5,8]$.
-The default sorting order is increasing,
-but a reverse order is possible as follows:
+El orden de clasificación predeterminado es creciente,
+pero un orden inverso es posible de la siguiente manera:
 \begin{lstlisting}
 sort(v.rbegin(),v.rend());
 \end{lstlisting}
-An ordinary array can be sorted as follows:
+Se puede ordenar un arreglo ordinario de la siguiente manera:
 \begin{lstlisting}
-int n = 7; // array size
+int n = 7; // tamaño del arreglo
 int a[] = {4,2,5,3,5,8,3};
 sort(a,a+n);
 \end{lstlisting}
 \newpage
-The following code sorts the string \texttt{s}:
+El siguiente código ordena la cadena \texttt{s}:
 \begin{lstlisting}
 string s = "monkey";
 sort(s.begin(), s.end());
 \end{lstlisting}
-Sorting a string means that the characters
-of the string are sorted.
-For example, the string ''monkey'' becomes ''ekmnoy''.
+Ordenar una cadena significa que los caracteres
+de la cadena se ordenan.
+Por ejemplo, la cadena ''monkey'' se convierte en ''ekmnoy''.
 
 \subsubsection{Comparison operators}
 
