@@ -205,8 +205,8 @@ valores izquierdo y derecho sea como máximo $x$.
 Si la suma es exactamente $x$,
 se ha encontrado una solución.
 
-For example, consider the following array
-and a target sum $x=12$:
+Por ejemplo, considere el siguiente arreglo
+y una suma objetivo $x=12$:
 \begin{center}
 \begin{tikzpicture}[scale=0.7]
 \draw (0,0) grid (8,1);
@@ -222,10 +222,10 @@ and a target sum $x=12$:
 \end{tikzpicture}
 \end{center}
 
-The initial positions of the pointers
-are as follows.
-The sum of the values is $1+10=11$
-that is smaller than $x$.
+Las posiciones iniciales de los punteros
+son las siguientes.
+La suma de los valores es $1+10=11$
+que es menor que $x$.
 
 \begin{center}
 \begin{tikzpicture}[scale=0.7]
@@ -247,9 +247,9 @@ that is smaller than $x$.
 \end{tikzpicture}
 \end{center}
 
-Then the left pointer moves one step to the right.
-The right pointer moves three steps to the left,
-and the sum becomes $4+7=11$.
+Luego, el puntero izquierdo se mueve un paso a la derecha.
+El puntero derecho se mueve tres pasos a la izquierda,
+y la suma se convierte en $4+7=11$.
 
 \begin{center}
 \begin{tikzpicture}[scale=0.7]
@@ -271,9 +271,9 @@ and the sum becomes $4+7=11$.
 \end{tikzpicture}
 \end{center}
 
-After this, the left pointer moves one step to the right again.
-The right pointer does not move, and a solution
-$5+7=12$ has been found.
+Después de esto, el puntero izquierdo se mueve un paso a la derecha nuevamente.
+El puntero derecho no se mueve y se encuentra una solución
+$5+7=12$.
 
 \begin{center}
 \begin{tikzpicture}[scale=0.7]
@@ -295,32 +295,32 @@ $5+7=12$ has been found.
 \end{tikzpicture}
 \end{center}
 
-The running time of the algorithm is
-$O(n \log n)$, because it first sorts
-the array in $O(n \log n)$ time,
-and then both pointers move $O(n)$ steps.
+El tiempo de ejecución del algoritmo es
+$O(n \log n)$, porque primero ordena
+el arreglo en tiempo $O(n \log n)$,
+y luego ambos punteros se mueven $O(n)$ pasos.
 
-Note that it is possible to solve the problem
-in another way in $O(n \log n)$ time using binary search.
-In such a solution, we iterate through the array
-and for each array value, we try to find another
-value that yields the sum $x$.
-This can be done by performing $n$ binary searches,
-each of which takes $O(\log n)$ time.
+Tenga en cuenta que es posible resolver el problema
+de otra manera en tiempo $O(n \log n)$ usando búsqueda binaria.
+En tal solución, iteramos a través del arreglo
+y para cada valor del arreglo, intentamos encontrar otro
+valor que produzca la suma $x$.
+Esto se puede hacer realizando $n$ búsquedas binarias,
+cada una de las cuales toma tiempo $O(\log n)$.
 
-\index{3SUM problem}
-A more difficult problem is 
-the \key{3SUM problem} that asks to
-find \emph{three} array values
-whose sum is $x$.
-Using the idea of the above algorithm,
-this problem can be solved in $O(n^2)$ time\footnote{For a long time,
-it was thought that solving
-the 3SUM problem more efficiently than in $O(n^2)$ time
-would not be possible.
-However, in 2014, it turned out \cite{gro14}
-that this is not the case.}.
-Can you see how?
+\index{problema 3SUM}
+Un problema más difícil es
+el \key{problema 3SUM} que pregunta por
+encontrar \emph{tres} valores del arreglo
+cuya suma sea $x$.
+Usando la idea del algoritmo anterior,
+este problema se puede resolver en tiempo $O(n^2)$\footnote{Durante mucho tiempo,
+se pensó que resolver
+el problema 3SUM de manera más eficiente que en tiempo $O(n^2)$
+no sería posible.
+Sin embargo, en 2014, resultó \cite{gro14}
+que este no es el caso.}.
+¿Puedes ver cómo?
 
 \section{Nearest smaller elements}
 
