@@ -77,13 +77,13 @@ Un famoso algoritmo de ordenamiento en tiempo $O(n^2)$
 es el \key{ordenamiento burbuja}, donde los elementos
 ''burbujean'' en el arreglo según sus valores.
 
-Bubble sort consists of $n$ rounds.
-On each round, the algorithm iterates through
-the elements of the array.
-Whenever two consecutive elements are found
-that are not in correct order,
-the algorithm swaps them.
-The algorithm can be implemented as follows:
+Bubble sort consta de $n$ rondas.
+En cada ronda, el algoritmo itera a través
+de los elementos del arreglo.
+Siempre que se encuentran dos elementos consecutivos
+que no están en el orden correcto,
+el algoritmo los intercambia.
+El algoritmo se puede implementar de la siguiente manera:
 \begin{lstlisting}
 for (int i = 0; i < n; i++) {
     for (int j = 0; j < n-1; j++) {
@@ -94,14 +94,14 @@ for (int i = 0; i < n; i++) {
 }
 \end{lstlisting}
 
-After the first round of the algorithm,
-the largest element will be in the correct position,
-and in general, after $k$ rounds, the $k$ largest
-elements will be in the correct positions.
-Thus, after $n$ rounds, the whole array
-will be sorted.
+Después de la primera ronda del algoritmo,
+el elemento más grande estará en la posición correcta,
+y en general, después de $k$ rondas, los $k$ elementos más grandes
+estarán en las posiciones correctas.
+Por lo tanto, después de $n$ rondas, todo el arreglo
+estará ordenado.
 
-For example, in the array
+Por ejemplo, en el arreglo
 
 \begin{center}
 \begin{tikzpicture}[scale=0.7]
