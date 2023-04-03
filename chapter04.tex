@@ -325,24 +325,24 @@ La situación se ve de la siguiente manera:
 \end{tabular}
 \end{center}
 
-Note the asymmetry in the iterators:
-\texttt{s.begin()} points to an element in the data structure,
-while \texttt{s.end()} points outside the data structure.
-Thus, the range defined by the iterators is \emph{half-open}.
+Tome nota de la asimetría en los iteradores:
+\texttt{s.begin()} apunta a un elemento en la estructura de datos,
+mientras que \texttt{s.end()} apunta fuera de la estructura de datos.
+Por lo tanto, el rango definido por los iteradores es \emph{semiabierto}.
 
-\subsubsection{Working with ranges}
+\subsubsection{Trabajando con rangos}
 
-Iterators are used in C++ standard library functions
-that are given a range of elements in a data structure.
-Usually, we want to process all elements in a
-data structure, so the iterators
-\texttt{begin} and \texttt{end} are given for the function.
+Los iteradores se utilizan en funciones de la biblioteca estándar de C++
+que reciben un rango de elementos en una estructura de datos.
+Por lo general, queremos procesar todos los elementos en una
+estructura de datos, por lo que los iteradores
+\texttt{begin} y \texttt{end} se proporcionan para la función.
 
-For example, the following code sorts a vector
-using the function \texttt{sort},
-then reverses the order of the elements using the function
-\texttt{reverse}, and finally shuffles the order of
-the elements using the function \texttt{random\_shuffle}.
+Por ejemplo, el siguiente código ordena un vector
+usando la función \texttt{sort},
+luego invierte el orden de los elementos usando la función
+\texttt{reverse}, y finalmente mezcla el orden de
+los elementos usando la función \texttt{random\_shuffle}.
 
 \index{sort@\texttt{sort}}
 \index{reverse@\texttt{reverse}}
@@ -354,9 +354,9 @@ reverse(v.begin(), v.end());
 random_shuffle(v.begin(), v.end());
 \end{lstlisting}
 
-These functions can also be used with an ordinary array.
-In this case, the functions are given pointers to the array
-instead of iterators:
+Estas funciones también se pueden utilizar con una matriz ordinaria.
+En este caso, las funciones reciben punteros a la matriz
+en lugar de iteradores:
 
 \newpage
 \begin{lstlisting}
@@ -365,42 +365,42 @@ reverse(a, a+n);
 random_shuffle(a, a+n);
 \end{lstlisting}
 
-\subsubsection{Set iterators}
+\subsubsection{Iteradores de conjuntos}
 
-Iterators are often used to access
-elements of a set.
-The following code creates an iterator
-\texttt{it} that points to the smallest element in a set:
+Los iteradores se utilizan a menudo para acceder
+a elementos de un conjunto.
+El siguiente código crea un iterador
+\texttt{it} que apunta al elemento más pequeño de un conjunto:
 \begin{lstlisting}
 set<int>::iterator it = s.begin();
 \end{lstlisting}
-A shorter way to write the code is as follows:
+Una forma más corta de escribir el código es la siguiente:
 \begin{lstlisting}
 auto it = s.begin();
 \end{lstlisting}
-The element to which an iterator points
-can be accessed using the \texttt{*} symbol.
-For example, the following code prints
-the first element in the set:
+El elemento al que apunta un iterador
+se puede acceder utilizando el símbolo \texttt{*}.
+Por ejemplo, el siguiente código imprime
+el primer elemento del conjunto:
 
 \begin{lstlisting}
 auto it = s.begin();
 cout << *it << "\n";
 \end{lstlisting}
 
-Iterators can be moved using the operators
-\texttt{++} (forward) and \texttt{--} (backward),
-meaning that the iterator moves to the next
-or previous element in the set.
+Los iteradores se pueden mover utilizando los operadores
+\texttt{++} (hacia adelante) y \texttt{--} (hacia atrás),
+lo que significa que el iterador se mueve al siguiente
+o al elemento anterior en el conjunto.
 
-The following code prints all the elements
-in increasing order:
+El siguiente código imprime todos los elementos
+en orden creciente:
 \begin{lstlisting}
 for (auto it = s.begin(); it != s.end(); it++) {
     cout << *it << "\n";
 }
 \end{lstlisting}
-The following code prints the largest element in the set:
+El siguiente código imprime el elemento más grande del conjunto:
 \begin{lstlisting}
 auto it = s.end(); it--;
 cout << *it << "\n";
