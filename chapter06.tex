@@ -223,16 +223,16 @@ el algoritmo solo selecciona un evento:
   \end{scope}
 \end{tikzpicture}
 \end{center}
-If we select the first event, it is not possible
-to select any other events.
-However, it would be possible to select the
-other two events.
+Si seleccionamos el primer evento, no es posible
+seleccionar ningún otro evento.
+Sin embargo, sería posible seleccionar los
+otros dos eventos.
 
-\subsubsection*{Algorithm 3}
+\subsubsection*{Algoritmo 3}
 
-The third idea is to always select the next
-possible event that \emph{ends} as \emph{early} as possible.
-This algorithm selects the following events: 
+La tercera idea es siempre seleccionar el siguiente
+evento posible que \emph{termina} lo más \emph{temprano} posible.
+Este algoritmo selecciona los siguientes eventos:
 \begin{center}
 \begin{tikzpicture}[scale=.4]
   \begin{scope}
@@ -248,26 +248,26 @@ This algorithm selects the following events:
 \end{tikzpicture}
 \end{center}
 
-It turns out that this algorithm
-\emph{always} produces an optimal solution.
-The reason for this is that it is always an optimal choice
-to first select an event that ends
-as early as possible.
-After this, it is an optimal choice
-to select the next event
-using the same strategy, etc.,
-until we cannot select any more events.
+Resulta que este algoritmo
+\emph{siempre} produce una solución óptima.
+La razón de esto es que siempre es una elección óptima
+seleccionar primero un evento que termine
+lo más temprano posible.
+Después de esto, es una elección óptima
+seleccionar el siguiente evento
+usando la misma estrategia, etc.,
+hasta que no podamos seleccionar más eventos.
 
-One way to argue that the algorithm works
-is to consider
-what happens if we first select an event
-that ends later than the event that ends
-as early as possible.
-Now, we will have at most an equal number of
-choices how we can select the next event.
-Hence, selecting an event that ends later
-can never yield a better solution,
-and the greedy algorithm is correct.
+Una forma de argumentar que el algoritmo funciona
+es considerar
+qué sucede si primero seleccionamos un evento
+que termina más tarde que el evento que termina
+lo más temprano posible.
+Ahora, tendremos a lo sumo un número igual de
+opciones de cómo podemos seleccionar el siguiente evento.
+Por lo tanto, seleccionar un evento que termine más tarde
+nunca puede generar una solución mejor,
+y el algoritmo voraz es correcto.
 
 \section{Tasks and deadlines}
 
