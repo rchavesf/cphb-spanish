@@ -151,15 +151,15 @@ de la siguiente manera:
 \end{tikzpicture}
 \end{center}
 
-It is possible to invent several greedy algorithms
-for the problem, but which of them works in every case?
+Es posible inventar varios algoritmos voraces
+para el problema, pero ¿cuál de ellos funciona en todos los casos?
 
-\subsubsection*{Algorithm 1}
+\subsubsection*{Algoritmo 1}
 
-The first idea is to select as \emph{short}
-events as possible.
-In the example case this algorithm
-selects the following events:
+La primera idea es seleccionar eventos lo más \emph{cortos}
+posible.
+En el caso de ejemplo, este algoritmo
+selecciona los siguientes eventos:
 \begin{center}
 \begin{tikzpicture}[scale=.4]
   \begin{scope}
@@ -175,9 +175,9 @@ selects the following events:
 \end{tikzpicture}
 \end{center}
 
-However, selecting short events is not always
-a correct strategy. For example, the algorithm fails
-in the following case:
+Sin embargo, seleccionar eventos cortos no siempre
+es una estrategia correcta. Por ejemplo, el algoritmo falla
+en el siguiente caso:
 \begin{center}
 \begin{tikzpicture}[scale=.4]
   \begin{scope}
@@ -187,14 +187,14 @@ in the following case:
   \end{scope}
 \end{tikzpicture}
 \end{center}
-If we select the short event, we can only select one event.
-However, it would be possible to select both long events.
+Si seleccionamos el evento corto, solo podemos seleccionar un evento.
+Sin embargo, sería posible seleccionar ambos eventos largos.
 
-\subsubsection*{Algorithm 2}
+\subsubsection*{Algoritmo 2}
 
-Another idea is to always select the next possible
-event that \emph{begins} as \emph{early} as possible.
-This algorithm selects the following events:
+Otra idea es seleccionar siempre el siguiente evento posible
+que \emph{comienza} lo más \emph{temprano} posible.
+Este algoritmo selecciona los siguientes eventos:
 \begin{center}
 \begin{tikzpicture}[scale=.4]
   \begin{scope}
@@ -210,10 +210,10 @@ This algorithm selects the following events:
 \end{tikzpicture}
 \end{center}
 
-However, we can find a counterexample
-also for this algorithm.
-For example, in the following case,
-the algorithm only selects one event:
+Sin embargo, podemos encontrar un contraejemplo
+también para este algoritmo.
+Por ejemplo, en el siguiente caso,
+el algoritmo solo selecciona un evento:
 \begin{center}
 \begin{tikzpicture}[scale=.4]
   \begin{scope}
