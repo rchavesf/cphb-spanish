@@ -119,8 +119,8 @@ Por ejemplo, en el arreglo
 \end{center}
 
 \noindent
-the first round of bubble sort swaps elements
-as follows:
+la primera ronda de bubble sort intercambia elementos
+como sigue:
 
 \begin{center}
 \begin{tikzpicture}[scale=0.7]
@@ -186,25 +186,25 @@ as follows:
 \end{tikzpicture}
 \end{center}
 
-\subsubsection{Inversions}
+\subsubsection{Inversiones}
 
-\index{inversion}
+\index{inversión}
 
-Bubble sort is an example of a sorting
-algorithm that always swaps \emph{consecutive}
-elements in the array.
-It turns out that the time complexity
-of such an algorithm is \emph{always}
-at least $O(n^2)$, because in the worst case,
-$O(n^2)$ swaps are required for sorting the array.
+Bubble sort es un ejemplo de un algoritmo de ordenamiento
+que siempre intercambia elementos \emph{consecutivos}
+en el arreglo.
+Resulta que la complejidad temporal
+de tal algoritmo es \emph{siempre}
+al menos $O(n^2)$, porque en el peor caso,
+se requieren $O(n^2)$ intercambios para ordenar el arreglo.
 
-A useful concept when analyzing sorting
-algorithms is an \key{inversion}:
-a pair of array elements
-$(\texttt{array}[a],\texttt{array}[b])$ such that
-$a<b$ and $\texttt{array}[a]>\texttt{array}[b]$,
-i.e., the elements are in the wrong order.
-For example, the array
+Un concepto útil al analizar algoritmos de ordenamiento
+es una \key{inversión}:
+un par de elementos del arreglo
+$(\texttt{array}[a],\texttt{array}[b])$ tal que
+$a<b$ y $\texttt{array}[a]>\texttt{array}[b]$,
+es decir, los elementos están en el orden incorrecto.
+Por ejemplo, el arreglo
 \begin{center}
 \begin{tikzpicture}[scale=0.7]
 \draw (0,0) grid (8,1);
@@ -218,19 +218,19 @@ For example, the array
 \node at (7.5,0.5) {$8$};
 \end{tikzpicture}
 \end{center}
-has three inversions: $(6,3)$, $(6,5)$ and $(9,8)$.
-The number of inversions indicates
-how much work is needed to sort the array.
-An array is completely sorted when
-there are no inversions.
-On the other hand, if the array elements
-are in the reverse order,
-the number of inversions is the largest possible:
+tiene tres inversiones: $(6,3)$, $(6,5)$ y $(9,8)$.
+El número de inversiones indica
+cuánto trabajo se necesita para ordenar el arreglo.
+Un arreglo está completamente ordenado cuando
+no hay inversiones.
+Por otro lado, si los elementos del arreglo
+están en orden inverso,
+el número de inversiones es el mayor posible:
 \[1+2+\cdots+(n-1)=\frac{n(n-1)}{2} = O(n^2)\]
 
-Swapping a pair of consecutive elements that are
-in the wrong order removes exactly one inversion
-from the array.
+Intercambiar un par de elementos consecutivos que están
+en el orden incorrecto elimina exactamente una inversión
+del arreglo.
 Hence, if a sorting algorithm can only
 swap consecutive elements, each swap removes
 at most one inversion, and the time complexity
