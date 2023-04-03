@@ -639,24 +639,23 @@ for (int y = 1; y <= n; y++) {
 \end{lstlisting}
 La complejidad temporal del algoritmo es $O(n^2)$.
 
-\section{Knapsack problems}
+\section{Problemas de la mochila}
 
-\index{knapsack}
+\index{mochila}
 
-The term \key{knapsack} refers to problems where
-a set of objects is given, and 
-subsets with some properties
-have to be found.
-Knapsack problems can often be solved
-using dynamic programming.
+El término \key{mochila} se refiere a problemas donde
+se da un conjunto de objetos y
+se deben encontrar subconjuntos con ciertas propiedades.
+Los problemas de la mochila a menudo se pueden resolver
+usando programación dinámica.
 
-In this section, we focus on the following
-problem: Given a list of weights
+En esta sección, nos enfocamos en el siguiente
+problema: Dada una lista de pesos
 $[w_1,w_2,\ldots,w_n]$,
-determine all
-sums that can be constructed using the weights.
-For example, if the weights are
-$[1,3,3,5]$, the following sums are possible:
+determine todas
+las sumas que se pueden construir usando los pesos.
+Por ejemplo, si los pesos son
+$[1,3,3,5]$, las siguientes sumas son posibles:
 
 \begin{center}
 \begin{tabular}{rrrrrrrrrrrrr}
@@ -666,41 +665,40 @@ $[1,3,3,5]$, the following sums are possible:
 \end{tabular}
 \end{center}
 
-In this case, all sums between $0 \ldots 12$
-are possible, except 2 and 10.
-For example, the sum 7 is possible because we
-can select the weights $[1,3,3]$.
+En este caso, todas las sumas entre $0 \ldots 12$
+son posibles, excepto 2 y 10.
+Por ejemplo, la suma 7 es posible porque podemos
+seleccionar los pesos $[1,3,3]$.
 
-To solve the problem, we focus on subproblems
-where we only use the first $k$ weights
-to construct sums.
-Let $\texttt{possible}(x,k)=\textrm{true}$ if
-we can construct a sum $x$
-using the first $k$ weights,
-and otherwise $\texttt{possible}(x,k)=\textrm{false}$.
-The values of the function can be recursively
-calculated as follows:
-\[ \texttt{possible}(x,k) = \texttt{possible}(x-w_k,k-1) \lor \texttt{possible}(x,k-1) \]
-The formula is based on the fact that we can
-either use or not use the weight $w_k$ in the sum.
-If we use $w_k$, the remaining task is to
-form the sum $x-w_k$ using the first $k-1$ weights,
-and if we do not use $w_k$,
-the remaining task is to form the sum $x$
-using the first $k-1$ weights.
-As the base cases,
+Para resolver el problema, nos enfocamos en subproblemas
+donde solo usamos los primeros $k$ pesos
+para construir sumas.
+Sea $\texttt{posible}(x,k)=\textrm{verdadero}$ si
+podemos construir una suma $x$
+usando los primeros $k$ pesos,
+y de lo contrario $\texttt{posible}(x,k)=\textrm{falso}$.
+Los valores de la función se pueden calcular recursivamente de la siguiente manera:
+\[ \texttt{posible}(x,k) = \texttt{posible}(x-w_k,k-1) \lor \texttt{posible}(x,k-1) \]
+La fórmula se basa en el hecho de que podemos
+usar o no usar el peso $w_k$ en la suma.
+Si usamos $w_k$, la tarea restante es formar
+la suma $x-w_k$ usando los primeros $k-1$ pesos,
+y si no usamos $w_k$,
+la tarea restante es formar la suma $x$
+usando los primeros $k-1$ pesos.
+Como casos base,
 \begin{equation*}
-    \texttt{possible}(x,0) = \begin{cases}
-               \textrm{true}    & x = 0\\
-               \textrm{false}   & x \neq 0 \\
+    \texttt{posible}(x,0) = \begin{cases}
+               \textrm{verdadero}    & x = 0\\
+               \textrm{falso}   & x \neq 0 \\
            \end{cases}
 \end{equation*}
-because if no weights are used,
-we can only form the sum 0.
+porque si no se usan pesos,
+solo podemos formar la suma 0.
 
-The following table shows all values of the function
-for the weights $[1,3,3,5]$ (the symbol ''X''
-indicates the true values):
+La siguiente tabla muestra todos los valores de la función
+para los pesos $[1,3,3,5]$ (el símbolo "X"
+indica los valores verdaderos):
 
 \begin{center}
 \begin{tabular}{r|rrrrrrrrrrrrr}
