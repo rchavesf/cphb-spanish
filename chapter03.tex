@@ -612,16 +612,16 @@ struct P {
 };
 \end{lstlisting}
 
-\subsubsection{Comparison functions}
+\subsubsection{Funciones de comparación}
 
-\index{comparison function}
+\index{función de comparación}
 
-It is also possible to give an external
-\key{comparison function} to the \texttt{sort} function
-as a callback function.
-For example, the following comparison function \texttt{comp}
-sorts strings primarily by length and secondarily
-by alphabetical order:
+También es posible proporcionar una
+\key{función de comparación} externa a la función \texttt{sort}
+como una función de retrollamada.
+Por ejemplo, la siguiente función de comparación \texttt{comp}
+ordena las cadenas de texto principalmente por longitud y en segundo lugar
+por orden alfabético:
 
 \begin{lstlisting}
 bool comp(string a, string b) {
@@ -629,70 +629,70 @@ bool comp(string a, string b) {
     return a < b;
 }
 \end{lstlisting}
-Now a vector of strings can be sorted as follows:
+Ahora un vector de cadenas de texto se puede ordenar de la siguiente manera:
 \begin{lstlisting}
 sort(v.begin(), v.end(), comp);
 \end{lstlisting}
 
-\section{Binary search}
+\section{Búsqueda binaria}
 
-\index{binary search}
+\index{búsqueda binaria}
 
-A general method for searching for an element
-in an array is to use a \texttt{for} loop
-that iterates through the elements of the array.
-For example, the following code searches for
-an element $x$ in an array:
+Un método general para buscar un elemento
+en un array es usar un bucle \texttt{for}
+que itere a través de los elementos del array.
+Por ejemplo, el siguiente código busca
+un elemento $x$ en un array:
 
 \begin{lstlisting}
 for (int i = 0; i < n; i++) {
     if (array[i] == x) {
-        // x found at index i
+        // x encontrado en el índice i
     }
 }
 \end{lstlisting}
 
-The time complexity of this approach is $O(n)$,
-because in the worst case, it is necessary to check
-all elements of the array.
-If the order of the elements is arbitrary,
-this is also the best possible approach, because
-there is no additional information available where
-in the array we should search for the element $x$.
+La complejidad en tiempo de este enfoque es $O(n)$,
+porque en el peor caso, es necesario verificar
+todos los elementos del array.
+Si el orden de los elementos es arbitrario,
+este es también el mejor enfoque posible, porque
+no hay información adicional disponible sobre dónde
+en el array deberíamos buscar el elemento $x$.
 
-However, if the array is \emph{sorted},
-the situation is different.
-In this case it is possible to perform the
-search much faster, because the order of the
-elements in the array guides the search.
-The following \key{binary search} algorithm
-efficiently searches for an element in a sorted array
-in $O(\log n)$ time.
+Sin embargo, si el array está \emph{ordenado},
+la situación es diferente.
+En este caso, es posible realizar la
+búsqueda mucho más rápido, porque el orden de los
+elementos en el array guía la búsqueda.
+El siguiente algoritmo de \key{búsqueda binaria}
+busca eficientemente un elemento en un array ordenado
+en tiempo $O(\log n)$.
 
-\subsubsection{Method 1}
+\subsubsection{Método 1}
 
-The usual way to implement binary search
-resembles looking for a word in a dictionary.
-The search maintains an active region in the array,
-which initially contains all array elements.
-Then, a number of steps is performed,
-each of which halves the size of the region.
+La forma habitual de implementar la búsqueda binaria
+se asemeja a buscar una palabra en un diccionario.
+La búsqueda mantiene una región activa en el array,
+que inicialmente contiene todos los elementos del array.
+Luego, se realizan una serie de pasos,
+cada uno de los cuales divide por la mitad el tamaño de la región.
 
-At each step, the search checks the middle element
-of the active region.
-If the middle element is the target element,
-the search terminates.
-Otherwise, the search recursively continues
-to the left or right half of the region,
-depending on the value of the middle element.
+En cada paso, la búsqueda verifica el elemento central
+de la región activa.
+Si el elemento central es el elemento objetivo,
+la búsqueda termina.
+De lo contrario, la búsqueda continúa recursivamente
+en la mitad izquierda o derecha de la región,
+dependiendo del valor del elemento central.
 
-The above idea can be implemented as follows:
+La idea anterior se puede implementar de la siguiente manera:
 \begin{lstlisting}
 int a = 0, b = n-1;
 while (a <= b) {
     int k = (a+b)/2;
     if (array[k] == x) {
-        // x found at index k
+        // x encontrado en el índice k
     }
     if (array[k] > x) b = k-1;
     else a = k+1;
