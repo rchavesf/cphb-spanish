@@ -298,14 +298,14 @@ while (n > 0) {
 }
 \end{lstlisting}
 
-\subsubsection{Counting the number of solutions}
+\subsubsection{Contando el número de soluciones}
 
-Let us now consider another version
-of the coin problem where our task is to
-calculate the total number of ways
-to produce a sum $x$ using the coins.
-For example, if $\texttt{coins}=\{1,3,4\}$ and
-$x=5$, there are a total of 6 ways:
+Ahora consideremos otra versión
+del problema de las monedas donde nuestra tarea es
+calcular el número total de formas
+de obtener una suma $x$ usando las monedas.
+Por ejemplo, si $\texttt{monedas}=\{1,3,4\}$ y
+$x=5$, hay un total de 6 formas:
 
 \begin{multicols}{2}
 \begin{itemize}
@@ -318,64 +318,64 @@ $x=5$, there are a total of 6 ways:
 \end{itemize}
 \end{multicols}
 
-Again, we can solve the problem recursively.
-Let $\texttt{solve}(x)$ denote the number of ways
-we can form the sum $x$.
-For example, if $\texttt{coins}=\{1,3,4\}$,
-then $\texttt{solve}(5)=6$ and the recursive formula is
+De nuevo, podemos resolver el problema recursivamente.
+Sea $\texttt{resolver}(x)$ el número de formas
+en las que podemos formar la suma $x$.
+Por ejemplo, si $\texttt{monedas}=\{1,3,4\}$,
+entonces $\texttt{resolver}(5)=6$ y la fórmula recursiva es
 \begin{equation*}
 \begin{split}
-\texttt{solve}(x) = & \texttt{solve}(x-1) + \\
-                    & \texttt{solve}(x-3) + \\
-                    & \texttt{solve}(x-4)  .
+\texttt{resolver}(x) = & \texttt{resolver}(x-1) + \\
+                    & \texttt{resolver}(x-3) + \\
+                    & \texttt{resolver}(x-4)  .
 \end{split}
 \end{equation*}
 
-Then, the general recursive function is as follows:
+Entonces, la función recursiva general es la siguiente:
 \begin{equation*}
-    \texttt{solve}(x) = \begin{cases}
+    \texttt{resolver}(x) = \begin{cases}
                0               & x < 0\\
                1               & x = 0\\
-               \sum_{c \in \texttt{coins}} \texttt{solve}(x-c) & x > 0 \\
+               \sum_{c \in \texttt{monedas}} \texttt{resolver}(x-c) & x > 0 \\
            \end{cases}
 \end{equation*}
 
-If $x<0$, the value is 0, because there are no solutions.
-If $x=0$, the value is 1, because there is only one way
-to form an empty sum.
-Otherwise we calculate the sum of all values
-of the form $\texttt{solve}(x-c)$ where $c$ is in \texttt{coins}.
+Si $x<0$, el valor es 0, porque no hay soluciones.
+Si $x=0$, el valor es 1, porque solo hay una forma
+de formar una suma vacía.
+De lo contrario, calculamos la suma de todos los valores
+de la forma $\texttt{resolver}(x-c)$ donde $c$ está en \texttt{monedas}.
 
-The following code constructs an array
-$\texttt{count}$ such that
-$\texttt{count}[x]$ equals
-the value of $\texttt{solve}(x)$
-for $0 \le x \le n$:
+El siguiente código construye un array
+$\texttt{conteo}$ tal que
+$\texttt{conteo}[x]$ es igual
+al valor de $\texttt{resolver}(x)$
+para $0 \le x \le n$:
 
 \begin{lstlisting}
-count[0] = 1;
+conteo[0] = 1;
 for (int x = 1; x <= n; x++) {
-    for (auto c : coins) {
+    for (auto c : monedas) {
         if (x-c >= 0) {
-            count[x] += count[x-c];
+            conteo[x] += conteo[x-c];
         }
     }
 }
 \end{lstlisting}
 
-Often the number of solutions is so large
-that it is not required to calculate the exact number
-but it is enough to give the answer modulo $m$
-where, for example, $m=10^9+7$.
-This can be done by changing the code so that
-all calculations are done modulo $m$.
-In the above code, it suffices to add the line
+A menudo, el número de soluciones es tan grande
+que no es necesario calcular el número exacto
+pero es suficiente dar la respuesta módulo $m$
+donde, por ejemplo, $m=10^9+7$.
+Esto se puede hacer modificando el código de manera que
+todos los cálculos se realicen módulo $m$.
+En el código anterior, basta con agregar la línea
 \begin{lstlisting}
-        count[x] %= m;
+        conteo[x] %= m;
 \end{lstlisting}
-after the line
+después de la línea
 \begin{lstlisting}
-        count[x] += count[x-c];
+        conteo[x] += conteo[x-c];
 \end{lstlisting}
 
 Now we have discussed all basic
