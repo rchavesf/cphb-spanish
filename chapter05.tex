@@ -518,11 +518,10 @@ número de llamadas recursivas: 76 mil millones
 
 En cualquier solución, primero avanzamos un paso
 hacia abajo o hacia la derecha.
-There are always two paths that 
-are symmetric
-about the diagonal of the grid
-after the first step.
-For example, the following paths are symmetric:
+Siempre hay dos caminos que son simétricos
+sobre la diagonal de la cuadrícula
+después del primer paso.
+Por ejemplo, los siguientes caminos son simétricos:
 
 \begin{center}
 \begin{tabular}{ccc}
@@ -557,24 +556,24 @@ For example, the following paths are symmetric:
 \end{tabular}
 \end{center}
 
-Hence, we can decide that we always first
-move one step down (or right),
-and finally multiply the number of solutions by two.
+Por lo tanto, podemos decidir que siempre primero
+nos movemos un paso hacia abajo (o hacia la derecha),
+y finalmente multiplicamos el número de soluciones por dos.
 
 \begin{itemize}
 \item
-running time: 244 seconds
+tiempo de ejecución: 244 segundos
 \item
-number of recursive calls: 38 billion
+número de llamadas recursivas: 38 mil millones
 \end{itemize}
 
-\subsubsection{Optimization 2}
+\subsubsection{Optimización 2}
 
-If the path reaches the lower-right square
-before it has visited all other squares of the grid,
-it is clear that
-it will not be possible to complete the solution.
-An example of this is the following path:
+Si el camino llega a la casilla inferior derecha
+antes de haber visitado todas las demás casillas de la cuadrícula,
+está claro que
+no será posible completar la solución.
+Un ejemplo de esto es el siguiente camino:
 
 \begin{center}
 \begin{tikzpicture}[scale=.55]
@@ -588,23 +587,23 @@ An example of this is the following path:
   \end{scope}
 \end{tikzpicture}
 \end{center}
-Using this observation, we can terminate the search
-immediately if we reach the lower-right square too early.
+Usando esta observación, podemos terminar la búsqueda
+inmediatamente si llegamos a la casilla inferior derecha demasiado pronto.
 \begin{itemize}
 \item
-running time: 119 seconds
+tiempo de ejecución: 119 segundos
 \item
-number of recursive calls: 20 billion
+número de llamadas recursivas: 20 mil millones
 \end{itemize}
 
-\subsubsection{Optimization 3}
+\subsubsection{Optimización 3}
 
-If the path touches a wall
-and can turn either left or right,
-the grid splits into two parts
-that contain unvisited squares.
-For example, in the following situation,
-the path can turn either left or right:
+Si el camino toca una pared
+y puede girar hacia la izquierda o hacia la derecha,
+la cuadrícula se divide en dos partes
+que contienen casillas no visitadas.
+Por ejemplo, en la siguiente situación,
+el camino puede girar hacia la izquierda o hacia la derecha:
 
 \begin{center}
 \begin{tikzpicture}[scale=.55]
