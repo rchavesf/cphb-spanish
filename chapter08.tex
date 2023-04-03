@@ -144,11 +144,11 @@ la suma del subarreglo excedería $x$.
 \end{tikzpicture}
 \end{center}
 
-Again, the left pointer moves one step to the right,
-and this time the right pointer moves three
-steps to the right.
-The subarray sum is $2+5+1=8$, so a subarray
-whose sum is $x$ has been found.
+De nuevo, el puntero izquierdo se mueve un paso a la derecha,
+y esta vez el puntero derecho se mueve tres
+pasos a la derecha.
+La suma del subarreglo es $2+5+1=8$, entonces se ha encontrado un subarreglo
+cuya suma es $x$.
 
 \begin{center}
 \begin{tikzpicture}[scale=0.7]
@@ -169,41 +169,41 @@ whose sum is $x$ has been found.
 \end{tikzpicture}
 \end{center}
 
-The running time of the algorithm depends on
-the number of steps the right pointer moves.
-While there is no useful upper bound on how many steps the
-pointer can move on a \emph{single} turn.
-we know that the pointer moves \emph{a total of}
-$O(n)$ steps during the algorithm,
-because it only moves to the right.
+El tiempo de ejecución del algoritmo depende de
+la cantidad de pasos que el puntero derecho se mueva.
+Si bien no hay un límite superior útil sobre cuántos pasos puede
+moverse el puntero en un \emph{único} turno,
+sabemos que el puntero se mueve \emph{un total de}
+$O(n)$ pasos durante el algoritmo,
+porque solo se mueve hacia la derecha.
 
-Since both the left and right pointer
-move $O(n)$ steps during the algorithm,
-the algorithm works in $O(n)$ time.
+Dado que tanto el puntero izquierdo como el derecho
+se mueven $O(n)$ pasos durante el algoritmo,
+el algoritmo funciona en tiempo $O(n)$.
 
-\subsubsection{2SUM problem}
+\subsubsection{Problema 2SUM}
 
-\index{2SUM problem}
+\index{Problema 2SUM}
 
-Another problem that can be solved using
-the two pointers method is the following problem,
-also known as the \key{2SUM problem}:
-given an array of $n$ numbers and
-a target sum $x$, find
-two array values such that their sum is $x$,
-or report that no such values exist.
+Otro problema que se puede resolver usando
+el método de dos punteros es el siguiente problema,
+también conocido como el problema \key{2SUM}:
+dado un arreglo de $n$ números y
+una suma objetivo $x$, encuentre
+dos valores del arreglo tales que su suma sea $x$,
+o informe que no existen tales valores.
 
-To solve the problem, we first
-sort the array values in increasing order.
-After that, we iterate through the array using
-two pointers.
-The left pointer starts at the first value
-and moves one step to the right on each turn.
-The right pointer begins at the last value
-and always moves to the left until the sum of the
-left and right value is at most $x$.
-If the sum is exactly $x$,
-a solution has been found.
+Para resolver el problema, primero
+ordenamos los valores del arreglo en orden creciente.
+Después de eso, iteramos a través del arreglo usando
+dos punteros.
+El puntero izquierdo comienza en el primer valor
+y se mueve un paso a la derecha en cada turno.
+El puntero derecho comienza en el último valor
+y siempre se mueve hacia la izquierda hasta que la suma de los
+valores izquierdo y derecho sea como máximo $x$.
+Si la suma es exactamente $x$,
+se ha encontrado una solución.
 
 For example, consider the following array
 and a target sum $x=12$:
