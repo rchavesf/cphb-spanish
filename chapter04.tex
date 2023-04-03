@@ -241,83 +241,81 @@ s.erase(s.find(5));
 cout << s.count(5) << "\n"; // 2
 \end{lstlisting}
 
-\section{Map structures}
+\section{Estructuras de mapas}
 
-\index{map}
+\index{mapa}
 
-A \key{map} is a generalized array
-that consists of key-value-pairs.
-While the keys in an ordinary array are always
-the consecutive integers $0,1,\ldots,n-1$,
-where $n$ is the size of the array,
-the keys in a map can be of any data type and
-they do not have to be consecutive values.
+Un \key{mapa} es un arreglo generalizado
+que consiste en pares clave-valor.
+Mientras que las claves en un arreglo ordinario son siempre
+los enteros consecutivos $0,1,\ldots,n-1$,
+donde $n$ es el tamaño del arreglo,
+las claves en un mapa pueden ser de cualquier tipo de dato y
+no tienen que ser valores consecutivos.
 
-The C++ standard library contains two map
-implementations that correspond to the set
-implementations: the structure
-\texttt{map} is based on a balanced
-binary tree and accessing elements
-takes $O(\log n)$ time,
-while the structure
-\texttt{unordered\_map} uses hashing
-and accessing elements takes $O(1)$ time on average.
+La biblioteca estándar de C++ contiene dos implementaciones de mapas
+que corresponden a las implementaciones de conjuntos: la estructura
+\texttt{map} se basa en un árbol binario equilibrado y acceder a los elementos
+toma un tiempo de $O(\log n)$,
+mientras que la estructura
+\texttt{unordered\_map} utiliza hashing
+y acceder a los elementos toma un tiempo de $O(1)$ en promedio.
 
-The following code creates a map
-where the keys are strings and the values are integers:
+El siguiente código crea un mapa
+donde las claves son cadenas y los valores son enteros:
 
 \begin{lstlisting}
 map<string,int> m;
-m["monkey"] = 4;
+m["mono"] = 4;
 m["banana"] = 3;
-m["harpsichord"] = 9;
+m["clavecin"] = 9;
 cout << m["banana"] << "\n"; // 3
 \end{lstlisting}
 
-If the value of a key is requested
-but the map does not contain it,
-the key is automatically added to the map with
-a default value.
-For example, in the following code,
-the key ''aybabtu'' with value 0
-is added to the map.
+Si se solicita el valor de una clave
+pero el mapa no la contiene,
+la clave se añade automáticamente al mapa con
+un valor predeterminado.
+Por ejemplo, en el siguiente código,
+la clave ''aybabtu'' con valor 0
+se añade al mapa.
 
 \begin{lstlisting}
 map<string,int> m;
 cout << m["aybabtu"] << "\n"; // 0
 \end{lstlisting}
-The function \texttt{count} checks
-if a key exists in a map:
+La función \texttt{count} verifica
+si una clave existe en un mapa:
 \begin{lstlisting}
 if (m.count("aybabtu")) {
-    // key exists
+    // la clave existe
 }
 \end{lstlisting}
-The following code prints all the keys and values
-in a map:
+El siguiente código imprime todas las claves y valores
+en un mapa:
 \begin{lstlisting}
 for (auto x : m) {
     cout << x.first << " " << x.second << "\n";
 }
 \end{lstlisting}
 
-\section{Iterators and ranges}
+\section{Iteradores y rangos}
 
-\index{iterator}
+\index{iterador}
 
-Many functions in the C++ standard library
-operate with iterators.
-An \key{iterator} is a variable that points
-to an element in a data structure.
+Muchas funciones en la biblioteca estándar de C++
+operan con iteradores.
+Un \key{iterador} es una variable que apunta
+a un elemento en una estructura de datos.
 
-The often used iterators \texttt{begin}
-and \texttt{end} define a range that contains
-all elements in a data structure.
-The iterator \texttt{begin} points to
-the first element in the data structure,
-and the iterator \texttt{end} points to
-the position \emph{after} the last element.
-The situation looks as follows:
+Los iteradores a menudo utilizados \texttt{begin}
+y \texttt{end} definen un rango que contiene
+todos los elementos en una estructura de datos.
+El iterador \texttt{begin} apunta al
+primer elemento en la estructura de datos,
+y el iterador \texttt{end} apunta a
+la posición \emph{después} del último elemento.
+La situación se ve de la siguiente manera:
 
 \begin{center}
 \begin{tabular}{llllllllll}
