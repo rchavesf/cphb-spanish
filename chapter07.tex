@@ -933,17 +933,17 @@ carácter \texttt{I} de \texttt{MOVI}.
 Por lo tanto, la distancia de edición es una unidad mayor que
 la distancia de edición entre \texttt{LOV} y \texttt{MOV}, etc.
 
-\section{Counting tilings}
+\section{Contando baldosas}
 
-Sometimes the states of a dynamic programming solution
-are more complex than fixed combinations of numbers.
-As an example,
-consider the problem of calculating
-the number of distinct ways to
-fill an $n \times m$ grid using
-$1 \times 2$ and $2 \times 1$ size tiles.
-For example, one valid solution
-for the $4 \times 7$ grid is
+A veces los estados de una solución de programación dinámica
+son más complejos que combinaciones fijas de números.
+Como ejemplo,
+considera el problema de calcular
+el número de formas distintas de
+llenar una cuadrícula de $n \times m$ usando
+baldosas de tamaño $1 \times 2$ y $2 \times 1$.
+Por ejemplo, una solución válida
+para la cuadrícula de $4 \times 7$ es
 \begin{center}
 \begin{tikzpicture}[scale=.65]
     \draw (0,0) grid (7,4);
@@ -965,15 +965,15 @@ for the $4 \times 7$ grid is
 
 \end{tikzpicture}
 \end{center}
-and the total number of solutions is 781.
+y el número total de soluciones es 781.
 
-The problem can be solved using dynamic programming
-by going through the grid row by row.
-Each row in a solution can be represented as a
-string that contains $m$ characters from the set
+El problema se puede resolver usando programación dinámica
+recorriendo la cuadrícula fila por fila.
+Cada fila en una solución se puede representar como una
+cadena que contiene $m$ caracteres del conjunto
 $\{\sqcap, \sqcup, \sqsubset, \sqsupset \}$.
-For example, the above solution consists of four rows
-that correspond to the following strings:
+Por ejemplo, la solución anterior consta de cuatro filas
+que corresponden a las siguientes cadenas:
 \begin{itemize}
 \item
 $\sqcap \sqsubset \sqsupset \sqcap \sqsubset \sqsupset \sqcap$
@@ -985,42 +985,42 @@ $\sqsubset \sqsupset \sqsubset \sqsupset \sqcup \sqcup \sqcap$
 $\sqsubset \sqsupset \sqsubset \sqsupset \sqsubset \sqsupset \sqcup$
 \end{itemize}
 
-Let $\texttt{count}(k,x)$ denote the number of ways to
-construct a solution for rows $1 \ldots k$
-of the grid such that string $x$ corresponds to row $k$.
-It is possible to use dynamic programming here,
-because the state of a row is constrained
-only by the state of the previous row.
+Sea $\texttt{count}(k,x)$ el número de formas de
+construir una solución para las filas $1 \ldots k$
+de la cuadrícula de tal manera que la cadena $x$ corresponda a la fila $k$.
+Es posible utilizar programación dinámica aquí,
+porque el estado de una fila está limitado
+sólo por el estado de la fila anterior.
 
-A solution is valid if row $1$ does not contain
-the character $\sqcup$,
-row $n$ does not contain the character $\sqcap$,
-and all consecutive rows are \emph{compatible}.
-For example, the rows
-$\sqcup \sqsubset \sqsupset \sqcup \sqcap \sqcap \sqcup$ and
-$\sqsubset \sqsupset \sqsubset \sqsupset \sqcup \sqcup \sqcap$ 
-are compatible, while the rows
-$\sqcap \sqsubset \sqsupset \sqcap \sqsubset \sqsupset \sqcap$ and
+Una solución es válida si la fila $1$ no contiene
+el carácter $\sqcup$,
+la fila $n$ no contiene el carácter $\sqcap$,
+y todas las filas consecutivas son \emph{compatibles}.
+Por ejemplo, las filas
+$\sqcup \sqsubset \sqsupset \sqcup \sqcap \sqcap \sqcup$ y
+$\sqsubset \sqsupset \sqsubset \sqsupset \sqcup \sqcup \sqcap$
+son compatibles, mientras que las filas
+$\sqcap \sqsubset \sqsupset \sqcap \sqsubset \sqsupset \sqcap$ y
 $\sqsubset \sqsupset \sqsubset \sqsupset \sqsubset \sqsupset \sqcup$
-are not compatible.
+no son compatibles.
 
-Since a row consists of $m$ characters and there are
-four choices for each character, the number of distinct
-rows is at most $4^m$.
-Thus, the time complexity of the solution is
-$O(n 4^{2m})$ because we can go through the
-$O(4^m)$ possible states for each row,
-and for each state, there are $O(4^m)$
-possible states for the previous row.
-In practice, it is a good idea to rotate the grid
-so that the shorter side has length $m$,
-because the factor $4^{2m}$ dominates the time complexity.
+Dado que una fila consta de $m$ caracteres y hay
+cuatro opciones para cada carácter, el número de filas distintas
+es como máximo $4^m$.
+Por lo tanto, la complejidad del tiempo de la solución es
+$O(n 4^{2m})$ porque podemos recorrer los
+$O(4^m)$ posibles estados para cada fila,
+y para cada estado, hay $O(4^m)$
+posibles estados para la fila anterior.
+En la práctica, es una buena idea rotar la cuadrícula
+de modo que el lado más corto tenga longitud $m$,
+porque el factor $4^{2m}$ domina la complejidad del tiempo.
 
-It is possible to make the solution more efficient
-by using a more compact representation for the rows.
-It turns out that it is sufficient to know which
-columns of the previous row contain the upper square
-of a vertical tile.
+Es posible hacer que la solución sea más eficiente
+utilizando una representación más compacta para las filas.
+Resulta que es suficiente saber en qué
+columnas de la fila anterior se encuentra el cuadrado superior
+de una baldosa vertical.
 Thus, we can represent a row using only characters
 $\sqcap$ and $\Box$, where $\Box$ is a combination
 of characters
