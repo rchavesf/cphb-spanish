@@ -933,7 +933,7 @@ carácter \texttt{I} de \texttt{MOVI}.
 Por lo tanto, la distancia de edición es una unidad mayor que
 la distancia de edición entre \texttt{LOV} y \texttt{MOV}, etc.
 
-\section{Contando baldosas}
+\section{Contando formas de colocar baldosas}
 
 A veces los estados de una solución de programación dinámica
 son más complejos que combinaciones fijas de números.
@@ -1021,23 +1021,23 @@ utilizando una representación más compacta para las filas.
 Resulta que es suficiente saber en qué
 columnas de la fila anterior se encuentra el cuadrado superior
 de una baldosa vertical.
-Thus, we can represent a row using only characters
-$\sqcap$ and $\Box$, where $\Box$ is a combination
-of characters
-$\sqcup$, $\sqsubset$ and $\sqsupset$.
-Using this representation, there are only
-$2^m$ distinct rows and the time complexity is
+Así, podemos representar una fila usando únicamente caracteres
+$\sqcap$ y $\Box$, donde $\Box$ es una combinación
+de caracteres
+$\sqcup$, $\sqsubset$ y $\sqsupset$.
+Usando esta representación, hay solamente
+$2^m$ filas distintas y la complejidad de tiempo es
 $O(n 2^{2m})$.
 
-As a final note, there is also a surprising direct formula
-for calculating the number of tilings\footnote{Surprisingly,
-this formula was discovered in 1961 by two research teams \cite{kas61,tem61}
-that worked independently.}:
+Como nota final, también hay una sorprendente fórmula directa
+para calcular el número de forma de colocar baldosas\footnote{Sorprendentemente,
+esta fórmula fue descubierta en 1961 por dos equipos de investigación \cite{kas61,tem61}
+que trabajaron independientemente.}:
 \[ \prod_{a=1}^{\lceil n/2 \rceil} \prod_{b=1}^{\lceil m/2 \rceil} 4 \cdot (\cos^2 \frac{\pi a}{n + 1} + \cos^2 \frac{\pi b}{m+1})\]
-This formula is very efficient, because it calculates
-the number of tilings in $O(nm)$ time,
-but since the answer is a product of real numbers,
-a problem when using the formula is
-how to store the intermediate results accurately.
+Esta fórmula es muy eficiente, ya que calcula
+el número de baldosas en $O(nm)$ tiempo,
+pero dado que la respuesta es un producto de números reales,
+un problema al usar la fórmula es
+cómo almacenar los resultados intermedios de manera precisa.
 
 
