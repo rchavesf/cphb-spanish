@@ -1,75 +1,75 @@
-\chapter{Greedy algorithms}
+\chapter{Algoritmos voraces}
 
-\index{greedy algorithm}
+\index{algoritmo voraz}
 
-A \key{greedy algorithm}
-constructs a solution to the problem
-by always making a choice that looks
-the best at the moment.
-A greedy algorithm never takes back
-its choices, but directly constructs
-the final solution.
-For this reason, greedy algorithms
-are usually very efficient.
+Un \key{algoritmo voraz}
+construye una solución al problema
+siempre tomando una elección que parece
+ser la mejor en ese momento.
+Un algoritmo voraz nunca revierte
+sus elecciones, sino que construye directamente
+la solución final.
+Por esta razón, los algoritmos voraces
+suelen ser muy eficientes.
 
-The difficulty in designing greedy algorithms
-is to find a greedy strategy
-that always produces an optimal solution
-to the problem.
-The locally optimal choices in a greedy
-algorithm should also be globally optimal.
-It is often difficult to argue that
-a greedy algorithm works.
+La dificultad en el diseño de algoritmos voraces
+es encontrar una estrategia voraz
+que siempre produzca una solución óptima
+al problema.
+Las elecciones localmente óptimas en un algoritmo voraz
+también deben ser óptimas a nivel global.
+A menudo es difícil argumentar que
+un algoritmo voraz funciona.
 
-\section{Coin problem}
+\section{Problema de monedas}
 
-As a first example, we consider a problem
-where we are given a set of coins
-and our task is to form a sum of money $n$
-using the coins.
-The values of the coins are
-$\texttt{coins}=\{c_1,c_2,\ldots,c_k\}$,
-and each coin can be used as many times we want.
-What is the minimum number of coins needed?
+Como primer ejemplo, consideramos un problema
+en el que se nos da un conjunto de monedas
+y nuestra tarea es formar una suma de dinero $n$
+usando las monedas.
+Los valores de las monedas son
+$\texttt{monedas}=\{c_1,c_2,\ldots,c_k\}$,
+y cada moneda se puede usar tantas veces como queramos.
+¿Cuál es el número mínimo de monedas necesario?
 
-For example, if the coins are the euro coins (in cents)
+Por ejemplo, si las monedas son monedas de euro (en céntimos)
 \[\{1,2,5,10,20,50,100,200\}\]
-and $n=520$,
-we need at least four coins.
-The optimal solution is to select coins
-$200+200+100+20$ whose sum is 520.
+y $n=520$,
+necesitamos al menos cuatro monedas.
+La solución óptima es seleccionar las monedas
+$200+200+100+20$ cuya suma es 520.
 
-\subsubsection{Greedy algorithm}
+\subsubsection{Algoritmo voraz}
 
-A simple greedy algorithm to the problem
-always selects the largest possible coin,
-until the required sum of money has been constructed.
-This algorithm works in the example case,
-because we first select two 200 cent coins,
-then one 100 cent coin and finally one 20 cent coin.
-But does this algorithm always work?
+Un algoritmo voraz simple para el problema
+siempre selecciona la moneda más grande posible,
+hasta que se haya construido la suma de dinero requerida.
+Este algoritmo funciona en el caso de ejemplo,
+porque primero seleccionamos dos monedas de 200 céntimos,
+luego una moneda de 100 céntimos y finalmente una moneda de 20 céntimos.
+Pero, ¿siempre funciona este algoritmo?
 
-It turns out that if the coins are the euro coins,
-the greedy algorithm \emph{always} works, i.e.,
-it always produces a solution with the fewest
-possible number of coins.
-The correctness of the algorithm can be
-shown as follows:
+Resulta que si las monedas son monedas de euro,
+el algoritmo voraz \emph{siempre} funciona, es decir,
+siempre produce una solución con el menor número
+posible de monedas.
+La corrección del algoritmo se puede
+mostrar de la siguiente manera:
 
-First, each coin 1, 5, 10, 50 and 100 appears
-at most once in an optimal solution,
-because if the
-solution would contain two such coins,
-we could replace them by one coin and
-obtain a better solution.
-For example, if the solution would contain
-coins $5+5$, we could replace them by coin $10$.
+Primero, cada moneda 1, 5, 10, 50 y 100 aparece
+como máximo una vez en una solución óptima,
+porque si la
+solución contuviera dos monedas de ese tipo,
+podríamos reemplazarlas por una moneda y
+obtener una solución mejor.
+Por ejemplo, si la solución contuviera
+monedas $5+5$, podríamos reemplazarlas por la moneda $10$.
 
-In the same way, coins 2 and 20 appear
-at most twice in an optimal solution,
-because we could replace
-coins $2+2+2$ by coins $5+1$ and
-coins $20+20+20$ by coins $50+10$.
+De la misma manera, las monedas 2 y 20 aparecen
+como máximo dos veces en una solución óptima,
+porque podríamos reemplazar
+monedas $2+2+2$ por monedas $5+1$ y
+monedas $20+20+20$ por monedas $50+10$.
 Moreover, an optimal solution cannot contain
 coins $2+2+1$ or $20+20+10$,
 because we could replace them by coins $5$ and $50$.
