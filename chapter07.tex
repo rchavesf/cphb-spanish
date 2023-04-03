@@ -1,68 +1,68 @@
-\chapter{Dynamic programming}
+\chapter{Programación dinámica}
 
-\index{dynamic programming}
+\index{programación dinámica}
 
-\key{Dynamic programming}
-is a technique that combines the correctness
-of complete search and the efficiency
-of greedy algorithms.
-Dynamic programming can be applied if the
-problem can be divided into overlapping subproblems
-that can be solved independently.
+\key{Programación dinámica}
+es una técnica que combina la correctitud
+de la búsqueda completa y la eficiencia
+de los algoritmos voraces.
+La programación dinámica se puede aplicar si el
+problema se puede dividir en subproblemas superpuestos
+que se pueden resolver de forma independiente.
 
-There are two uses for dynamic programming:
+Hay dos usos para la programación dinámica:
 
 \begin{itemize}
 \item
-\key{Finding an optimal solution}:
-We want to find a solution that is
-as large as possible or as small as possible.
+\key{Encontrar una solución óptima}:
+Queremos encontrar una solución que sea
+lo más grande posible o lo más pequeña posible.
 \item
-\key{Counting the number of solutions}:
-We want to calculate the total number of
-possible solutions.
+\key{Contar el número de soluciones}:
+Queremos calcular el número total de
+soluciones posibles.
 \end{itemize}
 
-We will first see how dynamic programming can
-be used to find an optimal solution,
-and then we will use the same idea for
-counting the solutions.
+Primero veremos cómo la programación dinámica puede
+usarse para encontrar una solución óptima,
+y luego usaremos la misma idea para
+contar las soluciones.
 
-Understanding dynamic programming is a milestone
-in every competitive programmer's career.
-While the basic idea is simple,
-the challenge is how to apply
-dynamic programming to different problems.
-This chapter introduces a set of classic problems
-that are a good starting point.
+Entender la programación dinámica es un hito
+en la carrera de todo programador competitivo.
+Si bien la idea básica es simple,
+el desafío es cómo aplicar
+la programación dinámica a diferentes problemas.
+Este capítulo presenta un conjunto de problemas clásicos
+que son un buen punto de partida.
 
-\section{Coin problem}
+\section{Problema de las monedas}
 
-We first focus on a problem that we
-have already seen in Chapter 6:
-Given a set of coin values $\texttt{coins} = \{c_1,c_2,\ldots,c_k\}$
-and a target sum of money $n$, our task is to
-form the sum $n$ using as few coins as possible.
+Primero nos enfocamos en un problema que ya
+hemos visto en el Capítulo 6:
+Dado un conjunto de valores de monedas $\texttt{monedas} = \{c_1,c_2,\ldots,c_k\}$
+y una suma objetivo de dinero $n$, nuestra tarea es
+formar la suma $n$ usando la menor cantidad de monedas posible.
 
-In Chapter 6, we solved the problem using a
-greedy algorithm that always chooses the largest
-possible coin.
-The greedy algorithm works, for example,
-when the coins are the euro coins,
-but in the general case the greedy algorithm
-does not necessarily produce an optimal solution.
+En el Capítulo 6, resolvimos el problema usando un
+algoritmo voraz que siempre elige la moneda
+más grande posible.
+El algoritmo voraz funciona, por ejemplo,
+cuando las monedas son las monedas de euro,
+pero en el caso general, el algoritmo voraz
+no necesariamente produce una solución óptima.
 
-Now is time to solve the problem efficiently
-using dynamic programming, so that the algorithm
-works for any coin set.
-The dynamic programming
-algorithm is based on a recursive function
-that goes through all possibilities how to
-form the sum, like a brute force algorithm.
-However, the dynamic programming
-algorithm is efficient because
-it uses \emph{memoization} and
-calculates the answer to each subproblem only once.
+Ahora es el momento de resolver el problema de manera eficiente
+usando programación dinámica, de modo que el algoritmo
+funcione para cualquier conjunto de monedas.
+El algoritmo de programación dinámica
+se basa en una función recursiva
+que analiza todas las posibilidades de cómo
+formar la suma, como un algoritmo de fuerza bruta.
+Sin embargo, el algoritmo de programación dinámica
+es eficiente porque
+utiliza \emph{memoización} y
+calcula la respuesta a cada subproblema solo una vez.
 
 \subsubsection{Recursive formulation}
 
