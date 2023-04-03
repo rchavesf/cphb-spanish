@@ -571,18 +571,18 @@ cout << s.top(); // 5
 s.pop();
 cout << s.top(); // 2
 \end{lstlisting}
-\subsubsection{Queue}
+\subsubsection{Cola}
 
-\index{queue}
+\index{cola}
 
-A \key{queue} also
-provides two $O(1)$ time operations:
-adding an element to the end of the queue,
-and removing the first element in the queue.
-It is only possible to access the first
-and last element of a queue.
+Una \key{cola} también
+proporciona dos operaciones en tiempo $O(1)$:
+agregar un elemento al final de la cola,
+y eliminar el primer elemento de la cola.
+Solo es posible acceder al primer
+y último elemento de una cola.
 
-The following code shows how a queue can be used:
+El siguiente código muestra cómo se puede utilizar una cola:
 \begin{lstlisting}
 queue<int> q;
 q.push(3);
@@ -593,34 +593,34 @@ q.pop();
 cout << q.front(); // 2
 \end{lstlisting}
 
-\subsubsection{Priority queue}
+\subsubsection{Cola de prioridad}
 
-\index{priority queue}
-\index{heap}
+\index{cola de prioridad}
+\index{montículo}
 
-A \key{priority queue}
-maintains a set of elements.
-The supported operations are insertion and,
-depending on the type of the queue,
-retrieval and removal of
-either the minimum or maximum element.
-Insertion and removal take $O(\log n)$ time,
-and retrieval takes $O(1)$ time.
+Una \key{cola de prioridad}
+mantiene un conjunto de elementos.
+Las operaciones admitidas son inserción y,
+dependiendo del tipo de cola,
+recuperación y eliminación de
+ya sea el elemento mínimo o máximo.
+La inserción y eliminación toman un tiempo de $O(\log n)$,
+y la recuperación toma un tiempo de $O(1)$.
 
-While an ordered set efficiently supports
-all the operations of a priority queue,
-the benefit of using a priority queue is
-that it has smaller constant factors.
-A priority queue is usually implemented using
-a heap structure that is much simpler than a
-balanced binary tree used in an ordered set.
+Si bien un conjunto ordenado admite de manera eficiente
+todas las operaciones de una cola de prioridad,
+la ventaja de usar una cola de prioridad es
+que tiene factores constantes más pequeños.
+Una cola de prioridad generalmente se implementa usando
+una estructura de montículo que es mucho más simple que un
+árbol binario equilibrado utilizado en un conjunto ordenado.
 
 \begin{samepage}
-By default, the elements in a C++
-priority queue are sorted in decreasing order,
-and it is possible to find and remove the
-largest element in the queue.
-The following code illustrates this:
+Por defecto, los elementos en una cola de prioridad en C++
+se ordenan en orden decreciente,
+y es posible encontrar y eliminar el
+elemento más grande de la cola.
+El siguiente código ilustra esto:
 
 \begin{lstlisting}
 priority_queue<int> q;
@@ -638,10 +638,10 @@ q.pop();
 \end{lstlisting}
 \end{samepage}
 
-If we want to create a priority queue
-that supports finding and removing
-the smallest element,
-we can do it as follows:
+Si queremos crear una cola de prioridad
+que admita encontrar y eliminar
+el elemento más pequeño,
+podemos hacerlo de la siguiente manera:
 
 \begin{lstlisting}
 priority_queue<int,vector<int>,greater<int>> q;
