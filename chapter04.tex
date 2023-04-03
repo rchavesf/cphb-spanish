@@ -83,47 +83,47 @@ v.pop_back();
 cout << v.back() << "\n"; // 5
 \end{lstlisting}
 
-The following code creates a vector with five elements:
+El siguiente código crea un vector con cinco elementos:
 
 \begin{lstlisting}
 vector<int> v = {2,4,2,5,1};
 \end{lstlisting}
 
-Another way to create a vector is to give the number
-of elements and the initial value for each element:
+Otra forma de crear un vector es proporcionar el número
+de elementos y el valor inicial para cada elemento:
 
 \begin{lstlisting}
-// size 10, initial value 0
+// tamaño 10, valor inicial 0
 vector<int> v(10);
 \end{lstlisting}
 \begin{lstlisting}
-// size 10, initial value 5
+// tamaño 10, valor inicial 5
 vector<int> v(10, 5);
 \end{lstlisting}
 
-The internal implementation of a vector
-uses an ordinary array.
-If the size of the vector increases and
-the array becomes too small,
-a new array is allocated and all the
-elements are moved to the new array.
-However, this does not happen often and the
-average time complexity of
-\texttt{push\_back} is $O(1)$.
+La implementación interna de un vector
+utiliza un arreglo ordinario.
+Si el tamaño del vector aumenta y
+el arreglo se vuelve demasiado pequeño,
+se asigna un nuevo arreglo y todos los
+elementos se mueven al nuevo arreglo.
+Sin embargo, esto no sucede a menudo y la
+complejidad de tiempo promedio de
+\texttt{push\_back} es $O(1)$.
 
 \index{string}
 
-The \texttt{string} structure
-is also a dynamic array that can be used almost like a vector.
-In addition, there is special syntax for strings
-that is not available in other data structures.
-Strings can be combined using the \texttt{+} symbol.
-The function $\texttt{substr}(k,x)$ returns the substring
-that begins at position $k$ and has length $x$,
-and the function $\texttt{find}(\texttt{t})$ finds the position
-of the first occurrence of a substring \texttt{t}.
+La estructura \texttt{string} también es un arreglo dinámico que
+puede ser utilizado casi como un vector.
+Además, existe una sintaxis especial para las cadenas
+que no está disponible en otras estructuras de datos.
+Las cadenas se pueden combinar utilizando el símbolo \texttt{+}.
+La función $\texttt{substr}(k,x)$ devuelve la subcadena
+que comienza en la posición $k$ y tiene una longitud de $x$,
+y la función $\texttt{find}(\texttt{t})$ encuentra la posición
+de la primera aparición de una subcadena \texttt{t}.
 
-The following code presents some string operations:
+El siguiente código presenta algunas operaciones de cadenas:
 
 \begin{lstlisting}
 string a = "hatti";
@@ -135,30 +135,29 @@ string c = b.substr(3,4);
 cout << c << "\n"; // tiva
 \end{lstlisting}
 
-\section{Set structures}
+\section{Estructuras de conjuntos}
 
 \index{set}
 
-A \key{set} is a data structure that
-maintains a collection of elements.
-The basic operations of sets are element
-insertion, search and removal.
+Un \key{conjunto} es una estructura de datos que
+mantiene una colección de elementos.
+Las operaciones básicas de los conjuntos son la inserción
+de elementos, búsqueda y eliminación.
 
-The C++ standard library contains two set
-implementations:
-The structure \texttt{set} is based on a balanced
-binary tree and its operations work in $O(\log n)$ time.
-The structure \texttt{unordered\_set} uses hashing,
-and its operations work in $O(1)$ time on average.
+La biblioteca estándar de C++ contiene dos implementaciones
+de conjuntos:
+La estructura \texttt{set} se basa en un árbol binario equilibrado
+y sus operaciones funcionan en tiempo $O(\log n)$.
+La estructura \texttt{unordered\_set} utiliza hashing
+y sus operaciones funcionan en tiempo promedio de $O(1)$.
 
-The choice of which set implementation to use
-is often a matter of taste.
-The benefit of the \texttt{set} structure
-is that it maintains the order of the elements
-and provides functions that are not available
-in \texttt{unordered\_set}.
-On the other hand, \texttt{unordered\_set}
-can be more efficient.
+La elección de qué implementación de conjunto utilizar
+a menudo es una cuestión de preferencia.
+El beneficio de la estructura \texttt{set} es que mantiene
+el orden de los elementos y proporciona funciones que
+no están disponibles en \texttt{unordered\_set}.
+Por otro lado, \texttt{unordered\_set}
+puede ser más eficiente.
 
 The following code creates a set
 that contains integers,
