@@ -425,7 +425,7 @@ y calcula cuántas veces aparece cada elemento
 en el arreglo.
 \newpage
 
-For example, the array
+Por ejemplo, el arreglo
 \begin{center}
 \begin{tikzpicture}[scale=0.7]
 \draw (0,0) grid (8,1);
@@ -439,7 +439,7 @@ For example, the array
 \node at (7.5,0.5) {$9$};
 \end{tikzpicture}
 \end{center}
-corresponds to the following bookkeeping array:
+corresponde al siguiente arreglo de registro:
 \begin{center}
 \begin{tikzpicture}[scale=0.7]
 \draw (0,0) grid (9,1);
@@ -467,23 +467,23 @@ corresponds to the following bookkeeping array:
 \end{tikzpicture}
 \end{center}
 
-For example, the value at position 3
-in the bookkeeping array is 2,
-because the element 3 appears 2 times
-in the original array.
+Por ejemplo, el valor en la posición 3
+en el arreglo de registro es 2,
+porque el elemento 3 aparece 2 veces
+en el arreglo original.
 
-Construction of the bookkeeping array
-takes $O(n)$ time. After this, the sorted array
-can be created in $O(n)$ time because
-the number of occurrences of each element can be retrieved
-from the bookkeeping array.
-Thus, the total time complexity of counting
-sort is $O(n)$.
+La construcción del arreglo de registro
+toma un tiempo de $O(n)$. Después de esto, el arreglo ordenado
+se puede crear en tiempo $O(n)$ porque
+el número de ocurrencias de cada elemento se puede obtener
+del arreglo de registro.
+Por lo tanto, la complejidad total en tiempo del
+ordenamiento por conteo es $O(n)$.
 
-Counting sort is a very efficient algorithm
-but it can only be used when the constant $c$
-is small enough, so that the array elements can
-be used as indices in the bookkeeping array.
+El ordenamiento por conteo es un algoritmo muy eficiente
+pero solo se puede usar cuando la constante $c$
+es lo suficientemente pequeña, de modo que los elementos del arreglo puedan
+usarse como índices en el arreglo de registro.
 
 \section{Sorting in C++}
 
