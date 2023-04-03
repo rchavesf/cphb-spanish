@@ -1,42 +1,42 @@
-\chapter{Sorting}
+\chapter{Ordenamiento}
 
-\index{sorting}
+\index{ordenamiento}
 
-\key{Sorting}
-is a fundamental algorithm design problem.
-Many efficient algorithms
-use sorting as a subroutine,
-because it is often easier to process
-data if the elements are in a sorted order.
+\key{Ordenamiento}
+es un problema fundamental en el diseño de algoritmos.
+Muchos algoritmos eficientes
+usan el ordenamiento como una subrutina,
+ya que a menudo es más fácil procesar
+datos si los elementos están en orden.
 
-For example, the problem ''does an array contain
-two equal elements?'' is easy to solve using sorting.
-If the array contains two equal elements,
-they will be next to each other after sorting,
-so it is easy to find them.
-Also, the problem ''what is the most frequent element
-in an array?'' can be solved similarly.
+Por ejemplo, el problema "¿un arreglo contiene
+dos elementos iguales?" es fácil de resolver usando ordenamiento.
+Si el arreglo contiene dos elementos iguales,
+estarán uno al lado del otro después de ordenar,
+así que es fácil encontrarlos.
+Además, el problema "¿cuál es el elemento más frecuente
+en un arreglo?" se puede resolver de manera similar.
 
-There are many algorithms for sorting, and they are
-also good examples of how to apply
-different algorithm design techniques.
-The efficient general sorting algorithms
-work in $O(n \log n)$ time,
-and many algorithms that use sorting
-as a subroutine also
-have this time complexity.
+Hay muchos algoritmos para ordenar, y también son
+buenos ejemplos de cómo aplicar
+diferentes técnicas de diseño de algoritmos.
+Los algoritmos generales de ordenamiento eficientes
+funcionan en tiempo $O(n \log n)$,
+y muchos algoritmos que utilizan ordenamiento
+como una subrutina también
+tienen esta complejidad de tiempo.
 
-\section{Sorting theory}
+\section{Teoría del ordenamiento}
 
-The basic problem in sorting is as follows:
+El problema básico en el ordenamiento es el siguiente:
 \begin{framed}
 \noindent
-Given an array that contains $n$ elements,
-your task is to sort the elements
-in increasing order.
+Dado un arreglo que contiene $n$ elementos,
+tu tarea es ordenar los elementos
+en orden ascendente.
 \end{framed}
 \noindent
-For example, the array
+Por ejemplo, el arreglo
 \begin{center}
 \begin{tikzpicture}[scale=0.7]
 \draw (0,0) grid (8,1);
@@ -50,7 +50,7 @@ For example, the array
 \node at (7.5,0.5) {$6$};
 \end{tikzpicture}
 \end{center}
-will be as follows after sorting:
+será como sigue después de ordenar:
 \begin{center}
 \begin{tikzpicture}[scale=0.7]
 \draw (0,0) grid (8,1);
@@ -65,17 +65,17 @@ will be as follows after sorting:
 \end{tikzpicture}
 \end{center}
 
-\subsubsection{$O(n^2)$ algorithms}
+\subsubsection{Algoritmos $O(n^2)$}
 
-\index{bubble sort}
+\index{ordenamiento burbuja}
 
-Simple algorithms for sorting an array
-work in $O(n^2)$ time.
-Such algorithms are short and usually
-consist of two nested loops.
-A famous $O(n^2)$ time sorting algorithm
-is \key{bubble sort} where the elements
-''bubble'' in the array according to their values.
+Los algoritmos simples para ordenar un arreglo
+funcionan en tiempo $O(n^2)$.
+Estos algoritmos son cortos y generalmente
+consisten en dos bucles anidados.
+Un famoso algoritmo de ordenamiento en tiempo $O(n^2)$
+es el \key{ordenamiento burbuja}, donde los elementos
+"burbujean" en el arreglo según sus valores.
 
 Bubble sort consists of $n$ rounds.
 On each round, the algorithm iterates through
