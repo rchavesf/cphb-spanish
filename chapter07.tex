@@ -712,77 +712,76 @@ $k \backslash x$ & 0 & 1 & 2 & 3 & 4 & 5 & 6 & 7 & 8 & 9 & 10 & 11 & 12 \\
 \end{tabular}
 \end{center}
 
-After calculating those values, $\texttt{possible}(x,n)$
-tells us whether we can construct a
-sum $x$ using \emph{all} weights.
+Después de calcular esos valores, $\texttt{posible}(x,n)$
+nos indica si podemos construir una
+suma $x$ utilizando \emph{todos} los pesos.
 
-Let $W$ denote the total sum of the weights.
-The following $O(nW)$ time
-dynamic programming solution
-corresponds to the recursive function:
+Denotemos $W$ como la suma total de los pesos.
+La siguiente solución de programación dinámica $O(nW)$
+corresponde a la función recursiva:
 \begin{lstlisting}
-possible[0][0] = true;
+posible[0][0] = true;
 for (int k = 1; k <= n; k++) {
     for (int x = 0; x <= W; x++) {
-        if (x-w[k] >= 0) possible[x][k] |= possible[x-w[k]][k-1];
-        possible[x][k] |= possible[x][k-1];
+        if (x-w[k] >= 0) posible[x][k] |= posible[x-w[k]][k-1];
+        posible[x][k] |= posible[x][k-1];
     }
 }
 \end{lstlisting}
 
-However, here is a better implementation that only uses
-a one-dimensional array $\texttt{possible}[x]$
-that indicates whether we can construct a subset with sum $x$.
-The trick is to update the array from right to left for
-each new weight:
+Sin embargo, aquí hay una mejor implementación que solo utiliza
+un arreglo unidimensional $\texttt{posible}[x]$
+que indica si podemos construir un subconjunto con suma $x$.
+El truco es actualizar el arreglo de derecha a izquierda para
+cada nuevo peso:
 \begin{lstlisting}
-possible[0] = true;
+posible[0] = true;
 for (int k = 1; k <= n; k++) {
     for (int x = W; x >= 0; x--) {
-        if (possible[x]) possible[x+w[k]] = true;
+        if (posible[x]) posible[x+w[k]] = true;
     }
 }
 \end{lstlisting}
 
-Note that the general idea presented here can be used
-in many knapsack problems.
-For example, if we are given objects with weights and values,
-we can determine for each weight sum the maximum value
-sum of a subset.
+Tenga en cuenta que la idea general presentada aquí se puede utilizar
+en muchos problemas de mochila.
+Por ejemplo, si se nos dan objetos con pesos y valores,
+podemos determinar para cada suma de pesos el valor máximo
+suma de un subconjunto.
 
-\section{Edit distance}
+\section{Distancia de edición}
 
-\index{edit distance}
-\index{Levenshtein distance}
+\index{distancia de edición}
+\index{distancia de Levenshtein}
 
-The \key{edit distance} or \key{Levenshtein distance}\footnote{The distance
-is named after V. I. Levenshtein who studied it in connection with binary codes \cite{lev66}.}
-is the minimum number of editing operations
-needed to transform a string
-into another string.
-The allowed editing operations are as follows:
+La \key{distancia de edición} o \key{distancia de Levenshtein}\footnote{La distancia
+lleva el nombre de V. I. Levenshtein, quien la estudió en relación con los códigos binarios \cite{lev66}.}
+es el número mínimo de operaciones de edición
+necesarias para transformar una cadena
+en otra cadena.
+Las operaciones de edición permitidas son las siguientes:
 \begin{itemize}
-\item insert a character (e.g. \texttt{ABC} $\rightarrow$ \texttt{ABCA})
-\item remove a character (e.g. \texttt{ABC} $\rightarrow$ \texttt{AC})
-\item modify a character (e.g. \texttt{ABC} $\rightarrow$ \texttt{ADC})
+\item insertar un carácter (por ejemplo, \texttt{ABC} $\rightarrow$ \texttt{ABCA})
+\item eliminar un carácter (por ejemplo, \texttt{ABC} $\rightarrow$ \texttt{AC})
+\item modificar un carácter (por ejemplo, \texttt{ABC} $\rightarrow$ \texttt{ADC})
 \end{itemize}
 
-For example, the edit distance between
-\texttt{LOVE} and \texttt{MOVIE} is 2,
-because we can first perform the operation
+Por ejemplo, la distancia de edición entre
+\texttt{LOVE} y \texttt{MOVIE} es 2,
+porque primero podemos realizar la operación
  \texttt{LOVE} $\rightarrow$ \texttt{MOVE}
-(modify) and then the operation
+(modificar) y luego la operación
 \texttt{MOVE} $\rightarrow$ \texttt{MOVIE}
-(insert).
-This is the smallest possible number of operations,
-because it is clear that only one operation is not enough.
+(insertar).
+Este es el número mínimo posible de operaciones,
+porque está claro que una sola operación no es suficiente.
 
-Suppose that we are given a string \texttt{x}
-of length $n$ and a string \texttt{y} of length $m$,
-and we want to calculate the edit distance between
-\texttt{x} and \texttt{y}.
-To solve the problem, we define a function
-$\texttt{distance}(a,b)$ that gives the
+Supongamos que se nos da una cadena \texttt{x}
+de longitud $n$ y una cadena \texttt{y} de longitud $m$,
+y queremos calcular la distancia de edición entre
+\texttt{x} y \texttt{y}.
+Para resolver el problema, definimos una función
+$\texttt{distancia}(a,b)$ that gives the
 edit distance between prefixes
 $\texttt{x}[0 \ldots a]$ and $\texttt{y}[0 \ldots b]$.
 Thus, using this function, the edit distance
