@@ -326,21 +326,21 @@ el algoritmo de backtracking son las siguientes:
     \node at (-9,-13) {ilegal};
     \node at (-4,-13) {ilegal};
     \node at (1,-13) {ilegal};
-    \node at (6,-13) {válido};
+    \node at (6,-13) {válida};
 
   \end{scope}
 \end{tikzpicture}
 \end{center}
 
-At the bottom level, the three first configurations
-are illegal, because the queens attack each other.
-However, the fourth configuration is valid
-and it can be extended to a complete solution by
-placing two more queens to the board.
-There is only one way to place the two remaining queens.
+En el nivel más bajo, las tres primeras configuraciones
+son ilegales, porque las reinas se atacan entre sí.
+Sin embargo, la cuarta configuración es válida
+y se puede extender a una solución completa colocando
+dos reinas más en el tablero.
+Solo hay una forma de colocar las dos reinas restantes.
 
 \begin{samepage}
-The algorithm can be implemented as follows:
+El algoritmo se puede implementar de la siguiente manera:
 \begin{lstlisting}
 void search(int y) {
     if (y == n) {
@@ -356,28 +356,27 @@ void search(int y) {
 }
 \end{lstlisting}
 \end{samepage}
-The search begins by calling \texttt{search(0)}.
-The size of the board is $n \times n$,
-and the code calculates the number of solutions
-to \texttt{count}.
+La búsqueda comienza llamando a \texttt{search(0)}.
+El tamaño del tablero es de $n \times n$,
+y el código calcula el número de soluciones
+en \texttt{count}.
 
-The code assumes that the rows and columns
-of the board are numbered from 0 to $n-1$.
-When the function \texttt{search} is
-called with parameter $y$,
-it places a queen on row $y$
-and then calls itself with parameter $y+1$.
-Then, if $y=n$, a solution has been found
-and the variable \texttt{count} is increased by one.
+El código asume que las filas y columnas
+del tablero están numeradas de 0 a $n-1$.
+Cuando se llama a la función \texttt{search} con el parámetro $y$,
+coloca una reina en la fila $y$
+y luego se llama a sí misma con el parámetro $y+1$.
+Entonces, si $y=n$, se ha encontrado una solución
+y la variable \texttt{count} se incrementa en uno.
 
-The array \texttt{column} keeps track of columns
-that contain a queen,
-and the arrays \texttt{diag1} and \texttt{diag2}
-keep track of diagonals.
-It is not allowed to add another queen to a
-column or diagonal that already contains a queen. 
-For example, the columns and diagonals of
-the $4 \times 4$ board are numbered as follows:
+El arreglo \texttt{column} lleva un registro de las columnas
+que contienen una reina,
+y los arreglos \texttt{diag1} y \texttt{diag2}
+llevan un registro de las diagonales.
+No está permitido agregar otra reina a una
+columna o diagonal que ya contiene una reina.
+Por ejemplo, las columnas y diagonales del
+tablero de $4 \times 4$ están numeradas de la siguiente manera:
 
 \begin{center}
 \begin{tikzpicture}[scale=.65]
@@ -444,18 +443,17 @@ the $4 \times 4$ board are numbered as follows:
 \end{tikzpicture}
 \end{center}
 
-Let $q(n)$ denote the number of ways
-to place $n$ queens on an $n \times n$ chessboard.
-The above backtracking
-algorithm tells us that, for example, $q(8)=92$.
-When $n$ increases, the search quickly becomes slow,
-because the number of solutions increases
-exponentially.
-For example, calculating $q(16)=14772512$
-using the above algorithm already takes about a minute
-on a modern computer\footnote{There is no known way to efficiently
-calculate larger values of $q(n)$. The current record is
-$q(27)=234907967154122528$, calculated in 2016 \cite{q27}.}.
+Sea $q(n)$ el número de formas de
+colocar $n$ reinas en un tablero de ajedrez de $n \times n$.
+El algoritmo de backtracking anterior nos dice que, por ejemplo, $q(8)=92$.
+Cuando $n$ aumenta, la búsqueda se vuelve rápidamente lenta,
+porque el número de soluciones aumenta
+exponencialmente.
+Por ejemplo, calcular $q(16)=14772512$
+usando el algoritmo anterior ya toma aproximadamente un minuto
+en una computadora moderna\footnote{No se conoce ninguna forma eficiente de
+calcular valores más grandes de $q(n)$. El récord actual es
+$q(27)=234907967154122528$, calculado en 2016 \cite{q27}.}.
 
 \section{Pruning the search}
 
