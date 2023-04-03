@@ -378,27 +378,27 @@ después de la línea
         conteo[x] += conteo[x-c];
 \end{lstlisting}
 
-Now we have discussed all basic
-ideas of dynamic programming.
-Since dynamic programming can be used
-in many different situations,
-we will now go through a set of problems
-that show further examples about the
-possibilities of dynamic programming.
+Ahora hemos discutido todas las ideas básicas
+de la programación dinámica.
+Dado que la programación dinámica se puede utilizar
+en muchas situaciones diferentes,
+ahora revisaremos un conjunto de problemas
+que muestran más ejemplos sobre las
+posibilidades de la programación dinámica.
 
-\section{Longest increasing subsequence}
+\section{Subsecuencia creciente más larga}
 
-\index{longest increasing subsequence}
+\index{subsecuencia creciente más larga}
 
-Our first problem is to find the
-\key{longest increasing subsequence}
-in an array of $n$ elements.
-This is a maximum-length
-sequence of array elements
-that goes from left to right,
-and each element in the sequence is larger
-than the previous element.
-For example, in the array
+Nuestro primer problema es encontrar la
+\key{subsecuencia creciente más larga}
+en un arreglo de $n$ elementos.
+Esta es una secuencia de longitud máxima
+de elementos del arreglo
+que va de izquierda a derecha,
+y cada elemento en la secuencia es mayor
+que el elemento anterior.
+Por ejemplo, en el arreglo
 
 \begin{center}
 \begin{tikzpicture}[scale=0.7]
@@ -423,8 +423,8 @@ For example, in the array
 \node at (7.5,1.4) {$7$};
 \end{tikzpicture}
 \end{center}
-the longest increasing subsequence
-contains 4 elements:
+la subsecuencia creciente más larga
+contiene 4 elementos:
 \begin{center}
 \begin{tikzpicture}[scale=0.7]
 \fill[color=lightgray] (1,0) rectangle (2,1);
@@ -457,59 +457,59 @@ contains 4 elements:
 \end{tikzpicture}
 \end{center}
 
-Let $\texttt{length}(k)$ denote
-the length of the
-longest increasing subsequence
-that ends at position $k$.
-Thus, if we calculate all values of
-$\texttt{length}(k)$ where $0 \le k \le n-1$,
-we will find out the length of the
-longest increasing subsequence.
-For example, the values of the function
-for the above array are as follows:
+Denotemos $\texttt{largo}(k)$ como
+el largo de la
+subsecuencia creciente más larga
+que termina en la posición $k$.
+Así, si calculamos todos los valores de
+$\texttt{largo}(k)$ donde $0 \le k \le n-1$,
+descubriremos el largo de la
+subsecuencia creciente más larga.
+Por ejemplo, los valores de la función
+para el arreglo anterior son los siguientes:
 \[
 \begin{array}{lcl}
-\texttt{length}(0) & = & 1 \\
-\texttt{length}(1) & = & 1 \\
-\texttt{length}(2) & = & 2 \\
-\texttt{length}(3) & = & 1 \\
-\texttt{length}(4) & = & 3 \\
-\texttt{length}(5) & = & 2 \\
-\texttt{length}(6) & = & 4 \\
-\texttt{length}(7) & = & 2 \\
+\texttt{largo}(0) & = & 1 \\
+\texttt{largo}(1) & = & 1 \\
+\texttt{largo}(2) & = & 2 \\
+\texttt{largo}(3) & = & 1 \\
+\texttt{largo}(4) & = & 3 \\
+\texttt{largo}(5) & = & 2 \\
+\texttt{largo}(6) & = & 4 \\
+\texttt{largo}(7) & = & 2 \\
 \end{array}
 \]
 
-For example, $\texttt{length}(6)=4$,
-because the longest increasing subsequence
-that ends at position 6 consists of 4 elements.
+Por ejemplo, $\texttt{largo}(6)=4$,
+porque la subsecuencia creciente más larga
+que termina en la posición 6 consta de 4 elementos.
 
-To calculate a value of $\texttt{length}(k)$,
-we should find a position $i<k$
-for which $\texttt{array}[i]<\texttt{array}[k]$
-and $\texttt{length}(i)$ is as large as possible.
-Then we know that
-$\texttt{length}(k)=\texttt{length}(i)+1$,
-because this is an optimal way to add
-$\texttt{array}[k]$ to a subsequence.
-However, if there is no such position $i$,
-then $\texttt{length}(k)=1$,
-which means that the subsequence only contains
-$\texttt{array}[k]$.
+Para calcular un valor de $\texttt{largo}(k)$,
+debemos encontrar una posición $i<k$
+tal que $\texttt{arreglo}[i]<\texttt{arreglo}[k]$
+y $\texttt{largo}(i)$ sea lo más grande posible.
+Entonces sabemos que
+$\texttt{largo}(k)=\texttt{largo}(i)+1$,
+porque esta es una forma óptima de agregar
+$\texttt{arreglo}[k]$ a una subsecuencia.
+Sin embargo, si no existe tal posición $i$,
+entonces $\texttt{largo}(k)=1$,
+lo que significa que la subsecuencia solo contiene
+$\texttt{arreglo}[k]$.
 
-Since all values of the function can be calculated
-from its smaller values,
-we can use dynamic programming.
-In the following code, the values
-of the function will be stored in an array
-$\texttt{length}$.
+Dado que todos los valores de la función se pueden calcular
+a partir de sus valores más pequeños,
+podemos utilizar la programación dinámica.
+En el siguiente código, los valores
+de la función se almacenarán en un arreglo
+$\texttt{largo}$.
 
 \begin{lstlisting}
 for (int k = 0; k < n; k++) {
-    length[k] = 1;
+    largo[k] = 1;
     for (int i = 0; i < k; i++) {
-        if (array[i] < array[k]) {
-            length[k] = max(length[k],length[i]+1);
+        if (arreglo[i] < arreglo[k]) {
+            largo[k] = max(largo[k],largo[i]+1);
         }
     }
 }
