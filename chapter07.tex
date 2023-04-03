@@ -515,27 +515,27 @@ for (int k = 0; k < n; k++) {
 }
 \end{lstlisting}
 
-This code works in $O(n^2)$ time,
-because it consists of two nested loops.
-However, it is also possible to implement
-the dynamic programming calculation
-more efficiently in $O(n \log n)$ time.
-Can you find a way to do this?
+Este código funciona en tiempo $O(n^2)$,
+porque consta de dos bucles anidados.
+Sin embargo, también es posible implementar
+el cálculo de programación dinámica
+de manera más eficiente en tiempo $O(n \log n)$.
+¿Puedes encontrar una forma de hacer esto?
 
-\section{Paths in a grid}
+\section{Caminos en una cuadrícula}
 
-Our next problem is to find a path
-from the upper-left corner to
-the lower-right corner
-of an $n \times n$ grid, such that
-we only move down and right.
-Each square contains a positive integer,
-and the path should be constructed so
-that the sum of the values along
-the path is as large as possible.
+Nuestro siguiente problema es encontrar un camino
+desde la esquina superior izquierda hasta
+la esquina inferior derecha
+de una cuadrícula de $n \times n$, de tal manera que
+sólo nos movemos hacia abajo y hacia la derecha.
+Cada cuadro contiene un número entero positivo,
+y el camino debe construirse de tal manera que
+la suma de los valores a lo largo
+del camino sea lo más grande posible.
 
-The following picture shows an optimal
-path in a grid:
+La siguiente imagen muestra un camino óptimo
+en una cuadrícula:
 \begin{center}
 \begin{tikzpicture}[scale=.65]
   \begin{scope}
@@ -577,34 +577,33 @@ path in a grid:
   \end{scope}
 \end{tikzpicture}
 \end{center}
-The sum of the values on the path is 67,
-and this is the largest possible sum on a path
-from the
-upper-left corner to the lower-right corner.
+La suma de los valores en el camino es 67,
+y esta es la suma más grande posible en un camino
+desde la esquina
+superior izquierda hasta la esquina inferior derecha.
 
-Assume that the rows and columns of the
-grid are numbered from 1 to $n$,
-and $\texttt{value}[y][x]$ equals the value
-of square $(y,x)$.
-Let $\texttt{sum}(y,x)$ denote the maximum
-sum on a path from the upper-left corner
-to square $(y,x)$.
-Now $\texttt{sum}(n,n)$ tells us
-the maximum sum
-from the upper-left corner to
-the lower-right corner.
-For example, in the above grid,
-$\texttt{sum}(5,5)=67$.
+Suponga que las filas y columnas de la
+cuadrícula están numeradas del 1 al $n$,
+y $\texttt{valor}[y][x]$ es igual al valor
+del cuadro $(y,x)$.
+Sea $\texttt{suma}(y,x)$ la suma máxima
+en un camino desde la esquina superior izquierda
+hasta el cuadro $(y,x)$.
+Ahora, $\texttt{suma}(n,n)$ nos indica
+la suma máxima
+desde la esquina superior izquierda hasta
+la esquina inferior derecha.
+Por ejemplo, en la cuadrícula anterior,
+$\texttt{suma}(5,5)=67$.
 
-We can recursively calculate the sums
-as follows:
-\[ \texttt{sum}(y,x) = \max(\texttt{sum}(y,x-1),\texttt{sum}(y-1,x))+\texttt{value}[y][x]\]
+Podemos calcular recursivamente las sumas
+de la siguiente manera:
+\[ \texttt{suma}(y,x) = \max(\texttt{suma}(y,x-1),\texttt{suma}(y-1,x))+\texttt{valor}[y][x]\]
 
-
-The recursive formula is based on the observation
-that a path that ends at square $(y,x)$
-can come either from square $(y,x-1)$
-or square $(y-1,x)$:
+La fórmula recursiva se basa en la observación
+de que un camino que termina en el cuadro $(y,x)$
+puede provenir del cuadro $(y,x-1)$
+o del cuadro $(y-1,x)$:
 \begin{center}
 \begin{tikzpicture}[scale=.65]
   \begin{scope}
@@ -618,27 +617,27 @@ or square $(y-1,x)$:
 \end{tikzpicture}
 \end{center}
 
-Thus, we select the direction that maximizes
-the sum.
-We assume that $\texttt{sum}(y,x)=0$
-if $y=0$ or $x=0$ (because no such paths exist),
-so the recursive formula also works when $y=1$ or $x=1$.
+Por lo tanto, seleccionamos la dirección que maximiza
+la suma.
+Asumimos que $\texttt{suma}(y,x)=0$
+si $y=0$ o $x=0$ (porque no existen tales caminos),
+así que la fórmula recursiva también funciona cuando $y=1$ o $x=1$.
 
-Since the function \texttt{sum} has two parameters,
-the dynamic programming array also has two dimensions.
-For example, we can use an array
+Dado que la función \texttt{suma} tiene dos parámetros,
+el array de programación dinámica también tiene dos dimensiones.
+Por ejemplo, podemos usar un array
 \begin{lstlisting}
-int sum[N][N];
+int suma[N][N];
 \end{lstlisting}
-and calculate the sums as follows:
+y calcular la suma como sigue:
 \begin{lstlisting}
 for (int y = 1; y <= n; y++) {
     for (int x = 1; x <= n; x++) {
-        sum[y][x] = max(sum[y][x-1],sum[y-1][x])+value[y][x];
+        suma[y][x] = max(suma[y][x-1],suma[y-1][x])+valor[y][x];
     }
 }
 \end{lstlisting}
-The time complexity of the algorithm is $O(n^2)$.
+La complejidad temporal del algoritmo es $O(n^2)$.
 
 \section{Knapsack problems}
 
