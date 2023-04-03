@@ -72,18 +72,18 @@ contiene un subarreglo cuya suma es 8:
 \end{tikzpicture}
 \end{center}
 
-This problem can be solved in
-$O(n)$ time by using the two pointers method.
-The idea is to maintain pointers that point to the
-first and last value of a subarray.
-On each turn, the left pointer moves one step
-to the right, and the right pointer moves to the right
-as long as the resulting subarray sum is at most $x$.
-If the sum becomes exactly $x$,
-a solution has been found.
+Este problema se puede resolver en
+$O(n)$ tiempo utilizando el método de dos punteros.
+La idea es mantener punteros que apuntan al
+primer y último valor de un subarreglo.
+En cada turno, el puntero izquierdo se mueve un paso
+a la derecha, y el puntero derecho se mueve a la derecha
+siempre que la suma del subarreglo resultante sea como máximo $x$.
+Si la suma se convierte exactamente en $x$,
+se ha encontrado una solución.
 
-As an example, consider the following array
-and a target sum $x=8$:
+Por ejemplo, considere el siguiente arreglo
+y una suma objetivo $x=8$:
 \begin{center}
 \begin{tikzpicture}[scale=0.7]
 \draw (0,0) grid (8,1);
@@ -99,8 +99,8 @@ and a target sum $x=8$:
 \end{tikzpicture}
 \end{center}
 
-The initial subarray contains the values
-1, 3 and 2 whose sum is 6:
+El subarreglo inicial contiene los valores
+1, 3 y 2 cuya suma es 6:
 
 \begin{center}
 \begin{tikzpicture}[scale=0.7]
@@ -121,9 +121,9 @@ The initial subarray contains the values
 \end{tikzpicture}
 \end{center}
 
-Then, the left pointer moves one step to the right.
-The right pointer does not move, because otherwise
-the subarray sum would exceed $x$.
+Luego, el puntero izquierdo se mueve un paso a la derecha.
+El puntero derecho no se mueve, porque de lo contrario
+la suma del subarreglo excedería $x$.
 
 \begin{center}
 \begin{tikzpicture}[scale=0.7]
