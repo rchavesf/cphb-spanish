@@ -555,11 +555,11 @@ creando un nuevo nodo cuyo peso es la suma de los pesos
 de los nodos originales.
 El proceso continúa hasta que todos los nodos se hayan combinado.
 
-Next we will see how Huffman coding creates
-the optimal code for the string
+A continuación, veremos cómo la codificación de Huffman crea
+el código óptimo para la cadena
 \texttt{AABACDACA}.
-Initially, there are four nodes that correspond
-to the characters of the string:
+Inicialmente, hay cuatro nodos que corresponden
+a los caracteres de la cadena:
 
 \begin{center}
 \begin{tikzpicture}[scale=0.9]
@@ -576,16 +576,16 @@ to the characters of the string:
 %\path[draw,thick,-] (4) -- (5);
 \end{tikzpicture}
 \end{center}
-The node that represents character \texttt{A}
-has weight 5 because character \texttt{A}
-appears 5 times in the string.
-The other weights have been calculated
-in the same way.
+El nodo que representa el carácter \texttt{A}
+tiene peso 5 porque el carácter \texttt{A}
+aparece 5 veces en la cadena.
+Los otros pesos se han calculado
+de la misma manera.
 
-The first step is to combine the nodes that
-correspond to characters \texttt{B} and \texttt{D},
-both with weight 1.
-The result is:
+El primer paso es combinar los nodos que
+corresponden a los caracteres \texttt{B} y \texttt{D},
+ambos con peso 1.
+El resultado es:
 \begin{center}
 \begin{tikzpicture}[scale=0.9]
 \node[draw, circle] (1) at (0,0) {$5$};
@@ -606,7 +606,7 @@ The result is:
 \path[draw,thick,-] (4) -- (5);
 \end{tikzpicture}
 \end{center}
-After this, the nodes with weight 2 are combined:
+Después de esto, se combinan los nodos con peso 2:
 \begin{center}
 \begin{tikzpicture}[scale=0.9]
 \node[draw, circle] (1) at (1,0) {$5$};
@@ -632,7 +632,7 @@ After this, the nodes with weight 2 are combined:
 \path[draw,thick,-] (5) -- (6);
 \end{tikzpicture}
 \end{center}
-Finally, the two remaining nodes are combined:
+Finalmente, se combinan los dos nodos restantes:
 \begin{center}
 \begin{tikzpicture}[scale=0.9]
 \node[draw, circle] (1) at (2,2) {$5$};
@@ -664,11 +664,11 @@ Finally, the two remaining nodes are combined:
 \end{tikzpicture}
 \end{center}
 
-Now all nodes are in the tree, so the code is ready.
-The following codewords can be read from the tree:
+Ahora todos los nodos están en el árbol, por lo que el código está listo.
+Las siguientes palabras de código se pueden leer del árbol:
 \begin{center}
 \begin{tabular}{rr}
-character & codeword \\
+carácter & palabra de código \\
 \hline
 \texttt{A} & 0 \\
 \texttt{B} & 110 \\
