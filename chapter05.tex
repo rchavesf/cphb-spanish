@@ -1,73 +1,73 @@
-\chapter{Complete search}
+\chapter{Búsqueda exhaustiva}
 
-\key{Complete search}
-is a general method that can be used
-to solve almost any algorithm problem.
-The idea is to generate all possible
-solutions to the problem using brute force,
-and then select the best solution or count the
-number of solutions, depending on the problem.
+\key{Búsqueda exhaustiva}
+es un método general que se puede utilizar
+para resolver casi cualquier problema algorítmico.
+La idea es generar todas las posibles
+soluciones al problema mediante fuerza bruta,
+y luego seleccionar la mejor solución o contar el
+número de soluciones, dependiendo del problema.
 
-Complete search is a good technique
-if there is enough time to go through all the solutions,
-because the search is usually easy to implement
-and it always gives the correct answer.
-If complete search is too slow,
-other techniques, such as greedy algorithms or
-dynamic programming, may be needed.
+La búsqueda exhaustiva es una buena técnica
+si hay suficiente tiempo para revisar todas las soluciones,
+ya que la búsqueda suele ser fácil de implementar
+y siempre proporciona la respuesta correcta.
+Si la búsqueda exhaustiva es demasiado lenta,
+pueden ser necesarias otras técnicas, como algoritmos voraces o
+programación dinámica.
 
-\section{Generating subsets}
+\section{Generando subconjuntos}
 
-\index{subset}
+\index{subconjunto}
 
-We first consider the problem of generating
-all subsets of a set of $n$ elements.
-For example, the subsets of $\{0,1,2\}$ are
+Primero consideramos el problema de generar
+todos los subconjuntos de un conjunto de $n$ elementos.
+Por ejemplo, los subconjuntos de $\{0,1,2\}$ son
 $\emptyset$, $\{0\}$, $\{1\}$, $\{2\}$, $\{0,1\}$,
-$\{0,2\}$, $\{1,2\}$ and $\{0,1,2\}$.
-There are two common methods to generate subsets:
-we can either perform a recursive search
-or exploit the bit representation of integers.
+$\{0,2\}$, $\{1,2\}$ y $\{0,1,2\}$.
+Hay dos métodos comunes para generar subconjuntos:
+podemos realizar una búsqueda recursiva
+o aprovechar la representación en bits de los enteros.
 
-\subsubsection{Method 1}
+\subsubsection{Método 1}
 
-An elegant way to go through all subsets
-of a set is to use recursion.
-The following function \texttt{search}
-generates the subsets of the set
+Una forma elegante de recorrer todos los subconjuntos
+de un conjunto es utilizar recursión.
+La siguiente función \texttt{busqueda}
+genera los subconjuntos del conjunto
 $\{0,1,\ldots,n-1\}$.
-The function maintains a vector \texttt{subset}
-that will contain the elements of each subset.
-The search begins when the function is called
-with parameter 0.
+La función mantiene un vector \texttt{subconjunto}
+que contendrá los elementos de cada subconjunto.
+La búsqueda comienza cuando se llama
+a la función con el parámetro 0.
 
 \begin{lstlisting}
-void search(int k) {
+void busqueda(int k) {
     if (k == n) {
-        // process subset
+        // procesar subconjunto
     } else {
-        search(k+1);
-        subset.push_back(k);
-        search(k+1);
-        subset.pop_back();
+        busqueda(k+1);
+        subconjunto.push_back(k);
+        busqueda(k+1);
+        subconjunto.pop_back();
     }
 }
 \end{lstlisting}
 
-When the function \texttt{search}
-is called with parameter $k$,
-it decides whether to include the
-element $k$ in the subset or not,
-and in both cases,
-then calls itself with parameter $k+1$
-However, if $k=n$, the function notices that
-all elements have been processed
-and a subset has been generated.
+Cuando se llama a la función \texttt{busqueda}
+con el parámetro $k$,
+decide si incluir o no el
+elemento $k$ en el subconjunto,
+y en ambos casos,
+luego se llama a sí misma con el parámetro $k+1$.
+Sin embargo, si $k=n$, la función se da cuenta de que
+todos los elementos han sido procesados
+y se ha generado un subconjunto.
 
-The following tree illustrates the function calls when $n=3$.
-We can always choose either the left branch
-($k$ is not included in the subset) or the right branch
-($k$ is included in the subset).
+El siguiente árbol ilustra las llamadas a funciones cuando $n=3$.
+Siempre podemos elegir la rama izquierda
+($k$ no está incluido en el subconjunto) o la rama derecha
+($k$ está incluido en el subconjunto).
 
 \begin{center}
 \begin{tikzpicture}[scale=.45]
