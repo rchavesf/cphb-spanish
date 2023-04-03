@@ -721,45 +721,45 @@ algoritmos más eficientes.
 
 \subsubsection{Algoritmo 1}
 
-We construct a set of the elements that appear in $A$,
-and after this, we iterate through the elements
-of $B$ and check for each elements if it
-also belongs to $A$.
-This is efficient because the elements of $A$
-are in a set.
-Using the \texttt{set} structure,
-the time complexity of the algorithm is $O(n \log n)$.
+Construimos un conjunto de los elementos que aparecen en $A$,
+y después de esto, iteramos a través de los elementos
+de $B$ y verificamos para cada elemento si también
+pertenece a $A$.
+Esto es eficiente porque los elementos de $A$
+están en un conjunto.
+Usando la estructura \texttt{set},
+la complejidad de tiempo del algoritmo es $O(n \log n)$.
 
-\subsubsection{Algorithm 2}
+\subsubsection{Algoritmo 2}
 
-It is not necessary to maintain an ordered set,
-so instead of the \texttt{set} structure
-we can also use the \texttt{unordered\_set} structure.
-This is an easy way to make the algorithm
-more efficient, because we only have to change
-the underlying data structure.
-The time complexity of the new algorithm is $O(n)$.
+No es necesario mantener un conjunto ordenado,
+así que en lugar de la estructura \texttt{set}
+también podemos utilizar la estructura \texttt{unordered\_set}.
+Esta es una forma fácil de hacer que el algoritmo
+sea más eficiente, porque solo tenemos que cambiar
+la estructura de datos subyacente.
+La complejidad de tiempo del nuevo algoritmo es $O(n)$.
 
-\subsubsection{Algorithm 3}
+\subsubsection{Algoritmo 3}
 
-Instead of data structures, we can use sorting.
-First, we sort both lists $A$ and $B$.
-After this, we iterate through both the lists
-at the same time and find the common elements.
-The time complexity of sorting is $O(n \log n)$,
-and the rest of the algorithm works in $O(n)$ time,
-so the total time complexity is $O(n \log n)$.
+En lugar de estructuras de datos, podemos usar ordenamiento.
+Primero, ordenamos ambas listas $A$ y $B$.
+Después de esto, iteramos a través de ambas listas
+al mismo tiempo y encontramos los elementos comunes.
+La complejidad de tiempo del ordenamiento es $O(n \log n)$,
+y el resto del algoritmo funciona en tiempo $O(n)$,
+entonces la complejidad de tiempo total es $O(n \log n)$.
 
-\subsubsection{Efficiency comparison}
+\subsubsection{Comparación de eficiencia}
 
-The following table shows how efficient
-the above algorithms are when $n$ varies and
-the elements of the lists are random
-integers between $1 \ldots 10^9$:
+La siguiente tabla muestra cuán eficientes
+son los algoritmos anteriores cuando $n$ varía y
+los elementos de las listas son enteros aleatorios
+entre $1 \ldots 10^9$:
 
 \begin{center}
 \begin{tabular}{rrrr}
-$n$ & Algorithm 1 & Algorithm 2 & Algorithm 3 \\
+$n$ & Algoritmo 1 & Algoritmo 2 & Algoritmo 3 \\
 \hline
 $10^6$ & $1.5$ s & $0.3$ s & $0.2$ s \\
 $2 \cdot 10^6$ & $3.7$ s & $0.8$ s & $0.3$ s \\
@@ -769,22 +769,22 @@ $5 \cdot 10^6$ & $10.0$ s & $2.3$ s & $0.9$ s \\
 \end{tabular}
 \end{center}
 
-Algorithms 1 and 2 are equal except that
-they use different set structures.
-In this problem, this choice has an important effect on
-the running time, because Algorithm 2
-is 4–5 times faster than Algorithm 1.
+Los Algoritmos 1 y 2 son iguales, excepto que
+utilizan diferentes estructuras de conjunto.
+En este problema, esta elección tiene un efecto importante en
+el tiempo de ejecución, porque el Algoritmo 2
+es 4–5 veces más rápido que el Algoritmo 1.
 
-However, the most efficient algorithm is Algorithm 3
-which uses sorting.
-It only uses half the time compared to Algorithm 2.
-Interestingly, the time complexity of both
-Algorithm 1 and Algorithm 3 is $O(n \log n)$,
-but despite this, Algorithm 3 is ten times faster.
-This can be explained by the fact that
-sorting is a simple procedure and it is done
-only once at the beginning of Algorithm 3,
-and the rest of the algorithm works in linear time.
-On the other hand,
-Algorithm 1 maintains a complex balanced binary tree
-during the whole algorithm.
+Sin embargo, el algoritmo más eficiente es el Algoritmo 3
+que utiliza ordenamiento.
+Solo utiliza la mitad del tiempo en comparación con el Algoritmo 2.
+Curiosamente, la complejidad de tiempo de ambos
+Algoritmo 1 y Algoritmo 3 es $O(n \log n)$,
+pero a pesar de esto, el Algoritmo 3 es diez veces más rápido.
+Esto se puede explicar por el hecho de que
+el ordenamiento es un procedimiento simple y se realiza
+solo una vez al comienzo del Algoritmo 3,
+y el resto del algoritmo funciona en tiempo lineal.
+Por otro lado,
+el Algoritmo 1 mantiene un árbol binario equilibrado complejo
+durante todo el algoritmo.
