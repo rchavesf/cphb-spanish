@@ -781,38 +781,38 @@ de longitud $n$ y una cadena \texttt{y} de longitud $m$,
 y queremos calcular la distancia de edición entre
 \texttt{x} y \texttt{y}.
 Para resolver el problema, definimos una función
-$\texttt{distancia}(a,b)$ that gives the
-edit distance between prefixes
-$\texttt{x}[0 \ldots a]$ and $\texttt{y}[0 \ldots b]$.
-Thus, using this function, the edit distance
-between \texttt{x} and \texttt{y} equals $\texttt{distance}(n-1,m-1)$.
+$\texttt{distancia}(a,b)$ que proporciona la
+distancia de edición entre los prefijos
+$\texttt{x}[0 \ldots a]$ y $\texttt{y}[0 \ldots b]$.
+Por lo tanto, usando esta función, la distancia de edición
+entre \texttt{x} y \texttt{y} es igual a $\texttt{distancia}(n-1,m-1)$.
 
-We can calculate values of \texttt{distance}
-as follows:
+Podemos calcular los valores de \texttt{distancia}
+de la siguiente manera:
 \begin{equation*}
 \begin{split}
-\texttt{distance}(a,b) = \min(& \texttt{distance}(a,b-1)+1, \\
-                           & \texttt{distance}(a-1,b)+1, \\
-                           & \texttt{distance}(a-1,b-1)+\texttt{cost}(a,b)).
+\texttt{distancia}(a,b) = \min(& \texttt{distancia}(a,b-1)+1, \\
+                           & \texttt{distancia}(a-1,b)+1, \\
+                           & \texttt{distancia}(a-1,b-1)+\texttt{costo}(a,b)).
 \end{split}
 \end{equation*}
-Here $\texttt{cost}(a,b)=0$ if $\texttt{x}[a]=\texttt{y}[b]$,
-and otherwise $\texttt{cost}(a,b)=1$.
-The formula considers the following ways to
-edit the string \texttt{x}:
+Aquí $\texttt{costo}(a,b)=0$ si $\texttt{x}[a]=\texttt{y}[b]$,
+y en caso contrario $\texttt{costo}(a,b)=1$.
+La fórmula considera las siguientes formas de
+editar la cadena \texttt{x}:
 \begin{itemize}
-\item $\texttt{distance}(a,b-1)$: insert a character at the end of \texttt{x}
-\item $\texttt{distance}(a-1,b)$: remove the last character from \texttt{x}
-\item $\texttt{distance}(a-1,b-1)$: match or modify the last character of \texttt{x}
+\item $\texttt{distancia}(a,b-1)$: insertar un carácter al final de \texttt{x}
+\item $\texttt{distancia}(a-1,b)$: eliminar el último carácter de \texttt{x}
+\item $\texttt{distancia}(a-1,b-1)$: coincidir o modificar el último carácter de \texttt{x}
 \end{itemize}
-In the two first cases, one editing operation is needed
-(insert or remove).
-In the last case, if $\texttt{x}[a]=\texttt{y}[b]$,
-we can match the last characters without editing,
-and otherwise one editing operation is needed (modify).
+En los dos primeros casos, se necesita una operación de edición
+(insertar o eliminar).
+En el último caso, si $\texttt{x}[a]=\texttt{y}[b]$,
+podemos coincidir los últimos caracteres sin editar,
+y en caso contrario se necesita una operación de edición (modificar).
 
-The following table shows the values of \texttt{distance}
-in the example case:
+La siguiente tabla muestra los valores de \texttt{distancia}
+en el caso de ejemplo:
 \begin{center}
 \begin{tikzpicture}[scale=.65]
   \begin{scope}
@@ -864,12 +864,12 @@ in the example case:
 \end{tikzpicture}
 \end{center}
 
-The lower-right corner of the table
-tells us that the edit distance between
-\texttt{LOVE} and \texttt{MOVIE} is 2.
-The table also shows how to construct
-the shortest sequence of editing operations.
-In this case the path is as follows:
+La esquina inferior derecha de la tabla
+nos indica que la distancia de edición entre
+\texttt{LOVE} y \texttt{MOVIE} es 2.
+La tabla también muestra cómo construir
+la secuencia más corta de operaciones de edición.
+En este caso, el camino es el siguiente:
 
 \begin{center}
 \begin{tikzpicture}[scale=.65]
@@ -925,13 +925,13 @@ In this case the path is as follows:
 \end{tikzpicture}
 \end{center}
 
-The last characters of \texttt{LOVE} and \texttt{MOVIE}
-are equal, so the edit distance between them
-equals the edit distance between \texttt{LOV} and \texttt{MOVI}.
-We can use one editing operation to remove the
-character \texttt{I} from \texttt{MOVI}.
-Thus, the edit distance is one larger than
-the edit distance between \texttt{LOV} and \texttt{MOV}, etc.
+Los últimos caracteres de \texttt{LOVE} y \texttt{MOVIE}
+son iguales, por lo que la distancia de edición entre ellos
+es igual a la distancia de edición entre \texttt{LOV} y \texttt{MOVI}.
+Podemos usar una operación de edición para eliminar el
+carácter \texttt{I} de \texttt{MOVI}.
+Por lo tanto, la distancia de edición es una unidad mayor que
+la distancia de edición entre \texttt{LOV} y \texttt{MOV}, etc.
 
 \section{Counting tilings}
 
