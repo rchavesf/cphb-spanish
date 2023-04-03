@@ -122,83 +122,83 @@ Siempre podemos elegir la rama izquierda
 \end{tikzpicture}
 \end{center}
 
-\subsubsection{Method 2}
+\subsubsection{Método 2}
 
-Another way to generate subsets is based on
-the bit representation of integers.
-Each subset of a set of $n$ elements
-can be represented as a sequence of $n$ bits,
-which corresponds to an integer between $0 \ldots 2^n-1$.
-The ones in the bit sequence indicate
-which elements are included in the subset.
+Otra forma de generar subconjuntos se basa en
+la representación de bits de los enteros.
+Cada subconjunto de un conjunto de $n$ elementos
+puede representarse como una secuencia de $n$ bits,
+que corresponde a un entero entre $0 \ldots 2^n-1$.
+Los unos en la secuencia de bits indican
+qué elementos se incluyen en el subconjunto.
 
-The usual convention is that
-the last bit corresponds to element 0,
-the second last bit corresponds to element 1,
-and so on.
-For example, the bit representation of 25
-is 11001, which corresponds to the subset $\{0,3,4\}$.
+La convención habitual es que
+el último bit corresponde al elemento 0,
+el penúltimo bit corresponde al elemento 1,
+y así sucesivamente.
+Por ejemplo, la representación de bits de 25
+es 11001, que corresponde al subconjunto $\{0,3,4\}$.
 
-The following code goes through the subsets
-of a set of $n$ elements
+El siguiente código recorre los subconjuntos
+de un conjunto de $n$ elementos
 
 \begin{lstlisting}
 for (int b = 0; b < (1<<n); b++) {
-    // process subset
+    // procesar subconjunto
 }
 \end{lstlisting}
 
-The following code shows how we can find
-the elements of a subset that corresponds to a bit sequence.
-When processing each subset,
-the code builds a vector that contains the
-elements in the subset.
+El siguiente código muestra cómo podemos encontrar
+los elementos de un subconjunto que corresponde a una secuencia de bits.
+Al procesar cada subconjunto,
+el código construye un vector que contiene los
+elementos en el subconjunto.
 
 \begin{lstlisting}
 for (int b = 0; b < (1<<n); b++) {
-    vector<int> subset;
+    vector<int> subconjunto;
     for (int i = 0; i < n; i++) {
-        if (b&(1<<i)) subset.push_back(i);
+        if (b&(1<<i)) subconjunto.push_back(i);
     }
 }
 \end{lstlisting}
 
-\section{Generating permutations}
+\section{Generando permutaciones}
 
-\index{permutation}
+\index{permutación}
 
-Next we consider the problem of generating
-all permutations of a set of $n$ elements.
-For example, the permutations of $\{0,1,2\}$ are
+A continuación, consideramos el problema de generar
+todas las permutaciones de un conjunto de $n$ elementos.
+Por ejemplo, las permutaciones de $\{0,1,2\}$ son
 $(0,1,2)$, $(0,2,1)$, $(1,0,2)$, $(1,2,0)$,
-$(2,0,1)$ and $(2,1,0)$.
-Again, there are two approaches:
-we can either use recursion or go through the
-permutations iteratively.
+$(2,0,1)$ y $(2,1,0)$.
+De nuevo, hay dos enfoques:
+podemos usar recursión o recorrer las
+permutaciones de forma iterativa.
 
-\subsubsection{Method 1}
+\subsubsection{Método 1}
 
-Like subsets, permutations can be generated
-using recursion.
-The following function \texttt{search} goes
-through the permutations of the set $\{0,1,\ldots,n-1\}$.
-The function builds a vector \texttt{permutation}
-that contains the permutation,
-and the search begins when the function is
-called without parameters.
+Al igual que los subconjuntos, las permutaciones se pueden generar
+usando recursión.
+La siguiente función \texttt{buscar} recorre
+las permutaciones del conjunto $\{0,1,\ldots,n-1\}$.
+La función construye un vector \texttt{permutación}
+que contiene la permutación,
+y la búsqueda comienza cuando se llama a la función
+sin parámetros.
 
 \begin{lstlisting}
-void search() {
-    if (permutation.size() == n) {
-        // process permutation
+void buscar() {
+    if (permutacion.size() == n) {
+        // procesar permutación
     } else {
         for (int i = 0; i < n; i++) {
-            if (chosen[i]) continue;
-            chosen[i] = true;
-            permutation.push_back(i);
-            search();
-            chosen[i] = false;
-            permutation.pop_back();
+            if (elegido[i]) continue;
+            elegido[i] = true;
+            permutacion.push_back(i);
+            buscar();
+            elegido[i] = false;
+            permutacion.pop_back();
         }
     }
 }
