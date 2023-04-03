@@ -351,7 +351,7 @@ Por ejemplo, considere el siguiente horario:
   \end{scope}
 \end{tikzpicture}
 \end{center}
-Here $a>b$, so we should swap the tasks:
+Aquí $a>b$, entonces deberíamos intercambiar las tareas:
 \begin{center}
 \begin{tikzpicture}[scale=.4]
   \begin{scope}
@@ -370,67 +370,67 @@ Here $a>b$, so we should swap the tasks:
   \end{scope}
 \end{tikzpicture}
 \end{center}
-Now $X$ gives $b$ points less and $Y$ gives $a$ points more,
-so the total score increases by $a-b > 0$.
-In an optimal solution,
-for any two consecutive tasks,
-it must hold that the shorter task comes
-before the longer task.
-Thus, the tasks must be performed
-sorted by their durations.
+Ahora $X$ otorga $b$ puntos menos y $Y$ otorga $a$ puntos más,
+entonces el puntaje total aumenta en $a-b > 0$.
+En una solución óptima,
+para cualquier par de tareas consecutivas,
+debe cumplirse que la tarea más corta venga
+antes que la tarea más larga.
+Por lo tanto, las tareas deben realizarse
+ordenadas por sus duraciones.
 
-\section{Minimizing sums}
+\section{Minimizando sumas}
 
-We next consider a problem where
-we are given $n$ numbers $a_1,a_2,\ldots,a_n$
-and our task is to find a value $x$
-that minimizes the sum
+A continuación, consideramos un problema en el que
+se nos dan $n$ números $a_1,a_2,\ldots,a_n$
+y nuestra tarea es encontrar un valor $x$
+que minimice la suma
 \[|a_1-x|^c+|a_2-x|^c+\cdots+|a_n-x|^c.\]
-We focus on the cases $c=1$ and $c=2$.
+Nos enfocamos en los casos $c=1$ y $c=2$.
 
-\subsubsection{Case $c=1$}
+\subsubsection{Caso $c=1$}
 
-In this case, we should minimize the sum
+En este caso, debemos minimizar la suma
 \[|a_1-x|+|a_2-x|+\cdots+|a_n-x|.\]
-For example, if the numbers are $[1,2,9,2,6]$,
-the best solution is to select $x=2$
-which produces the sum
+Por ejemplo, si los números son $[1,2,9,2,6]$,
+la mejor solución es seleccionar $x=2$
+que produce la suma
 \[
 |1-2|+|2-2|+|9-2|+|2-2|+|6-2|=12.
 \]
-In the general case, the best choice for $x$
-is the \textit{median} of the numbers,
-i.e., the middle number after sorting.
-For example, the list $[1,2,9,2,6]$
-becomes $[1,2,2,6,9]$ after sorting,
-so the median is 2.
+En el caso general, la mejor opción para $x$
+es la \textit{mediana} de los números,
+es decir, el número del medio después de ordenar.
+Por ejemplo, la lista $[1,2,9,2,6]$
+se convierte en $[1,2,2,6,9]$ después de ordenar,
+así que la mediana es 2.
 
-The median is an optimal choice,
-because if $x$ is smaller than the median,
-the sum becomes smaller by increasing $x$,
-and if $x$ is larger then the median,
-the sum becomes smaller by decreasing $x$.
-Hence, the optimal solution is that $x$
-is the median.
-If $n$ is even and there are two medians,
-both medians and all values between them
-are optimal choices.
+La mediana es una elección óptima,
+porque si $x$ es menor que la mediana,
+la suma se vuelve más pequeña al aumentar $x$,
+y si $x$ es mayor que la mediana,
+la suma se vuelve más pequeña al disminuir $x$.
+Por lo tanto, la solución óptima es que $x$
+sea la mediana.
+Si $n$ es par y hay dos medianas,
+ambas medianas y todos los valores entre ellas
+son opciones óptimas.
 
-\subsubsection{Case $c=2$}
+\subsubsection{Caso $c=2$}
 
-In this case, we should minimize the sum
+En este caso, debemos minimizar la suma
 \[(a_1-x)^2+(a_2-x)^2+\cdots+(a_n-x)^2.\]
-For example, if the numbers are $[1,2,9,2,6]$,
-the best solution is to select $x=4$
-which produces the sum
+Por ejemplo, si los números son $[1,2,9,2,6]$,
+la mejor solución es seleccionar $x=4$
+que produce la suma
 \[
 (1-4)^2+(2-4)^2+(9-4)^2+(2-4)^2+(6-4)^2=46.
 \]
-In the general case, the best choice for $x$
-is the \emph{average} of the numbers.
-In the example the average is $(1+2+9+2+6)/5=4$.
-This result can be derived by presenting
-the sum as follows:
+En el caso general, la mejor opción para $x$
+es el \emph{promedio} de los números.
+En el ejemplo, el promedio es $(1+2+9+2+6)/5=4$.
+Este resultado se puede derivar presentando
+la suma de la siguiente manera:
 \[
 nx^2 - 2x(a_1+a_2+\cdots+a_n) + (a_1^2+a_2^2+\cdots+a_n^2)
 \]
