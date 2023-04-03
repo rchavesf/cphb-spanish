@@ -1,39 +1,39 @@
-\chapter{Data structures}
+\chapter{Estructuras de datos}
 
-\index{data structure}
+\index{estructura de datos}
 
-A \key{data structure} is a way to store
-data in the memory of a computer.
-It is important to choose an appropriate
-data structure for a problem,
-because each data structure has its own
-advantages and disadvantages.
-The crucial question is: which operations
-are efficient in the chosen data structure?
+Una \key{estructura de datos} es una forma de almacenar
+datos en la memoria de una computadora.
+Es importante elegir una estructura de datos adecuada
+para un problema,
+ya que cada estructura de datos tiene sus propias
+ventajas y desventajas.
+La pregunta crucial es: ¿qué operaciones
+son eficientes en la estructura de datos elegida?
 
-This chapter introduces the most important
-data structures in the C++ standard library.
-It is a good idea to use the standard library
-whenever possible,
-because it will save a lot of time.
-Later in the book we will learn about more sophisticated
-data structures that are not available
-in the standard library.
+Este capítulo presenta las estructuras de datos más importantes
+de la biblioteca estándar de C++.
+Es una buena idea utilizar la biblioteca estándar
+siempre que sea posible,
+porque ahorrará mucho tiempo.
+Más adelante en el libro, aprenderemos sobre estructuras de datos más sofisticadas
+que no están disponibles
+en la biblioteca estándar.
 
-\section{Dynamic arrays}
+\section{Arreglos dinámicos}
 
-\index{dynamic array}
+\index{arreglo dinámico}
 \index{vector}
 
-A \key{dynamic array} is an array whose
-size can be changed during the execution
-of the program.
-The most popular dynamic array in C++ is
-the \texttt{vector} structure,
-which can be used almost like an ordinary array.
+Un \key{arreglo dinámico} es un arreglo cuyo
+tamaño puede cambiar durante la ejecución
+del programa.
+El arreglo dinámico más popular en C++ es
+la estructura \texttt{vector},
+que se puede utilizar casi como un arreglo ordinario.
 
-The following code creates an empty vector and
-adds three elements to it:
+El siguiente código crea un vector vacío y
+añade tres elementos a él:
 
 \begin{lstlisting}
 vector<int> v;
@@ -42,7 +42,7 @@ v.push_back(2); // [3,2]
 v.push_back(5); // [3,2,5]
 \end{lstlisting}
 
-After this, the elements can be accessed like in an ordinary array:
+Después de esto, los elementos se pueden acceder como en un arreglo ordinario:
 
 \begin{lstlisting}
 cout << v[0] << "\n"; // 3
@@ -50,9 +50,9 @@ cout << v[1] << "\n"; // 2
 cout << v[2] << "\n"; // 5
 \end{lstlisting}
 
-The function \texttt{size} returns the number of elements in the vector.
-The following code iterates through
-the vector and prints all elements in it:
+La función \texttt{size} devuelve el número de elementos en el vector.
+El siguiente código itera a través
+del vector e imprime todos los elementos en él:
 
 \begin{lstlisting}
 for (int i = 0; i < v.size(); i++) {
@@ -61,7 +61,7 @@ for (int i = 0; i < v.size(); i++) {
 \end{lstlisting}
 
 \begin{samepage}
-A shorter way to iterate through a vector is as follows:
+Una forma más corta de iterar a través de un vector es la siguiente:
 
 \begin{lstlisting}
 for (auto x : v) {
@@ -70,9 +70,9 @@ for (auto x : v) {
 \end{lstlisting}
 \end{samepage}
 
-The function \texttt{back} returns the last element
-in the vector, and
-the function \texttt{pop\_back} removes the last element:
+La función \texttt{back} devuelve el último elemento
+en el vector, y
+la función \texttt{pop\_back} elimina el último elemento:
 
 \begin{lstlisting}
 vector<int> v;
