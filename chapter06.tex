@@ -504,20 +504,20 @@ así que solo se necesitan 15 bits en lugar de 18 bits.
 Por lo tanto, gracias a un código mejor fue posible
 ahorrar 3 bits en la cadena comprimida.
 
-We require that no codeword
-is a prefix of another codeword.
-For example, it is not allowed that a code
-would contain both codewords 10
-and 1011.
-The reason for this is that we want
-to be able to generate the original string
-from the compressed string.
-If a codeword could be a prefix of another codeword,
-this would not always be possible.
-For example, the following code is \emph{not} valid:
+Se requiere que ninguna palabra clave
+sea un prefijo de otra palabra clave.
+Por ejemplo, no está permitido que un código
+contenga tanto las palabras clave 10
+como 1011.
+La razón de esto es que queremos
+poder generar la cadena original
+a partir de la cadena comprimida.
+Si una palabra clave pudiera ser un prefijo de otra palabra clave,
+esto no siempre sería posible.
+Por ejemplo, el siguiente código \emph{no} es válido:
 \begin{center}
 \begin{tabular}{rr}
-character & codeword \\
+carácter & palabra clave \\
 \hline
 \texttt{A} & 10 \\
 \texttt{B} & 11 \\
@@ -525,36 +525,35 @@ character & codeword \\
 \texttt{D} & 111 \\
 \end{tabular}
 \end{center}
-Using this code, it would not be possible to know
-if the compressed string 1011 corresponds to
-the string \texttt{AB} or the string \texttt{C}.
+Usando este código, no sería posible saber
+si la cadena comprimida 1011 corresponde a
+la cadena \texttt{AB} o la cadena \texttt{C}.
 
-\index{Huffman coding}
+\index{Codificación de Huffman}
 
-\subsubsection{Huffman coding}
+\subsubsection{Codificación de Huffman}
 
-\key{Huffman coding}\footnote{D. A. Huffman discovered this method
-when solving a university course assignment
-and published the algorithm in 1952 \cite{huf52}.} is a greedy algorithm
-that constructs an optimal code for
-compressing a given string.
-The algorithm builds a binary tree
-based on the frequencies of the characters
-in the string,
-and each character's codeword can be read
-by following a path from the root to
-the corresponding node.
-A move to the left corresponds to bit 0,
-and a move to the right corresponds to bit 1.
+La \key{Codificación de Huffman}\footnote{D. A. Huffman descubrió este método
+al resolver una tarea de un curso universitario
+y publicó el algoritmo en 1952 \cite{huf52}.} es un algoritmo voraz
+que construye un código óptimo para
+comprimir una cadena dada.
+El algoritmo construye un árbol binario
+basado en las frecuencias de los caracteres
+en la cadena,
+y el código de cada carácter se puede leer
+siguiendo un camino desde la raíz hasta
+el nodo correspondiente.
+Un movimiento a la izquierda corresponde al bit 0,
+y un movimiento a la derecha corresponde al bit 1.
 
-Initially, each character of the string is
-represented by a node whose weight is the
-number of times the character occurs in the string.
-Then at each step two nodes with minimum weights
-are combined by creating
-a new node whose weight is the sum of the weights
-of the original nodes.
-The process continues until all nodes have been combined.
+Inicialmente, cada carácter de la cadena es
+representado por un nodo cuyo peso es la
+cantidad de veces que el carácter aparece en la cadena.
+Luego, en cada paso, se combinan dos nodos con pesos mínimos
+creando un nuevo nodo cuyo peso es la suma de los pesos
+de los nodos originales.
+El proceso continúa hasta que todos los nodos se hayan combinado.
 
 Next we will see how Huffman coding creates
 the optimal code for the string
