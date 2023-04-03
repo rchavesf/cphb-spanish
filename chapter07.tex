@@ -216,85 +216,85 @@ int resolver(int x) {
 }
 \end{lstlisting}
 
-The function handles the base cases
-$x<0$ and $x=0$ as previously.
-Then the function checks from
-$\texttt{ready}[x]$ if
-$\texttt{solve}(x)$ has already been stored
-in $\texttt{value}[x]$,
-and if it is, the function directly returns it.
-Otherwise the function calculates the value
-of $\texttt{solve}(x)$
-recursively and stores it in $\texttt{value}[x]$.
+La función maneja los casos base
+$x<0$ y $x=0$ como antes.
+Luego, la función verifica en
+$\texttt{listo}[x]$ si
+$\texttt{resolver}(x)$ ya ha sido almacenado
+en $\texttt{valor}[x]$,
+y si es así, la función lo devuelve directamente.
+De lo contrario, la función calcula el valor
+de $\texttt{resolver}(x)$
+recursivamente y lo almacena en $\texttt{valor}[x]$.
 
-This function works efficiently,
-because the answer for each parameter $x$
-is calculated recursively only once.
-After a value of $\texttt{solve}(x)$ has been stored in $\texttt{value}[x]$,
-it can be efficiently retrieved whenever the
-function will be called again with the parameter $x$.
-The time complexity of the algorithm is $O(nk)$,
-where $n$ is the target sum and $k$ is the number of coins.
+Esta función funciona de manera eficiente,
+porque la respuesta para cada parámetro $x$
+se calcula recursivamente solo una vez.
+Después de que se haya almacenado un valor de $\texttt{resolver}(x)$ en $\texttt{valor}[x]$,
+se puede recuperar de manera eficiente cada vez que
+la función sea llamada nuevamente con el parámetro $x$.
+La complejidad en tiempo del algoritmo es $O(nk)$,
+donde $n$ es la suma objetivo y $k$ es el número de monedas.
 
-Note that we can also \emph{iteratively}
-construct the array \texttt{value} using
-a loop that simply calculates all the values
-of $\texttt{solve}$ for parameters $0 \ldots n$:
+También podemos construir \emph{iterativamente}
+el arreglo \texttt{valor} usando
+un bucle que simplemente calcule todos los valores
+de $\texttt{resolver}$ para los parámetros $0 \ldots n$:
 \begin{lstlisting}
-value[0] = 0;
+valor[0] = 0;
 for (int x = 1; x <= n; x++) {
-    value[x] = INF;
-    for (auto c : coins) {
+    valor[x] = INF;
+    for (auto c : monedas) {
         if (x-c >= 0) {
-            value[x] = min(value[x], value[x-c]+1);
+            valor[x] = min(valor[x], valor[x-c]+1);
         }
     }
 }
 \end{lstlisting}
 
-In fact, most competitive programmers prefer this
-implementation, because it is shorter and has
-lower constant factors.
-From now on, we also use iterative implementations
-in our examples.
-Still, it is often easier to think about
-dynamic programming solutions
-in terms of recursive functions.
+De hecho, la mayoría de los programadores competitivos prefieren esta
+implementación, porque es más corta y tiene
+factores constantes más bajos.
+A partir de ahora, también utilizamos implementaciones iterativas
+en nuestros ejemplos.
+Aun así, a menudo es más fácil pensar en soluciones
+de programación dinámica
+en términos de funciones recursivas.
 
 
-\subsubsection{Constructing a solution}
+\subsubsection{Construyendo una solución}
 
-Sometimes we are asked both to find the value
-of an optimal solution and to give
-an example how such a solution can be constructed.
-In the coin problem, for example,
-we can declare another array
-that indicates for
-each sum of money the first coin 
-in an optimal solution:
+A veces se nos pide encontrar el valor
+de una solución óptima y dar
+un ejemplo de cómo se puede construir dicha solución.
+En el problema de las monedas, por ejemplo,
+podemos declarar otro arreglo
+que indique para
+cada suma de dinero la primera moneda
+en una solución óptima:
 \begin{lstlisting}
-int first[N];
+int primero[N];
 \end{lstlisting}
-Then, we can modify the algorithm as follows:
+Luego, podemos modificar el algoritmo de la siguiente manera:
 \begin{lstlisting}
-value[0] = 0;
+valor[0] = 0;
 for (int x = 1; x <= n; x++) {
-    value[x] = INF;
-    for (auto c : coins) {
-        if (x-c >= 0 && value[x-c]+1 < value[x]) {
-            value[x] = value[x-c]+1;
-            first[x] = c;
+    valor[x] = INF;
+    for (auto c : monedas) {
+        if (x-c >= 0 && valor[x-c]+1 < valor[x]) {
+            valor[x] = valor[x-c]+1;
+            primero[x] = c;
         }
     }
 }
 \end{lstlisting}
-After this, the following code can be used to
-print the coins that appear in an optimal solution for
-the sum $n$:
+Después de esto, el siguiente código se puede utilizar para
+imprimir las monedas que aparecen en una solución óptima para
+la suma $n$:
 \begin{lstlisting}
 while (n > 0) {
-    cout << first[n] << "\n";
-    n -= first[n];
+    cout << primero[n] << "\n";
+    n -= primero[n];
 }
 \end{lstlisting}
 
