@@ -491,27 +491,27 @@ For example,
 if $n$ bits are stored in an \texttt{int} array,
 $32n$ bits of memory will be used,
 but a corresponding bitset only requires $n$ bits of memory.
-In addition, the values of a bitset
-can be efficiently manipulated using
-bit operators, which makes it possible to
-optimize algorithms using bit sets.
+Además, los valores de un bitset
+pueden manipularse eficientemente usando
+operadores de bits, lo que hace posible
+optimizar algoritmos que usan conjuntos de bits.
 
-The following code shows another way to create the above bitset:
+El siguiente código muestra otra forma de crear el bitset anterior:
 \begin{lstlisting}
-bitset<10> s(string("0010011010")); // from right to left
+bitset<10> s(string("0010011010")); // de derecha a izquierda
 cout << s[4] << "\n"; // 1
 cout << s[5] << "\n"; // 0
 \end{lstlisting}
 
-The function \texttt{count} returns the number
-of ones in the bitset:
+La función \texttt{count} devuelve el número
+de unos en el bitset:
 
 \begin{lstlisting}
 bitset<10> s(string("0010011010"));
 cout << s.count() << "\n"; // 4
 \end{lstlisting}
 
-The following code shows examples of using bit operations:
+El siguiente código muestra ejemplos de uso de operaciones de bits:
 \begin{lstlisting}
 bitset<10> a(string("0010110110"));
 bitset<10> b(string("1011011000"));
@@ -524,16 +524,16 @@ cout << (a^b) << "\n"; // 1001101110
 
 \index{deque}
 
-A \key{deque} is a dynamic array
-whose size can be efficiently
-changed at both ends of the array.
-Like a vector, a deque provides the functions
-\texttt{push\_back} and \texttt{pop\_back}, but
-it also includes the functions
-\texttt{push\_front} and \texttt{pop\_front}
-which are not available in a vector.
+Un \key{deque} es un arreglo dinámico
+cuyo tamaño puede cambiarse eficientemente
+en ambos extremos del arreglo.
+Al igual que un vector, un deque proporciona las funciones
+\texttt{push\_back} y \texttt{pop\_back}, pero
+también incluye las funciones
+\texttt{push\_front} y \texttt{pop\_front}
+que no están disponibles en un vector.
 
-A deque can be used as follows:
+Un deque se puede usar de la siguiente manera:
 \begin{lstlisting}
 deque<int> d;
 d.push_back(5); // [5]
@@ -543,25 +543,25 @@ d.pop_back(); // [3,5]
 d.pop_front(); // [5]
 \end{lstlisting}
 
-The internal implementation of a deque
-is more complex than that of a vector,
-and for this reason, a deque is slower than a vector.
-Still, both adding and removing
-elements take $O(1)$ time on average at both ends.
+La implementación interna de un deque
+es más compleja que la de un vector,
+y por esta razón, un deque es más lento que un vector.
+Aún así, tanto agregar como eliminar
+elementos toman tiempo $O(1)$ en promedio en ambos extremos.
 
 \subsubsection{Stack}
 
 \index{stack}
 
-A \key{stack}
-is a data structure that provides two
-$O(1)$ time operations:
-adding an element to the top,
-and removing an element from the top.
-It is only possible to access the top
-element of a stack.
+Un \key{stack}
+es una estructura de datos que proporciona dos
+operaciones en tiempo $O(1)$:
+agregar un elemento en la parte superior,
+y quitar un elemento de la parte superior.
+Sólo es posible acceder al elemento superior
+de una pila.
 
-The following code shows how a stack can be used:
+El siguiente código muestra cómo se puede usar una pila:
 \begin{lstlisting}
 stack<int> s;
 s.push(3);
