@@ -680,74 +680,74 @@ Son especialmente útiles las optimizaciones que
 ocurren durante los primeros pasos del algoritmo,
 es decir, en la parte superior del árbol de búsqueda.
 
-\section{Meet in the middle}
+\section{Encuentro en el medio}
 
-\index{meet in the middle}
+\index{encuentro en el medio}
 
-\key{Meet in the middle} is a technique
-where the search space is divided into
-two parts of about equal size.
-A separate search is performed
-for both of the parts,
-and finally the results of the searches are combined.
+\key{Encuentro en el medio} es una técnica
+donde el espacio de búsqueda se divide en
+dos partes de aproximadamente igual tamaño.
+Se realiza una búsqueda separada
+para ambas partes,
+y finalmente los resultados de las búsquedas se combinan.
 
-The technique can be used
-if there is an efficient way to combine the
-results of the searches.
-In such a situation, the two searches may require less
-time than one large search.
-Typically, we can turn a factor of $2^n$
-into a factor of $2^{n/2}$ using the meet in the
-middle technique.
+La técnica se puede utilizar
+si hay una forma eficiente de combinar los
+resultados de las búsquedas.
+En tal situación, las dos búsquedas pueden requerir menos
+tiempo que una búsqueda grande.
+Típicamente, podemos convertir un factor de $2^n$
+en un factor de $2^{n/2}$ usando la técnica de encuentro en el
+medio.
 
-As an example, consider a problem where
-we are given a list of $n$ numbers and
-a number $x$,
-and we want to find out if it is possible
-to choose some numbers from the list so that
-their sum is $x$.
-For example, given the list $[2,4,5,9]$ and $x=15$,
-we can choose the numbers $[2,4,9]$ to get $2+4+9=15$.
-However, if $x=10$ for the same list,
-it is not possible to form the sum.
+Como ejemplo, considere un problema donde
+se nos da una lista de $n$ números y
+un número $x$,
+y queremos averiguar si es posible
+elegir algunos números de la lista de modo que
+su suma sea $x$.
+Por ejemplo, dada la lista $[2,4,5,9]$ y $x=15$,
+podemos elegir los números $[2,4,9]$ para obtener $2+4+9=15$.
+Sin embargo, si $x=10$ para la misma lista,
+no es posible formar la suma.
 
-A simple algorithm to the problem is to
-go through all subsets of the elements and
-check if the sum of any of the subsets is $x$.
-The running time of such an algorithm is $O(2^n)$,
-because there are $2^n$ subsets.
-However, using the meet in the middle technique,
-we can achieve a more efficient $O(2^{n/2})$ time algorithm\footnote{This
-idea was introduced in 1974 by E. Horowitz and S. Sahni \cite{hor74}.}.
-Note that $O(2^n)$ and $O(2^{n/2})$ are different
-complexities because $2^{n/2}$ equals $\sqrt{2^n}$.
+Un algoritmo simple para el problema es recorrer
+todos los subconjuntos de los elementos y
+verificar si la suma de alguno de los subconjuntos es $x$.
+El tiempo de ejecución de dicho algoritmo es $O(2^n)$,
+porque hay $2^n$ subconjuntos.
+Sin embargo, usando la técnica de encuentro en el medio,
+podemos lograr un algoritmo más eficiente de tiempo $O(2^{n/2})$\footnote{Esta
+idea fue introducida en 1974 por E. Horowitz y S. Sahni \cite{hor74}.}.
+Tenga en cuenta que $O(2^n)$ y $O(2^{n/2})$ son diferentes
+complejidades porque $2^{n/2}$ es igual a $\sqrt{2^n}$.
 
-The idea is to divide the list into
-two lists $A$ and $B$ such that both
-lists contain about half of the numbers.
-The first search generates all subsets
-of $A$ and stores their sums to a list $S_A$.
-Correspondingly, the second search creates
-a list $S_B$ from $B$.
-After this, it suffices to check if it is possible
-to choose one element from $S_A$ and another
-element from $S_B$ such that their sum is $x$.
-This is possible exactly when there is a way to
-form the sum $x$ using the numbers of the original list.
+La idea es dividir la lista en
+dos listas $A$ y $B$ de modo que ambas
+listas contengan aproximadamente la mitad de los números.
+La primera búsqueda genera todos los subconjuntos
+de $A$ y almacena sus sumas en una lista $S_A$.
+Correspondientemente, la segunda búsqueda crea
+una lista $S_B$ a partir de $B$.
+Después de esto, basta con verificar si es posible
+elegir un elemento de $S_A$ y otro
+elemento de $S_B$ de modo que su suma sea $x$.
+Esto es posible exactamente cuando hay una forma de
+formar la suma $x$ usando los números de la lista original.
 
-For example, suppose that the list is $[2,4,5,9]$ and $x=15$.
-First, we divide the list into $A=[2,4]$ and $B=[5,9]$.
-After this, we create lists
-$S_A=[0,2,4,6]$ and $S_B=[0,5,9,14]$.
-In this case, the sum $x=15$ is possible to form,
-because $S_A$ contains the sum $6$,
-$S_B$ contains the sum $9$, and $6+9=15$.
-This corresponds to the solution $[2,4,9]$.
+Por ejemplo, suponga que la lista es $[2,4,5,9]$ y $x=15$.
+Primero, dividimos la lista en $A=[2,4]$ y $B=[5,9]$.
+Luego, creamos las listas
+$S_A=[0,2,4,6]$ y $S_B=[0,5,9,14]$.
+En este caso, la suma $x=15$ es posible de formar,
+porque $S_A$ contiene la suma $6$,
+$S_B$ contiene la suma $9$, y $6+9=15$.
+Esto corresponde a la solución $[2,4,9]$.
 
-We can implement the algorithm so that
-its time complexity is $O(2^{n/2})$.
-First, we generate \emph{sorted} lists $S_A$ and $S_B$,
-which can be done in $O(2^{n/2})$ time using a merge-like technique.
-After this, since the lists are sorted,
-we can check in $O(2^{n/2})$ time if
-the sum $x$ can be created from $S_A$ and $S_B$.
+Podemos implementar el algoritmo de manera que
+su complejidad de tiempo sea $O(2^{n/2})$.
+Primero, generamos listas \emph{ordenadas} $S_A$ y $S_B$,
+lo cual se puede hacer en tiempo $O(2^{n/2})$ utilizando una técnica similar al merge.
+Después de esto, dado que las listas están ordenadas,
+podemos verificar en tiempo $O(2^{n/2})$ si
+la suma $x$ se puede crear a partir de $S_A$ y $S_B$.
