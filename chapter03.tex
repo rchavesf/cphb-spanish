@@ -300,8 +300,8 @@ de la siguiente manera:
 \end{tikzpicture}
 \end{center}
 
-Then, the subarrays will be sorted recursively
-as follows:
+Entonces, los subarreglos se ordenarán recursivamente
+de la siguiente manera:
 \begin{center}
 \begin{tikzpicture}[scale=0.7]
 \draw (0,0) grid (4,1);
@@ -319,8 +319,8 @@ as follows:
 \end{tikzpicture}
 \end{center}
 
-Finally, the algorithm merges the sorted
-subarrays and creates the final sorted array:
+Finalmente, el algoritmo combina los subarreglos ordenados
+y crea el arreglo ordenado final:
 \begin{center}
 \begin{tikzpicture}[scale=0.7]
 \draw (0,0) grid (8,1);
@@ -335,19 +335,19 @@ subarrays and creates the final sorted array:
 \end{tikzpicture}
 \end{center}
 
-\subsubsection{Sorting lower bound}
+\subsubsection{Cota inferior de ordenamiento}
 
-Is it possible to sort an array faster
-than in $O(n \log n)$ time?
-It turns out that this is \emph{not} possible
-when we restrict ourselves to sorting algorithms
-that are based on comparing array elements.
+¿Es posible ordenar un arreglo más rápido
+que en tiempo $O(n \log n)$?
+Resulta que esto \emph{no} es posible
+cuando nos limitamos a algoritmos de ordenamiento
+que se basan en comparar elementos del arreglo.
 
-The lower bound for the time complexity
-can be proved by considering sorting
-as a process where each comparison of two elements
-gives more information about the contents of the array.
-The process creates the following tree:
+La cota inferior para la complejidad del tiempo
+se puede demostrar considerando el ordenamiento
+como un proceso en el que cada comparación de dos elementos
+proporciona más información sobre el contenido del arreglo.
+El proceso crea el siguiente árbol:
 
 \begin{center}
 \begin{tikzpicture}[scale=0.7]
@@ -387,42 +387,42 @@ The process creates the following tree:
 \end{tikzpicture}
 \end{center}
 
-Here ''$x<y?$'' means that some elements
-$x$ and $y$ are compared.
-If $x<y$, the process continues to the left,
-and otherwise to the right.
-The results of the process are the possible
-ways to sort the array, a total of $n!$ ways.
-For this reason, the height of the tree
-must be at least
+Aquí ''$x<y?$'' significa que algunos elementos
+$x$ y $y$ son comparados.
+Si $x<y$, el proceso continúa a la izquierda,
+y en caso contrario a la derecha.
+Los resultados del proceso son las posibles
+maneras de ordenar el arreglo, un total de $n!$ maneras.
+Por esta razón, la altura del árbol
+debe ser al menos
 \[ \log_2(n!) = \log_2(1)+\log_2(2)+\cdots+\log_2(n).\]
-We get a lower bound for this sum
-by choosing the last $n/2$ elements and
-changing the value of each element to $\log_2(n/2)$.
-This yields an estimate
+Obtenemos una cota inferior para esta suma
+al elegir los últimos $n/2$ elementos y
+cambiar el valor de cada elemento a $\log_2(n/2)$.
+Esto produce una estimación
 \[ \log_2(n!) \ge (n/2) \cdot \log_2(n/2),\]
-so the height of the tree and the minimum
-possible number of steps in a sorting
-algorithm in the worst case
-is at least $n \log n$.
+por lo que la altura del árbol y el mínimo
+número posible de pasos en un algoritmo de ordenamiento
+en el peor caso
+es al menos $n \log n$.
 
-\subsubsection{Counting sort}
+\subsubsection{Ordenamiento por conteo}
 
-\index{counting sort}
+\index{ordenamiento por conteo}
 
-The lower bound $n \log n$ does not apply to
-algorithms that do not compare array elements
-but use some other information.
-An example of such an algorithm is
-\key{counting sort} that sorts an array in
-$O(n)$ time assuming that every element in the array
-is an integer between $0 \ldots c$ and $c=O(n)$.
+La cota inferior $n \log n$ no se aplica a
+algoritmos que no comparan elementos del arreglo
+sino que utilizan alguna otra información.
+Un ejemplo de tal algoritmo es
+\key{ordenamiento por conteo} que ordena un arreglo en
+tiempo $O(n)$ suponiendo que cada elemento en el arreglo
+es un entero entre $0 \ldots c$ y $c=O(n)$.
 
-The algorithm creates a \emph{bookkeeping} array,
-whose indices are elements of the original array.
-The algorithm iterates through the original array
-and calculates how many times each element
-appears in the array.
+El algoritmo crea un arreglo de \emph{registro},
+cuyos índices son elementos del arreglo original.
+El algoritmo itera a través del arreglo original
+y calcula cuántas veces aparece cada elemento
+en el arreglo.
 \newpage
 
 For example, the array
