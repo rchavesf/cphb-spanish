@@ -699,72 +699,71 @@ while (a <= b) {
 }
 \end{lstlisting}
 
-In this implementation, the active region is $a \ldots b$,
-and initially the region is $0 \ldots n-1$.
-The algorithm halves the size of the region at each step,
-so the time complexity is $O(\log n)$.
+En esta implementación, la región activa es $a \ldots b$,
+y al principio la región es $0 \ldots n-1$.
+El algoritmo reduce a la mitad el tamaño de la región en cada paso,
+por lo que la complejidad temporal es $O(\log n)$.
 
-\subsubsection{Method 2}
+\subsubsection{Método 2}
 
-An alternative method to implement binary search
-is based on an efficient way to iterate through
-the elements of the array.
-The idea is to make jumps and slow the speed
-when we get closer to the target element.
+Un método alternativo para implementar la búsqueda binaria
+se basa en una forma eficiente de iterar a través de
+los elementos del vector.
+La idea es hacer saltos y disminuir la velocidad
+cuando nos acercamos al elemento objetivo.
 
-The search goes through the array from left to
-right, and the initial jump length is $n/2$.
-At each step, the jump length will be halved:
-first $n/4$, then $n/8$, $n/16$, etc., until
-finally the length is 1.
-After the jumps, either the target element has
-been found or we know that it does not appear in the array.
+La búsqueda recorre el vector de izquierda a
+derecha, y la longitud inicial del salto es $n/2$.
+En cada paso, la longitud del salto se dividirá a la mitad:
+primero $n/4$, luego $n/8$, $n/16$, etc., hasta
+que finalmente la longitud sea 1.
+Después de los saltos, ya sea que se haya encontrado el elemento objetivo o sepamos que no aparece en el vector.
 
-The following code implements the above idea:
+El siguiente código implementa la idea anterior:
 \begin{lstlisting}
 int k = 0;
 for (int b = n/2; b >= 1; b /= 2) {
     while (k+b < n && array[k+b] <= x) k += b;
 }
 if (array[k] == x) {
-    // x found at index k
+    // x encontrado en el índice k
 }
 \end{lstlisting}
 
-During the search, the variable $b$
-contains the current jump length.
-The time complexity of the algorithm is $O(\log n)$,
-because the code in the \texttt{while} loop
-is performed at most twice for each jump length.
+Durante la búsqueda, la variable $b$
+contiene la longitud actual del salto.
+La complejidad temporal del algoritmo es $O(\log n)$,
+porque el código en el bucle \texttt{while}
+se realiza como máximo dos veces para cada longitud de salto.
 
-\subsubsection{C++ functions}
+\subsubsection{Funciones de C++}
 
-The C++ standard library contains the following functions
-that are based on binary search and work in logarithmic time:
+La biblioteca estándar de C++ contiene las siguientes funciones
+que se basan en la búsqueda binaria y funcionan en tiempo logarítmico:
 
 \begin{itemize}
-\item \texttt{lower\_bound} returns a pointer to the
-first array element whose value is at least $x$.
-\item \texttt{upper\_bound} returns a pointer to the
-first array element whose value is larger than $x$.
-\item \texttt{equal\_range} returns both above pointers.
+\item \texttt{lower\_bound} devuelve un puntero al
+primer elemento del vector cuyo valor es al menos $x$.
+\item \texttt{upper\_bound} devuelve un puntero al
+primer elemento del vector cuyo valor es mayor que $x$.
+\item \texttt{equal\_range} devuelve ambos punteros.
 \end{itemize}
 
-The functions assume that the array is sorted.
-If there is no such element, the pointer points to
-the element after the last array element.
-For example, the following code finds out whether
-an array contains an element with value $x$:
+Las funciones asumen que el vector está ordenado.
+Si no hay tal elemento, el puntero apunta al
+elemento después del último elemento del vector.
+Por ejemplo, el siguiente código averigua si
+un vector contiene un elemento con valor $x$:
 
 \begin{lstlisting}
 auto k = lower_bound(array,array+n,x)-array;
 if (k < n && array[k] == x) {
-    // x found at index k
+    // x encontrado en el índice k
 }
 \end{lstlisting}
 
-Then, the following code counts the number of elements
-whose value is $x$:
+Luego, el siguiente código cuenta la cantidad de elementos
+cuyo valor es $x$:
 
 \begin{lstlisting}
 auto a = lower_bound(array, array+n, x);
@@ -772,7 +771,7 @@ auto b = upper_bound(array, array+n, x);
 cout << b-a << "\n";
 \end{lstlisting}
 
-Using \texttt{equal\_range}, the code becomes shorter:
+Usando \texttt{equal\_range}, el código se vuelve más corto:
 
 \begin{lstlisting}
 auto r = equal_range(array, array+n, x);
