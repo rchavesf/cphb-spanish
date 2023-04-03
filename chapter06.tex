@@ -269,21 +269,21 @@ Por lo tanto, seleccionar un evento que termine más tarde
 nunca puede generar una solución mejor,
 y el algoritmo voraz es correcto.
 
-\section{Tasks and deadlines}
+\section{Tareas y tiempos límite}
 
-Let us now consider a problem where
-we are given $n$ tasks with durations and deadlines
-and our task is to choose an order to perform the tasks.
-For each task, we earn $d-x$ points
-where $d$ is the task's deadline
-and $x$ is the moment when we finish the task.
-What is the largest possible total score
-we can obtain?
+Consideremos ahora un problema donde
+se nos dan $n$ tareas con duraciones y tiempos límite
+y nuestra tarea es elegir un orden para realizar las tareas.
+Para cada tarea, ganamos $d-x$ puntos
+donde $d$ es el tiempo límite de la tarea
+y $x$ es el momento en que terminamos la tarea.
+¿Cuál es el mayor puntaje total posible
+que podemos obtener?
 
-For example, suppose that the tasks are as follows:
+Por ejemplo, supongamos que las tareas son las siguientes:
 \begin{center}
 \begin{tabular}{lll}
-task & duration & deadline \\
+tarea & duración & tiempo límite \\
 \hline
 $A$ & 4 & 2 \\
 $B$ & 3 & 5 \\
@@ -291,8 +291,8 @@ $C$ & 2 & 7 \\
 $D$ & 4 & 5 \\
 \end{tabular}
 \end{center}
-In this case, an optimal schedule for the tasks
-is as follows:
+En este caso, un programa óptimo para las tareas
+es el siguiente:
 \begin{center}
 \begin{tikzpicture}[scale=.4]
   \begin{scope}
@@ -318,21 +318,21 @@ is as follows:
   \end{scope}
 \end{tikzpicture}
 \end{center}
-In this solution, $C$ yields 5 points,
-$B$ yields 0 points, $A$ yields $-7$ points
-and $D$ yields $-8$ points,
-so the total score is $-10$.
+En esta solución, $C$ produce 5 puntos,
+$B$ produce 0 puntos, $A$ produce $-7$ puntos
+y $D$ produce $-8$ puntos,
+entonces el puntaje total es $-10$.
 
-Surprisingly, the optimal solution to the problem
-does not depend on the deadlines at all,
-but a correct greedy strategy is to simply
-perform the tasks \emph{sorted by their durations}
-in increasing order.
-The reason for this is that if we ever perform
-two tasks one after another such that the first task
-takes longer than the second task,
-we can obtain a better solution if we swap the tasks.
-For example, consider the following schedule:
+Sorprendentemente, la solución óptima al problema
+no depende de los tiempos límite en absoluto,
+pero una estrategia voraz correcta es simplemente
+realizar las tareas \emph{ordenadas por sus duraciones}
+en orden creciente.
+La razón de esto es que si alguna vez realizamos
+dos tareas una tras otra de tal manera que la primera tarea
+tarda más que la segunda tarea,
+podemos obtener una mejor solución si intercambiamos las tareas.
+Por ejemplo, considere el siguiente horario:
 \begin{center}
 \begin{tikzpicture}[scale=.4]
   \begin{scope}
