@@ -1,46 +1,46 @@
-\chapter{Amortized analysis}
+\chapter{Análisis amortizado}
 
-\index{amortized analysis}
+\index{análisis amortizado}
 
-The time complexity of an algorithm
-is often easy to analyze
-just by examining the structure
-of the algorithm:
-what loops does the algorithm contain
-and how many times the loops are performed.
-However, sometimes a straightforward analysis
-does not give a true picture of the efficiency of the algorithm.
+La complejidad temporal de un algoritmo
+a menudo es fácil de analizar
+simplemente examinando la estructura
+del algoritmo:
+qué bucles contiene el algoritmo
+y cuántas veces se realizan los bucles.
+Sin embargo, a veces un análisis directo
+no proporciona una imagen real de la eficiencia del algoritmo.
 
-\key{Amortized analysis} can be used to analyze
-algorithms that contain operations whose
-time complexity varies.
-The idea is to estimate the total time used to
-all such operations during the
-execution of the algorithm, instead of focusing
-on individual operations.
+El \key{Análisis amortizado} se puede utilizar para analizar
+algoritmos que contienen operaciones cuya
+complejidad temporal varía.
+La idea es estimar el tiempo total utilizado en
+todas estas operaciones durante la
+ejecución del algoritmo, en lugar de centrarse
+en operaciones individuales.
 
-\section{Two pointers method}
+\section{Método de dos punteros}
 
-\index{two pointers method}
+\index{método de dos punteros}
 
-In the \key{two pointers method},
-two pointers are used to
-iterate through the array values.
-Both pointers can move to one direction only,
-which ensures that the algorithm works efficiently.
-Next we discuss two problems that can be solved
-using the two pointers method.
+En el \key{método de dos punteros},
+se utilizan dos punteros para
+iterar a través de los valores del arreglo.
+Ambos punteros pueden moverse en una dirección solamente,
+lo que garantiza que el algoritmo funcione de manera eficiente.
+A continuación, discutimos dos problemas que se pueden resolver
+utilizando el método de dos punteros.
 
-\subsubsection{Subarray sum}
+\subsubsection{Suma de subarreglo}
 
-As the first example,
-consider a problem where we are
-given an array of $n$ positive integers
-and a target sum $x$,
-and we want to find a subarray whose sum is $x$
-or report that there is no such subarray.
+Como primer ejemplo,
+consideremos un problema en el que se nos da
+un arreglo de $n$ enteros positivos
+y una suma objetivo $x$,
+y queremos encontrar un subarreglo cuya suma sea $x$
+o informar que no existe tal subarreglo.
 
-For example, the array
+Por ejemplo, el arreglo
 \begin{center}
 \begin{tikzpicture}[scale=0.7]
 \draw (0,0) grid (8,1);
@@ -55,7 +55,7 @@ For example, the array
 \node at (7.5,0.5) {$3$};
 \end{tikzpicture}
 \end{center}
-contains a subarray whose sum is 8:
+contiene un subarreglo cuya suma es 8:
 \begin{center}
 \begin{tikzpicture}[scale=0.7]
 \fill[color=lightgray] (2,0) rectangle (5,1);
