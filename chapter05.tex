@@ -455,7 +455,7 @@ en una computadora moderna\footnote{No se conoce ninguna forma eficiente de
 calcular valores más grandes de $q(n)$. El récord actual es
 $q(27)=234907967154122528$, calculado en 2016 \cite{q27}.}.
 
-\section{Recorte de la búsqueda}
+\section{Poda de la búsqueda}
 
 A menudo podemos optimizar backtracking podando el árbol de búsqueda.
 La idea es agregar ''inteligencia'' al algoritmo
@@ -617,26 +617,26 @@ el camino puede girar hacia la izquierda o hacia la derecha:
   \end{scope}
 \end{tikzpicture}
 \end{center}
-In this case, we cannot visit all squares anymore,
-so we can terminate the search.
-This optimization is very useful:
+En este caso, ya no podemos visitar todas las casillas,
+por lo que podemos terminar la búsqueda.
+Esta optimización es muy útil:
 
 \begin{itemize}
 \item
-running time: 1.8 seconds
+tiempo de ejecución: 1.8 segundos
 \item
-number of recursive calls: 221 million
+número de llamadas recursivas: 221 millones
 \end{itemize}
 
-\subsubsection{Optimization 4}
+\subsubsection{Optimización 4}
 
-The idea of Optimization 3
-can be generalized:
-if the path cannot continue forward
-but can turn either left or right,
-the grid splits into two parts
-that both contain unvisited squares.
-For example, consider the following path:
+La idea de la Optimización 3
+se puede generalizar:
+si el camino no puede continuar hacia adelante
+pero puede girar hacia la izquierda o hacia la derecha,
+la cuadrícula se divide en dos partes
+que contienen casillas no visitadas en ambas partes.
+Por ejemplo, considere el siguiente camino:
 
 \begin{center}
 \begin{tikzpicture}[scale=.55]
@@ -650,35 +650,35 @@ For example, consider the following path:
   \end{scope}
 \end{tikzpicture}
 \end{center}
-It is clear that we cannot visit all squares anymore,
-so we can terminate the search.
-After this optimization, the search is
-very efficient:
+Está claro que ya no podemos visitar todas las casillas,
+por lo que podemos terminar la búsqueda.
+Después de esta optimización, la búsqueda es
+muy eficiente:
 
 \begin{itemize}
 \item
-running time: 0.6 seconds
+tiempo de ejecución: 0.6 segundos
 \item
-number of recursive calls: 69 million
+número de llamadas recursivas: 69 millones
 \end{itemize}
 
 ~\\
-Now is a good moment to stop optimizing
-the algorithm and see what we have achieved.
-The running time of the original algorithm
-was 483 seconds,
-and now after the optimizations,
-the running time is only 0.6 seconds.
-Thus, the algorithm became nearly 1000 times
-faster after the optimizations.
+Ahora es un buen momento para dejar de optimizar
+el algoritmo y ver lo que hemos logrado.
+El tiempo de ejecución del algoritmo original
+era de 483 segundos,
+y ahora después de las optimizaciones,
+el tiempo de ejecución es de solo 0.6 segundos.
+Por lo tanto, el algoritmo se volvió casi 1000 veces
+más rápido después de las optimizaciones.
 
-This is a usual phenomenon in backtracking,
-because the search tree is usually large
-and even simple observations can effectively
-prune the search.
-Especially useful are optimizations that
-occur during the first steps of the algorithm,
-i.e., at the top of the search tree.
+Este es un fenómeno común en backtracking,
+porque el árbol de búsqueda suele ser grande
+y incluso observaciones simples pueden podar efectivamente
+la búsqueda.
+Son especialmente útiles las optimizaciones que
+ocurren durante los primeros pasos del algoritmo,
+es decir, en la parte superior del árbol de búsqueda.
 
 \section{Meet in the middle}
 
