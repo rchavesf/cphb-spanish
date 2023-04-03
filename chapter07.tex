@@ -64,157 +64,155 @@ es eficiente porque
 utiliza \emph{memoización} y
 calcula la respuesta a cada subproblema solo una vez.
 
-\subsubsection{Recursive formulation}
+\subsubsection{Formulación recursiva}
 
-The idea in dynamic programming is to
-formulate the problem recursively so
-that the solution to the problem can be
-calculated from solutions to smaller
-subproblems.
-In the coin problem, a natural recursive
-problem is as follows:
-what is the smallest number of coins
-required to form a sum $x$?
+La idea en la programación dinámica es
+formular el problema de manera recursiva para que
+la solución al problema se pueda
+calcular a partir de soluciones a problemas
+más pequeños.
+En el problema de las monedas, un problema recursivo
+natural es el siguiente:
+¿cuál es el menor número de monedas
+requeridas para formar una suma $x$?
 
-Let $\texttt{solve}(x)$
-denote the minimum
-number of coins required for a sum $x$.
-The values of the function depend on the
-values of the coins.
-For example, if $\texttt{coins} = \{1,3,4\}$,
-the first values of the function are as follows:
+Denotemos $\texttt{resolver}(x)$
+como el mínimo
+número de monedas requeridas para una suma $x$.
+Los valores de la función dependen de los
+valores de las monedas.
+Por ejemplo, si $\texttt{monedas} = \{1,3,4\}$,
+los primeros valores de la función son los siguientes:
 
 \[
 \begin{array}{lcl}
-\texttt{solve}(0) & = & 0 \\
-\texttt{solve}(1) & = & 1 \\
-\texttt{solve}(2) & = & 2 \\
-\texttt{solve}(3) & = & 1 \\
-\texttt{solve}(4) & = & 1 \\
-\texttt{solve}(5) & = & 2 \\
-\texttt{solve}(6) & = & 2 \\
-\texttt{solve}(7) & = & 2 \\
-\texttt{solve}(8) & = & 2 \\
-\texttt{solve}(9) & = & 3 \\
-\texttt{solve}(10) & = & 3 \\
+\texttt{resolver}(0) & = & 0 \\
+\texttt{resolver}(1) & = & 1 \\
+\texttt{resolver}(2) & = & 2 \\
+\texttt{resolver}(3) & = & 1 \\
+\texttt{resolver}(4) & = & 1 \\
+\texttt{resolver}(5) & = & 2 \\
+\texttt{resolver}(6) & = & 2 \\
+\texttt{resolver}(7) & = & 2 \\
+\texttt{resolver}(8) & = & 2 \\
+\texttt{resolver}(9) & = & 3 \\
+\texttt{resolver}(10) & = & 3 \\
 \end{array}
 \]
 
-For example, $\texttt{solve}(10)=3$,
-because at least 3 coins are needed
-to form the sum 10.
-The optimal solution is $3+3+4=10$.
+Por ejemplo, $\texttt{resolver}(10)=3$,
+porque se necesitan al menos 3 monedas
+para formar la suma 10.
+La solución óptima es $3+3+4=10$.
 
-The essential property of $\texttt{solve}$ is
-that its values can be
-recursively calculated from its smaller values.
-The idea is to focus on the \emph{first}
-coin that we choose for the sum.
-For example, in the above scenario,
-the first coin can be either 1, 3 or 4.
-If we first choose coin 1,
-the remaining task is to form the sum 9
-using the minimum number of coins,
-which is a subproblem of the original problem.
-Of course, the same applies to coins 3 and 4.
-Thus, we can use the following recursive formula
-to calculate the minimum number of coins:
+La propiedad esencial de $\texttt{resolver}$ es
+que sus valores se pueden
+calcular recursivamente a partir de sus valores más pequeños.
+La idea es centrarse en la \emph{primera}
+moneda que elegimos para la suma.
+Por ejemplo, en el escenario anterior,
+la primera moneda puede ser 1, 3 o 4.
+Si primero elegimos la moneda 1,
+la tarea restante es formar la suma 9
+usando el mínimo número de monedas,
+lo cual es un subproblema del problema original.
+Por supuesto, lo mismo se aplica a las monedas 3 y 4.
+Así, podemos usar la siguiente fórmula recursiva
+para calcular el mínimo número de monedas:
 \begin{equation*}
 \begin{split}
-\texttt{solve}(x) = \min( & \texttt{solve}(x-1)+1, \\
-                           & \texttt{solve}(x-3)+1, \\
-                           & \texttt{solve}(x-4)+1).
+\texttt{resolver}(x) = \min( & \texttt{resolver}(x-1)+1, \\
+                           & \texttt{resolver}(x-3)+1, \\
+                           & \texttt{resolver}(x-4)+1).
 \end{split}
 \end{equation*}
-The base case of the recursion is $\texttt{solve}(0)=0$,
-because no coins are needed to form an empty sum.
-For example,
-\[ \texttt{solve}(10) = \texttt{solve}(7)+1 = \texttt{solve}(4)+2 = \texttt{solve}(0)+3 = 3.\]
+El caso base de la recursión es $\texttt{resolver}(0)=0$,
+porque no se necesitan monedas para formar una suma vacía.
+Por ejemplo,
+\[ \texttt{resolver}(10) = \texttt{resolver}(7)+1 = \texttt{resolver}(4)+2 = \texttt{resolver}(0)+3 = 3.\]
 
-Now we are ready to give a general recursive function
-that calculates the minimum number of
-coins needed to form a sum $x$:
+Ahora estamos listos para dar una función recursiva general
+que calcule el mínimo número de
+monedas necesarias para formar una suma $x$:
 \begin{equation*}
-    \texttt{solve}(x) = \begin{cases}
+    \texttt{resolver}(x) = \begin{cases}
                \infty               & x < 0\\
                0               & x = 0\\
-               \min_{c \in \texttt{coins}} \texttt{solve}(x-c)+1 & x > 0 \\
+               \min_{c \in \texttt{monedas}} \texttt{resolver}(x-c)+1 & x > 0 \\
            \end{cases}
 \end{equation*}
 
-First, if $x<0$, the value is $\infty$,
-because it is impossible to form a negative
-sum of money.
-Then, if $x=0$, the value is $0$,
-because no coins are needed to form an empty sum.
-Finally, if $x>0$, the variable $c$ goes through
-all possibilities how to choose the first coin
-of the sum.
+Primero, si $x<0$, el valor es $\infty$,
+porque es imposible formar una suma
+negativa de dinero.
+Luego, si $x=0$, el valor es $0$,
+porque no se necesitan monedas para formar una suma vacía.
+Finalmente, si $x>0$, la variable $c$ recorre
+todas las posibilidades de cómo elegir la primera moneda
+de la suma.
 
-Once a recursive function that solves the problem
-has been found,
-we can directly implement a solution in C++
-(the constant \texttt{INF} denotes infinity):
+Una vez que se encuentra una función recursiva que resuelve el problema,
+podemos implementar directamente una solución en C++
+(la constante \texttt{INF} denota infinito):
 
 \begin{lstlisting}
-int solve(int x) {
+int resolver(int x) {
     if (x < 0) return INF;
     if (x == 0) return 0;
-    int best = INF;
-    for (auto c : coins) {
-        best = min(best, solve(x-c)+1);
+    int mejor = INF;
+    for (auto c : monedas) {
+        mejor = min(mejor, resolver(x-c)+1);
     }
-    return best;
+    return mejor;
 }
 \end{lstlisting}
 
-Still, this function is not efficient,
-because there may be an exponential number of ways
-to construct the sum.
-However, next we will see how to make the
-function efficient using a technique called memoization.
+Sin embargo, esta función no es eficiente,
+porque puede haber un número exponencial de formas
+de construir la suma.
+No obstante, a continuación veremos cómo hacer que la
+función sea eficiente utilizando una técnica llamada memoización.
 
-\subsubsection{Using memoization}
+\subsubsection{Usando memoización}
 
-\index{memoization}
+\index{memoización}
 
-The idea of dynamic programming is to use
-\key{memoization} to efficiently calculate
-values of a recursive function.
-This means that the values of the function
-are stored in an array after calculating them.
-For each parameter, the value of the function
-is calculated recursively only once, and after this,
-the value can be directly retrieved from the array.
+La idea de la programación dinámica es utilizar
+\key{memoización} para calcular eficientemente
+los valores de una función recursiva.
+Esto significa que los valores de la función
+se almacenan en un arreglo después de calcularlos.
+Para cada parámetro, el valor de la función
+se calcula recursivamente solo una vez y, después de esto,
+el valor se puede recuperar directamente del arreglo.
 
-In this problem, we use arrays
+En este problema, usamos los arreglos
 \begin{lstlisting}
-bool ready[N];
-int value[N];
+bool listo[N];
+int valor[N];
 \end{lstlisting}
 
-where $\texttt{ready}[x]$ indicates
-whether the value of $\texttt{solve}(x)$ has been calculated,
-and if it is, $\texttt{value}[x]$
-contains this value.
-The constant $N$ has been chosen so
-that all required values fit in the arrays.
+donde $\texttt{listo}[x]$ indica
+si se ha calculado el valor de $\texttt{resolver}(x)$,
+y si lo está, $\texttt{valor}[x]$
+contiene este valor.
+La constante $N$ se ha elegido de manera que
+todos los valores requeridos quepan en los arreglos.
 
-Now the function can be efficiently
-implemented as follows:
+Ahora la función se puede implementar de manera eficiente de la siguiente forma:
 
 \begin{lstlisting}
-int solve(int x) {
+int resolver(int x) {
     if (x < 0) return INF;
     if (x == 0) return 0;
-    if (ready[x]) return value[x];
-    int best = INF;
-    for (auto c : coins) {
-        best = min(best, solve(x-c)+1);
+    if (listo[x]) return valor[x];
+    int mejor = INF;
+    for (auto c : monedas) {
+        mejor = min(mejor, resolver(x-c)+1);
     }
-    value[x] = best;
-    ready[x] = true;
-    return best;
+    valor[x] = mejor;
+    listo[x] = true;
+    return mejor;
 }
 \end{lstlisting}
 
