@@ -1,23 +1,23 @@
-\chapter{Range queries}
+\chapter{Consultas de rango}
 
-\index{range query}
-\index{sum query}
-\index{minimum query}
-\index{maximum query}
+\index{consulta de rango}
+\index{consulta de suma}
+\index{consulta de mínimo}
+\index{consulta de máximo}
 
-In this chapter, we discuss data structures
-that allow us to efficiently process range queries.
-In a \key{range query},
-our task is to calculate a value
-based on a subarray of an array.
-Typical range queries are:
+En este capítulo, discutimos estructuras de datos
+que nos permiten procesar consultas de rango de manera eficiente.
+En una \key{consulta de rango},
+nuestra tarea es calcular un valor
+basado en un subarreglo de un arreglo.
+Las consultas de rango típicas son:
 \begin{itemize}
-\item $\texttt{sum}_q(a,b)$: calculate the sum of values in range $[a,b]$
-\item $\texttt{min}_q(a,b)$: find the minimum value in range $[a,b]$
-\item $\texttt{max}_q(a,b)$: find the maximum value in range $[a,b]$
+\item $\texttt{suma}_q(a,b)$: calcular la suma de valores en el rango $[a,b]$
+\item $\texttt{min}_q(a,b)$: encontrar el valor mínimo en el rango $[a,b]$
+\item $\texttt{max}_q(a,b)$: encontrar el valor máximo en el rango $[a,b]$
 \end{itemize}
 
-For example, consider the range $[3,6]$ in the following array:
+Por ejemplo, considera el rango $[3,6]$ en el siguiente arreglo:
 \begin{center}
 \begin{tikzpicture}[scale=0.7]
 \fill[color=lightgray] (3,0) rectangle (7,1);
@@ -43,16 +43,16 @@ For example, consider the range $[3,6]$ in the following array:
 \node at (7.5,1.4) {$7$};
 \end{tikzpicture}
 \end{center}
-In this case, $\texttt{sum}_q(3,6)=14$,
+En este caso, $\texttt{suma}_q(3,6)=14$,
 $\texttt{min}_q(3,6)=1$ and $\texttt{max}_q(3,6)=6$.
 
-A simple way to process range queries is to use
-a loop that goes through all array values in the range.
-For example, the following function can be
-used to process sum queries on an array:
+Una forma simple de procesar consultas de rango es usar
+un bucle que recorre todos los valores del arreglo en el rango.
+Por ejemplo, la siguiente función se puede
+usar para procesar consultas de suma en un arreglo:
 
 \begin{lstlisting}
-int sum(int a, int b) {
+int suma(int a, int b) {
     int s = 0;
     for (int i = a; i <= b; i++) {
         s += array[i];
@@ -61,36 +61,22 @@ int sum(int a, int b) {
 }
 \end{lstlisting}
 
-This function works in $O(n)$ time,
-where $n$ is the size of the array.
-Thus, we can process $q$ queries in $O(nq)$
-time using the function.
-However, if both $n$ and $q$ are large, this approach
-is slow. Fortunately, it turns out that there are
-ways to process range queries much more efficiently.
+Esta función funciona en tiempo $O(n)$,
+donde $n$ es el tamaño del arreglo.
+Por lo tanto, podemos procesar $q$ consultas en tiempo $O(nq)$
+usando la función.
+Sin embargo, si tanto $n$ como $q$ son grandes, este enfoque
+es lento. Afortunadamente, resulta que hay
+maneras de procesar consultas de rango mucho más eficientemente.
 
-\section{Static array queries}
+\section{Consultas de arreglos estáticos}
 
-We first focus on a situation where
-the array is \emph{static}, i.e.,
-the array values are never updated between the queries.
-In this case, it suffices to construct
-a static data structure that tells us
-the answer for any possible query.
-
-\subsubsection{Sum queries}
-
-\index{prefix sum array}
-
-We can easily process
-sum queries on a static array
-by constructing a \key{prefix sum array}.
-Each value in the prefix sum array equals
-the sum of values in the original array up to that position,
-i.e., the value at position $k$ is $\texttt{sum}_q(0,k)$.
-The prefix sum array can be constructed in $O(n)$ time.
-
-For example, consider the following array:
+Primero nos enfocamos en una situación donde
+el arreglo es \emph{estático}, es decir,
+los valores del arreglo nunca se actualizan entre las consultas.
+En este caso, basta con construir
+una estructura de datos estática que nos indique
+la respuesta para cualquier consulta posible.
 \begin{center}
 \begin{tikzpicture}[scale=0.7]
 %\fill[color=lightgray] (3,0) rectangle (7,1);
@@ -116,7 +102,7 @@ For example, consider the following array:
 \node at (7.5,1.4) {$7$};
 \end{tikzpicture}
 \end{center}
-The corresponding prefix sum array is as follows:
+El arreglo de suma de prefijos correspondiente es el siguiente:
 \begin{center}
 \begin{tikzpicture}[scale=0.7]
 %\fill[color=lightgray] (3,0) rectangle (7,1);
@@ -143,15 +129,15 @@ The corresponding prefix sum array is as follows:
 \node at (7.5,1.4) {$7$};
 \end{tikzpicture}
 \end{center}
-Since the prefix sum array contains all values
-of $\texttt{sum}_q(0,k)$,
-we can calculate any value of
-$\texttt{sum}_q(a,b)$ in $O(1)$ time as follows:
-\[ \texttt{sum}_q(a,b) = \texttt{sum}_q(0,b) - \texttt{sum}_q(0,a-1)\]
-By defining $\texttt{sum}_q(0,-1)=0$,
-the above formula also holds when $a=0$.
+Dado que el arreglo de suma de prefijos contiene todos los valores
+de $\texttt{suma}_q(0,k)$,
+podemos calcular cualquier valor de
+$\texttt{suma}_q(a,b)$ en tiempo $O(1)$ de la siguiente manera:
+\[ \texttt{suma}_q(a,b) = \texttt{suma}_q(0,b) - \texttt{suma}_q(0,a-1)\]
+Definiendo $\texttt{suma}_q(0,-1)=0$,
+la fórmula anterior también se cumple cuando $a=0$.
 
-For example, consider the range $[3,6]$:
+Por ejemplo, considere el rango $[3,6]$:
 \begin{center}
 \begin{tikzpicture}[scale=0.7]
 \fill[color=lightgray] (3,0) rectangle (7,1);
@@ -177,9 +163,9 @@ For example, consider the range $[3,6]$:
 \node at (7.5,1.4) {$7$};
 \end{tikzpicture}
 \end{center}
-In this case $\texttt{sum}_q(3,6)=8+6+1+4=19$.
-This sum can be calculated from
-two values of the prefix sum array:
+En este caso $\texttt{suma}_q(3,6)=8+6+1+4=19$.
+Esta suma se puede calcular a partir de
+dos valores del arreglo de suma de prefijos:
 \begin{center}
 \begin{tikzpicture}[scale=0.7]
 \fill[color=lightgray] (2,0) rectangle (3,1);
@@ -206,19 +192,19 @@ two values of the prefix sum array:
 \node at (7.5,1.4) {$7$};
 \end{tikzpicture}
 \end{center}
-Thus, $\texttt{sum}_q(3,6)=\texttt{sum}_q(0,6)-\texttt{sum}_q(0,2)=27-8=19$.
+Así, $\texttt{suma}_q(3,6)=\texttt{suma}_q(0,6)-\texttt{suma}_q(0,2)=27-8=19$.
 
-It is also possible to generalize this idea
-to higher dimensions.
-For example, we can construct a two-dimensional
-prefix sum array that can be used to calculate
-the sum of any rectangular subarray in $O(1)$ time.
-Each sum in such an array corresponds to
-a subarray
-that begins at the upper-left corner of the array.
+También es posible generalizar esta idea
+a dimensiones superiores.
+Por ejemplo, podemos construir un arreglo
+de suma de prefijos bidimensional que se puede utilizar para calcular
+la suma de cualquier subarreglo rectangular en tiempo $O(1)$.
+Cada suma en dicho arreglo corresponde a
+un subarreglo
+que comienza en la esquina superior izquierda del arreglo.
 
 \begin{samepage}
-The following picture illustrates the idea:
+La siguiente imagen ilustra la idea:
 \begin{center}
 \begin{tikzpicture}[scale=0.54]
 \draw[fill=lightgray] (3,2) rectangle (7,5);
@@ -231,37 +217,36 @@ The following picture illustrates the idea:
 \end{center}
 \end{samepage}
 
-The sum of the gray subarray can be calculated
-using the formula
+La suma del subarreglo gris se puede calcular
+usando la fórmula
 \[S(A) - S(B) - S(C) + S(D),\]
-where $S(X)$ denotes the sum of values
-in a rectangular
-subarray from the upper-left corner
-to the position of $X$.
+donde $S(X)$ denota la suma de valores
+en un subarreglo rectangular
+desde la esquina superior izquierda
+hasta la posición de $X$.
 
-\subsubsection{Minimum queries}
+\subsubsection{Consultas de mínimo}
 
-\index{sparse table}
+\index{tabla dispersa}
 
-Minimum queries are more difficult to process
-than sum queries.
-Still, there is a quite simple 
-$O(n \log n)$ time preprocessing
-method after which we can answer any minimum
-query in $O(1)$ time\footnote{This technique
-was introduced in \cite{ben00} and sometimes
-called the \key{sparse table} method.
-There are also more sophisticated techniques \cite{fis06} where
-the preprocessing time is only $O(n)$, but such algorithms
-are not needed in competitive programming.}.
-Note that since minimum and maximum queries can
-be processed similarly,
-we can focus on minimum queries.
+Las consultas de mínimo son más difíciles de procesar
+que las consultas de suma.
+Sin embargo, hay un método de preprocesamiento bastante simple
+de tiempo $O(n \log n)$ después del cual podemos responder a cualquier consulta de mínimo
+en tiempo $O(1)$\footnote{Esta técnica
+fue introducida en \cite{ben00} y a veces
+se llama método de \key{tabla dispersa}.
+También existen técnicas más sofisticadas \cite{fis06} donde
+el tiempo de preprocesamiento es solo $O(n)$, pero tales algoritmos
+no son necesarios en programación competitiva.}.
+Tenga en cuenta que, dado que las consultas de mínimo y máximo se pueden
+procesar de manera similar,
+podemos centrarnos en las consultas de mínimo.
 
-The idea is to precalculate all values of
-$\textrm{min}_q(a,b)$ where
-$b-a+1$ (the length of the range) is a power of two.
-For example, for the array
+La idea es precalcular todos los valores de
+$\textrm{min}_q(a,b)$ donde
+$b-a+1$ (la longitud del rango) es una potencia de dos.
+Por ejemplo, para el arreglo
 
 \begin{center}
 \begin{tikzpicture}[scale=0.7]
@@ -287,7 +272,7 @@ For example, for the array
 \node at (7.5,1.4) {$7$};
 \end{tikzpicture}
 \end{center}
-the following values are calculated:
+se calculan los siguientes valores:
 
 \begin{center}
 \begin{tabular}{ccc}
@@ -338,11 +323,11 @@ $a$ & $b$ & $\texttt{min}_q(a,b)$ \\
 \end{tabular}
 \end{center}
 
-The number of precalculated values is $O(n \log n)$,
-because there are $O(\log n)$ range lengths
-that are powers of two.
-The values can be calculated efficiently
-using the recursive formula
+El número de valores precalculados es $O(n \log n)$,
+porque hay $O(\log n)$ longitudes de rango
+que son potencias de dos.
+Los valores se pueden calcular de manera eficiente
+usando la fórmula recursiva
 \[\texttt{min}_q(a,b) = \min(\texttt{min}_q(a,a+w-1),\texttt{min}_q(a+w,b)),\]
 where $b-a+1$ is a power of two and $w=(b-a+1)/2$.
 Calculating all those values takes $O(n \log n)$ time.
