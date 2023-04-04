@@ -329,18 +329,18 @@ que son potencias de dos.
 Los valores se pueden calcular de manera eficiente
 usando la fórmula recursiva
 \[\texttt{min}_q(a,b) = \min(\texttt{min}_q(a,a+w-1),\texttt{min}_q(a+w,b)),\]
-where $b-a+1$ is a power of two and $w=(b-a+1)/2$.
-Calculating all those values takes $O(n \log n)$ time.
+donde $b-a+1$ es una potencia de dos y $w=(b-a+1)/2$.
+Calcular todos esos valores toma un tiempo de $O(n \log n)$.
 
-After this, any value of $\texttt{min}_q(a,b)$ can be calculated
-in $O(1)$ time as a minimum of two precalculated values.
-Let $k$ be the largest power of two that does not exceed $b-a+1$.
-We can calculate the value of $\texttt{min}_q(a,b)$ using the formula
+Después de esto, cualquier valor de $\texttt{min}_q(a,b)$ se puede calcular
+en tiempo $O(1)$ como el mínimo de dos valores precalculados.
+Sea $k$ la mayor potencia de dos que no exceda $b-a+1$.
+Podemos calcular el valor de $\texttt{min}_q(a,b)$ usando la fórmula
 \[\texttt{min}_q(a,b) = \min(\texttt{min}_q(a,a+k-1),\texttt{min}_q(b-k+1,b)).\]
-In the above formula, the range $[a,b]$ is represented
-as the union of the ranges $[a,a+k-1]$ and $[b-k+1,b]$, both of length $k$.
+En la fórmula anterior, el rango $[a,b]$ se representa
+como la unión de los rangos $[a,a+k-1]$ y $[b-k+1,b]$, ambos de longitud $k$.
 
-As an example, consider the range $[1,6]$:
+Como ejemplo, considere el rango $[1,6]$:
 \begin{center}
 \begin{tikzpicture}[scale=0.7]
 \fill[color=lightgray] (1,0) rectangle (7,1);
@@ -366,11 +366,11 @@ As an example, consider the range $[1,6]$:
 \node at (7.5,1.4) {$7$};
 \end{tikzpicture}
 \end{center}
-The length of the range is 6,
-and the largest power of two that does
-not exceed 6 is 4.
-Thus the range $[1,6]$ is
-the union of the ranges $[1,4]$ and $[3,6]$:
+La longitud del rango es 6,
+y la mayor potencia de dos que no
+exceda 6 es 4.
+Por lo tanto, el rango $[1,6]$ es
+la unión de los rangos $[1,4]$ y $[3,6]$:
 \begin{center}
 \begin{tikzpicture}[scale=0.7]
 \fill[color=lightgray] (1,0) rectangle (5,1);
@@ -422,42 +422,42 @@ the union of the ranges $[1,4]$ and $[3,6]$:
 \node at (7.5,1.4) {$7$};
 \end{tikzpicture}
 \end{center}
-Since $\texttt{min}_q(1,4)=3$ and $\texttt{min}_q(3,6)=1$,
-we conclude that $\texttt{min}_q(1,6)=1$.
+Dado que $\texttt{min}_q(1,4)=3$ y $\texttt{min}_q(3,6)=1$,
+concluimos que $\texttt{min}_q(1,6)=1$.
 
-\section{Binary indexed tree}
+\section{Árbol indexado binario}
 
-\index{binary indexed tree}
-\index{Fenwick tree}
+\index{árbol indexado binario}
+\index{árbol de Fenwick}
 
-A \key{binary indexed tree} or a \key{Fenwick tree}\footnote{The
-binary indexed tree structure was presented by P. M. Fenwick in 1994 \cite{fen94}.}
-can be seen as a dynamic variant of a prefix sum array.
-It supports two $O(\log n)$ time operations on an array:
-processing a range sum query and updating a value.
+Un \key{árbol indexado binario} o un \key{árbol de Fenwick}\footnote{La
+estructura del árbol indexado binario fue presentada por P. M. Fenwick en 1994 \cite{fen94}.}
+puede verse como una variante dinámica de un arreglo de suma de prefijos.
+Admite dos operaciones en tiempo $O(\log n)$ en un arreglo:
+procesar una consulta de suma de rango y actualizar un valor.
 
-The advantage of a binary indexed tree is
-that it allows us to efficiently update
-array values between sum queries.
-This would not be possible using a prefix sum array,
-because after each update, it would be necessary to build the
-whole prefix sum array again in $O(n)$ time.
+La ventaja de un árbol indexado binario es
+que nos permite actualizar de manera eficiente
+los valores del arreglo entre consultas de suma.
+Esto no sería posible utilizando un arreglo de suma de prefijos,
+porque después de cada actualización, sería necesario construir todo
+el arreglo de suma de prefijos nuevamente en tiempo $O(n)$.
 
-\subsubsection{Structure}
+\subsubsection{Estructura}
 
-Even if the name of the structure is a binary indexed \emph{tree},
-it is usually represented as an array.
-In this section we assume that all arrays are one-indexed,
-because it makes the implementation easier.
+Aunque el nombre de la estructura es un árbol indexado binario,
+generalmente se representa como un arreglo.
+En esta sección asumimos que todos los arreglos tienen índice base uno,
+ya que facilita la implementación.
 
-Let $p(k)$ denote the largest power of two that
-divides $k$.
-We store a binary indexed tree as an array \texttt{tree}
-such that
+Sea $p(k)$ la mayor potencia de dos que
+divide a $k$.
+Almacenamos un árbol indexado binario como un arreglo \texttt{tree}
+tal que
 \[ \texttt{tree}[k] = \texttt{sum}_q(k-p(k)+1,k),\]
-i.e., each position $k$ contains the sum of values
-in a range of the original array whose length is $p(k)$
-and that ends at position $k$.
+es decir, cada posición $k$ contiene la suma de los valores
+en un rango del arreglo original cuya longitud es $p(k)$
+y que termina en la posición $k$.
 For example, since $p(6)=2$, $\texttt{tree}[6]$
 contains the value of $\texttt{sum}_q(5,6)$.
 
