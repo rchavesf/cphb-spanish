@@ -425,18 +425,18 @@ la unión de los rangos $[1,4]$ y $[3,6]$:
 Dado que $\texttt{min}_q(1,4)=3$ y $\texttt{min}_q(3,6)=1$,
 concluimos que $\texttt{min}_q(1,6)=1$.
 
-\section{Árbol indexado binario}
+\section{Árbol binario indexado}
 
-\index{árbol indexado binario}
+\index{árbol binario indexado}
 \index{árbol de Fenwick}
 
-Un \key{árbol indexado binario} o un \key{árbol de Fenwick}\footnote{La
-estructura del árbol indexado binario fue presentada por P. M. Fenwick en 1994 \cite{fen94}.}
+Un \key{árbol binario indexado} o un \key{árbol de Fenwick}\footnote{La
+estructura del árbol binario indexado fue presentada por P. M. Fenwick en 1994 \cite{fen94}.}
 puede verse como una variante dinámica de un arreglo de suma de prefijos.
 Admite dos operaciones en tiempo $O(\log n)$ en un arreglo:
 procesar una consulta de suma de rango y actualizar un valor.
 
-La ventaja de un árbol indexado binario es
+La ventaja de un árbol binario indexado es
 que nos permite actualizar de manera eficiente
 los valores del arreglo entre consultas de suma.
 Esto no sería posible utilizando un arreglo de suma de prefijos,
@@ -445,14 +445,14 @@ el arreglo de suma de prefijos nuevamente en tiempo $O(n)$.
 
 \subsubsection{Estructura}
 
-Aunque el nombre de la estructura es un árbol indexado binario,
+Aunque el nombre de la estructura es un árbol binario indexado,
 generalmente se representa como un arreglo.
 En esta sección asumimos que todos los arreglos tienen índice base uno,
 ya que facilita la implementación.
 
 Sea $p(k)$ la mayor potencia de dos que
 divide a $k$.
-Almacenamos un árbol indexado binario como un arreglo \texttt{tree}
+Almacenamos un árbol binario indexado como un arreglo \texttt{tree}
 tal que
 \[ \texttt{tree}[k] = \texttt{sum}_q(k-p(k)+1,k),\]
 es decir, cada posición $k$ contiene la suma de los valores
