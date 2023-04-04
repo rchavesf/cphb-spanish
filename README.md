@@ -10,6 +10,15 @@ You can practice the techniques presented in the book by solving the problems.
 
 https://cses.fi/problemset/
 
+## Cómo compilar
+De momento, los comandos que han servido en pruebas han sido:
+```
+pdflatex book.tex
+makeindex book.idx
+pdflatex book.tex
+```
+(Sí, el primer comando se debe ejecutar una vez más al final)
+
 ## License
 
 The license of the book is Creative Commons BY-NC-SA 4.0.
