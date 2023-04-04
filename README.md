@@ -1,4 +1,4 @@
-# Competitive Programmer's Handbook - Spanish Translation assisted by AI
+# Competitive Programmer's Handbook - Spanish Translation assisted by AI (GPT-4)
 
 Competitive Programmer's Handbook is a modern introduction to competitive programming.
 The book discusses programming tricks and algorithm design techniques relevant in competitive programming.
