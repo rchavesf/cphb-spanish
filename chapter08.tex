@@ -532,40 +532,40 @@ y se elimina \emph{como máximo una vez} de la pila.
 Por lo tanto, cada elemento causa $O(1)$ operaciones en la pila,
 y el algoritmo funciona en tiempo $O(n)$.
 
-\section{Sliding window minimum}
+\section{Mínimo de ventana deslizante}
 
-\index{sliding window}
-\index{sliding window minimum}
+\index{ventana deslizante}
+\index{mínimo de ventana deslizante}
 
-A \key{sliding window} is a constant-size subarray
-that moves from left to right through the array.
-At each window position,
-we want to calculate some information
-about the elements inside the window.
-In this section, we focus on the problem
-of maintaining the \key{sliding window minimum},
-which means that
-we should report the smallest value inside each window.
+Una \key{ventana deslizante} es un subarreglo de tamaño constante
+que se mueve de izquierda a derecha a través del arreglo.
+En cada posición de la ventana,
+queremos calcular cierta información
+sobre los elementos dentro de la ventana.
+En esta sección, nos enfocamos en el problema
+de mantener el \key{mínimo de ventana deslizante},
+lo que significa que
+debemos informar el valor más pequeño dentro de cada ventana.
 
-The sliding window minimum can be calculated
-using a similar idea that we used to calculate
-the nearest smaller elements.
-We maintain a queue
-where each element is larger than
-the previous element,
-and the first element
-always corresponds to the minimum element inside the window.
-After each window move,
-we remove elements from the end of the queue
-until the last queue element
-is smaller than the new window element,
-or the queue becomes empty.
-We also remove the first queue element
-if it is not inside the window anymore.
-Finally, we add the new window element
-to the end of the queue.
+El mínimo de ventana deslizante se puede calcular
+usando una idea similar a la que utilizamos para calcular
+los elementos menores más cercanos.
+Mantenemos una cola
+donde cada elemento es más grande que
+el elemento anterior,
+y el primer elemento
+siempre corresponde al elemento mínimo dentro de la ventana.
+Después de cada movimiento de ventana,
+eliminamos elementos del final de la cola
+hasta que el último elemento de la cola
+sea más pequeño que el nuevo elemento de la ventana,
+o la cola quede vacía.
+También eliminamos el primer elemento de la cola
+si ya no está dentro de la ventana.
+Finalmente, agregamos el nuevo elemento de la ventana
+al final de la cola.
 
-As an example, consider the following array:
+Como ejemplo, considera el siguiente arreglo:
 
 \begin{center}
 \begin{tikzpicture}[scale=0.7]
@@ -582,8 +582,8 @@ As an example, consider the following array:
 \end{tikzpicture}
 \end{center}
 
-Suppose that the size of the sliding window is 4.
-At the first window position, the smallest value is 1:
+Supongamos que el tamaño de la ventana deslizante es 4.
+En la primera posición de la ventana, el valor más pequeño es 1:
 \begin{center}
 \begin{tikzpicture}[scale=0.7]
 \fill[color=lightgray] (0,0) rectangle (4,1);
@@ -611,12 +611,12 @@ At the first window position, the smallest value is 1:
 \end{tikzpicture}
 \end{center}
 
-Then the window moves one step right.
-The new element 3 is smaller than the elements
-4 and 5 in the queue, so the elements 4 and 5
-are removed from the queue
-and the element 3 is added to the queue.
-The smallest value is still 1.
+Luego, la ventana se mueve un paso a la derecha.
+El nuevo elemento 3 es más pequeño que los elementos
+4 y 5 en la cola, por lo que los elementos 4 y 5
+se eliminan de la cola
+y el elemento 3 se agrega a la cola.
+El valor más pequeño sigue siendo 1.
 \begin{center}
 \begin{tikzpicture}[scale=0.7]
 \fill[color=lightgray] (1,0) rectangle (5,1);
@@ -641,12 +641,12 @@ The smallest value is still 1.
 \end{tikzpicture}
 \end{center}
 
-After this, the window moves again,
-and the smallest element 1
-does not belong to the window anymore.
-Thus, it is removed from the queue and the smallest
-value is now 3. Also the new element 4
-is added to the queue.
+Después de esto, la ventana se mueve nuevamente,
+y el elemento más pequeño 1
+ya no pertenece a la ventana.
+Por lo tanto, se elimina de la cola y el más pequeño
+valor es ahora 3. También se agrega el nuevo elemento 4
+a la cola.
 \begin{center}
 \begin{tikzpicture}[scale=0.7]
 \fill[color=lightgray] (2,0) rectangle (6,1);
@@ -671,10 +671,10 @@ is added to the queue.
 \end{tikzpicture}
 \end{center}
 
-The next new element 1 is smaller than all elements
-in the queue.
-Thus, all elements are removed from the queue
-and it will only contain the element 1:
+El siguiente nuevo elemento 1 es más pequeño que todos los elementos
+en la cola.
+Por lo tanto, se eliminan todos los elementos de la cola
+y solo contendrá el elemento 1:
 \begin{center}
 \begin{tikzpicture}[scale=0.7]
 \fill[color=lightgray] (3,0) rectangle (7,1);
@@ -695,10 +695,10 @@ and it will only contain the element 1:
 \end{tikzpicture}
 \end{center}
 
-Finally the window reaches its last position.
-The element 2 is added to the queue,
-but the smallest value inside the window
-is still 1.
+Finalmente, la ventana llega a su última posición.
+El elemento 2 se agrega a la cola,
+pero el valor más pequeño dentro de la ventana
+sigue siendo 1.
 \begin{center}
 \begin{tikzpicture}[scale=0.7]
 \fill[color=lightgray] (4,0) rectangle (8,1);
@@ -723,10 +723,9 @@ is still 1.
 \end{tikzpicture}
 \end{center}
 
-Since each array element
-is added to the queue exactly once and
-removed from the queue at most once,
-the algorithm works in $O(n)$ time.
-
+Dado que cada elemento del arreglo
+se agrega a la cola exactamente una vez y
+se elimina de la cola como máximo una vez,
+el algoritmo funciona en tiempo $O(n)$.
 
 
