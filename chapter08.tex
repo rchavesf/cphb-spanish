@@ -322,39 +322,39 @@ Sin embargo, en 2014, resultó \cite{gro14}
 que este no es el caso.}.
 ¿Puedes ver cómo?
 
-\section{Nearest smaller elements}
+\section{Elementos menores más cercanos}
 
-\index{nearest smaller elements}
+\index{elementos menores más cercanos}
 
-Amortized analysis is often used to
-estimate the number of operations
-performed on a data structure.
-The operations may be distributed unevenly so
-that most operations occur during a
-certain phase of the algorithm, but the total
-number of the operations is limited.
+El análisis amortizado se utiliza a menudo para
+estimar el número de operaciones
+realizadas en una estructura de datos.
+Las operaciones pueden distribuirse de manera desigual de modo que
+la mayoría de las operaciones ocurran durante una
+fase específica del algoritmo, pero el número total
+de operaciones está limitado.
 
-As an example, consider the problem
-of finding for each array element
-the \key{nearest smaller element}, i.e.,
-the first smaller element that precedes the element
-in the array.
-It is possible that no such element exists,
-in which case the algorithm should report this.
-Next we will see how the problem can be
-efficiently solved using a stack structure.
+Como ejemplo, considere el problema
+de encontrar para cada elemento del arreglo
+el \key{elemento menor más cercano}, es decir,
+el primer elemento menor que precede al elemento
+en el arreglo.
+Es posible que no exista tal elemento,
+en cuyo caso el algoritmo debe informar esto.
+A continuación, veremos cómo el problema puede ser
+resuelto de manera eficiente utilizando una estructura de pila.
 
-We go through the array from left to right
-and maintain a stack of array elements.
-At each array position, we remove elements from the stack
-until the top element is smaller than the
-current element, or the stack is empty.
-Then, we report that the top element is
-the nearest smaller element of the current element,
-or if the stack is empty, there is no such element.
-Finally, we add the current element to the stack.
+Recorremos el arreglo de izquierda a derecha
+y mantenemos una pila de elementos del arreglo.
+En cada posición del arreglo, eliminamos elementos de la pila
+hasta que el elemento superior sea menor que el
+elemento actual, o la pila esté vacía.
+Luego, informamos que el elemento superior es
+el elemento menor más cercano del elemento actual,
+o si la pila está vacía, no existe tal elemento.
+Finalmente, agregamos el elemento actual a la pila.
 
-As an example, consider the following array:
+Como ejemplo, considere el siguiente arreglo:
 \begin{center}
 \begin{tikzpicture}[scale=0.7]
 \draw (0,0) grid (8,1);
@@ -370,10 +370,10 @@ As an example, consider the following array:
 \end{tikzpicture}
 \end{center}
 
-First, the elements 1, 3 and 4 are added to the stack,
-because each element is larger than the previous element.
-Thus, the nearest smaller element of 4 is 3,
-and the nearest smaller element of 3 is 1.
+Primero, los elementos 1, 3 y 4 se agregan a la pila,
+porque cada elemento es mayor que el elemento anterior.
+Por lo tanto, el elemento menor más cercano de 4 es 3,
+y el elemento menor más cercano de 3 es 1.
 \begin{center}
 \begin{tikzpicture}[scale=0.7]
 \fill[color=lightgray] (2,0) rectangle (3,1);
@@ -401,11 +401,11 @@ and the nearest smaller element of 3 is 1.
 \end{tikzpicture}
 \end{center}
 
-The next element 2 is smaller than the two top
-elements in the stack.
-Thus, the elements 3 and 4 are removed from the stack,
-and then the element 2 is added to the stack.
-Its nearest smaller element is 1:
+El siguiente elemento 2 es menor que los dos elementos superiores
+en la pila.
+Por lo tanto, los elementos 3 y 4 se eliminan de la pila,
+y luego el elemento 2 se agrega a la pila.
+Su elemento menor más cercano es 1:
 \begin{center}
 \begin{tikzpicture}[scale=0.7]
 \fill[color=lightgray] (3,0) rectangle (4,1);
@@ -430,9 +430,9 @@ Its nearest smaller element is 1:
 \end{tikzpicture}
 \end{center}
 
-Then, the element 5 is larger than the element 2,
-so it will be added to the stack, and
-its nearest smaller element is 2:
+Luego, el elemento 5 es mayor que el elemento 2,
+así que se agregará a la pila, y
+su elemento menor más cercano es 2:
 \begin{center}
 \begin{tikzpicture}[scale=0.7]
 \fill[color=lightgray] (4,0) rectangle (5,1);
@@ -460,8 +460,8 @@ its nearest smaller element is 2:
 \end{tikzpicture}
 \end{center}
 
-After this, the element 5 is removed from the stack
-and the elements 3 and 4 are added to the stack:
+Después de esto, el elemento 5 se elimina de la pila
+y los elementos 3 y 4 se agregan a la pila:
 \begin{center}
 \begin{tikzpicture}[scale=0.7]
 \fill[color=lightgray] (6,0) rectangle (7,1);
@@ -492,9 +492,9 @@ and the elements 3 and 4 are added to the stack:
 \end{tikzpicture}
 \end{center}
 
-Finally, all elements except 1 are removed
-from the stack and the last element 2
-is added to the stack:
+Finalmente, todos los elementos excepto 1 son eliminados
+de la pila y el último elemento 2
+se agrega a la pila:
 
 \begin{center}
 \begin{tikzpicture}[scale=0.7]
@@ -520,17 +520,17 @@ is added to the stack:
 \end{tikzpicture}
 \end{center}
 
-The efficiency of the algorithm depends on
-the total number of stack operations.
-If the current element is larger than
-the top element in the stack, it is directly
-added to the stack, which is efficient.
-However, sometimes the stack can contain several
-larger elements and it takes time to remove them.
-Still, each element is added \emph{exactly once} to the stack
-and removed \emph{at most once} from the stack.
-Thus, each element causes $O(1)$ stack operations,
-and the algorithm works in $O(n)$ time.
+La eficiencia del algoritmo depende de
+el número total de operaciones en la pila.
+Si el elemento actual es más grande que
+el elemento superior en la pila, se agrega directamente
+a la pila, lo cual es eficiente.
+Sin embargo, a veces la pila puede contener varios
+elementos más grandes y lleva tiempo eliminarlos.
+Aun así, cada elemento se agrega \emph{exactamente una vez} a la pila
+y se elimina \emph{como máximo una vez} de la pila.
+Por lo tanto, cada elemento causa $O(1)$ operaciones en la pila,
+y el algoritmo funciona en tiempo $O(n)$.
 
 \section{Sliding window minimum}
 
