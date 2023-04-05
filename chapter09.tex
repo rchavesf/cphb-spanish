@@ -1048,39 +1048,31 @@ se almacena de la siguiente manera:
 \node at (14.5,1.4) {$15$};
 \end{tikzpicture}
 \end{center}
-Usando esta representación,
-el padre de $\texttt{arbol}[k]$
-es $\texttt{arbol}[\lfloor k/2 \rfloor]$,
-y sus hijos son $\texttt{arbol}[2k]$
-y $\texttt{arbol}[2k+1]$.
-Nótese que esto implica que la posición de un nodo
-es par si es un hijo izquierdo e impar si es un hijo derecho.
-
-The following function
-calculates the value of $\texttt{sum}_q(a,b)$:
+La siguiente función
+calcula el valor de $\texttt{suma}_q(a,b)$:
 \begin{lstlisting}
-int sum(int a, int b) {
+int suma(int a, int b) {
     a += n; b += n;
     int s = 0;
     while (a <= b) {
-        if (a%2 == 1) s += tree[a++];
-        if (b%2 == 0) s += tree[b--];
+        if (a%2 == 1) s += arbol[a++];
+        if (b%2 == 0) s += arbol[b--];
         a /= 2; b /= 2;
     }
     return s;
 }
 \end{lstlisting}
-The function maintains a range
-that is initially $[a+n,b+n]$.
-Then, at each step, the range is moved
-one level higher in the tree,
-and before that, the values of the nodes that do not
-belong to the higher range are added to the sum.
+La función mantiene un rango
+que inicialmente es $[a+n,b+n]$.
+Luego, en cada paso, el rango se mueve
+un nivel más alto en el árbol,
+y antes de eso, los valores de los nodos que no
+pertenecen al rango superior se suman a la suma.
 
-The following function increases the array value
-at position $k$ by $x$:
+La siguiente función incrementa el valor del arreglo
+en la posición $k$ en $x$:
 \begin{lstlisting}
-void add(int k, int x) {
+void agregar(int k, int x) {
     k += n;
     tree[k] += x;
     for (k /= 2; k >= 1; k /= 2) {
@@ -1088,30 +1080,30 @@ void add(int k, int x) {
     }
 }
 \end{lstlisting}
-First the function updates the value
-at the bottom level of the tree.
-After this, the function updates the values of all
-internal tree nodes, until it reaches
-the top node of the tree.
+Primero, la función actualiza el valor
+en el nivel inferior del árbol.
+Después de esto, la función actualiza los valores de todos
+los nodos internos del árbol, hasta que llega
+al nodo superior del árbol.
 
-Both the above functions work
-in $O(\log n)$ time, because a segment tree
-of $n$ elements consists of $O(\log n)$ levels,
-and the functions move one level higher
-in the tree at each step.
+Ambas funciones trabajan
+en tiempo $O(\log n)$, porque un árbol de segmentos
+de $n$ elementos consiste en $O(\log n)$ niveles,
+y las funciones se mueven un nivel más alto
+en el árbol en cada paso.
 
-\subsubsection{Other queries}
+\subsubsection{Otras consultas}
 
-Segment trees can support all range queries
-where it is possible to divide a range into two parts,
-calculate the answer separately for both parts
-and then efficiently combine the answers.
-Examples of such queries are
-minimum and maximum, greatest common divisor,
-and bit operations and, or and xor.
+Los árboles de segmentos pueden admitir todas las consultas de rango
+donde es posible dividir un rango en dos partes,
+calcular la respuesta por separado para ambas partes
+y luego combinar eficientemente las respuestas.
+Ejemplos de tales consultas son
+mínimo y máximo, máximo común divisor,
+y operaciones de bits and, or y xor.
 
-For example, the following segment tree
-supports minimum queries:
+Por ejemplo, el siguiente árbol de segmentos
+admite consultas de mínimos:
 
 \begin{center}
 \begin{tikzpicture}[scale=0.7]
@@ -1152,23 +1144,23 @@ supports minimum queries:
 \end{tikzpicture}
 \end{center}
 
-In this case, every tree node contains
-the smallest value in the corresponding
-array range.
-The top node of the tree contains the smallest
-value in the whole array.
-The operations can be implemented like previously,
-but instead of sums, minima are calculated.
+En este caso, cada nodo del árbol contiene
+el valor más pequeño en el rango correspondiente
+del arreglo.
+El nodo superior del árbol contiene el valor más pequeño
+en todo el arreglo.
+Las operaciones se pueden implementar como antes,
+pero en lugar de sumas, se calculan los mínimos.
 
-The structure of a segment tree also allows us
-to use binary search for locating array elements.
-For example, if the tree supports minimum queries,
-we can find the position of an element
-with the smallest value in $O(\log n)$ time.
+La estructura de un árbol de segmentos también nos permite
+usar búsqueda binaria para localizar elementos del arreglo.
+Por ejemplo, si el árbol admite consultas de mínimo,
+podemos encontrar la posición de un elemento
+con el valor más pequeño en tiempo $O(\log n)$.
 
-For example, in the above tree, an
-element with the smallest value 1 can be found
-by traversing a path downwards from the top node:
+Por ejemplo, en el árbol anterior, un
+elemento con el valor más pequeño 1 se puede encontrar
+recorriendo un camino hacia abajo desde el nodo superior:
 
 \begin{center}
 \begin{tikzpicture}[scale=0.7]
