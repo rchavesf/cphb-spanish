@@ -1074,9 +1074,9 @@ en la posición $k$ en $x$:
 \begin{lstlisting}
 void agregar(int k, int x) {
     k += n;
-    tree[k] += x;
+    arbol[k] += x;
     for (k /= 2; k >= 1; k /= 2) {
-        tree[k] = tree[2*k]+tree[2*k+1];
+        arbol[k] = arbol[2*k]+arbol[2*k+1];
     }
 }
 \end{lstlisting}
@@ -1205,39 +1205,38 @@ recorriendo un camino hacia abajo desde el nodo superior:
 \end{tikzpicture}
 \end{center}
 
-\section{Additional techniques}
+\section{Técnicas adicionales}
 
-\subsubsection{Index compression}
+\subsubsection{Compresión de índices}
 
-A limitation in data structures that
-are built upon an array is that
-the elements are indexed using
-consecutive integers.
-Difficulties arise when large indices
-are needed.
-For example, if we wish to use the index $10^9$,
-the array should contain $10^9$
-elements which would require too much memory.
+Una limitación en las estructuras de datos que
+se basan en un arreglo es que
+los elementos se indexan usando
+enteros consecutivos.
+Se presentan dificultades cuando se necesitan índices grandes.
+Por ejemplo, si deseamos usar el índice $10^9$,
+el arreglo debería contener $10^9$
+elementos, lo que requeriría demasiada memoria.
 
-\index{index compression}
+\index{compresión de índices}
 
-However, we can often bypass this limitation
-by using \key{index compression},
-where the original indices are replaced
-with indices $1,2,3,$ etc.
-This can be done if we know all the indices
-needed during the algorithm beforehand.
+Sin embargo, a menudo podemos eludir esta limitación
+utilizando \key{compresión de índices},
+donde los índices originales son reemplazados
+con índices $1,2,3,$ etc.
+Esto se puede hacer si conocemos todos los índices
+necesarios durante el algoritmo de antemano.
 
-The idea is to replace each original index $x$
-with $c(x)$ where $c$ is a function that
-compresses the indices.
-We require that the order of the indices
-does not change, so if $a<b$, then $c(a)<c(b)$.
-This allows us to conveniently perform queries
-even if the indices are compressed.
+La idea es reemplazar cada índice original $x$
+con $c(x)$ donde $c$ es una función que
+comprime los índices.
+Requerimos que el orden de los índices
+no cambie, así que si $a<b$, entonces $c(a)<c(b)$.
+Esto nos permite realizar consultas convenientemente
+incluso si los índices están comprimidos.
 
-For example, if the original indices are
-$555$, $10^9$ and $8$, the new indices are:
+Por ejemplo, si los índices originales son
+$555$, $10^9$ y $8$, los nuevos índices son:
 
 \[
 \begin{array}{lcl}
@@ -1247,29 +1246,29 @@ c(10^9) & = & 3 \\
 \end{array}
 \]
 
-\subsubsection{Range updates}
+\subsubsection{Actualizaciones de rango}
 
-So far, we have implemented data structures
-that support range queries and updates
-of single values.
-Let us now consider an opposite situation,
-where we should update ranges and
-retrieve single values.
-We focus on an operation that increases all
-elements in a range $[a,b]$ by $x$.
+Hasta ahora, hemos implementado estructuras de datos
+que admiten consultas de rango y actualizaciones
+de valores individuales.
+Consideremos ahora una situación opuesta,
+donde debemos actualizar rangos y
+recuperar valores individuales.
+Nos enfocamos en una operación que aumenta todos
+los elementos en un rango $[a,b]$ por $x$.
 
-\index{difference array}
+\index{arreglo de diferencias}
 
-Surprisingly, we can use the data structures
-presented in this chapter also in this situation.
-To do this, we build a \key{difference array}
-whose values indicate
-the differences between consecutive values
-in the original array.
-Thus, the original array is the
-prefix sum array of the
-difference array.
-For example, consider the following array:
+Sorprendentemente, podemos usar las estructuras de datos
+presentadas en este capítulo también en esta situación.
+Para hacer esto, construimos un \key{arreglo de diferencias}
+cuyos valores indican
+las diferencias entre valores consecutivos
+en el arreglo original.
+Por lo tanto, el arreglo original es el
+arreglo de suma de prefijos del
+arreglo de diferencias.
+Por ejemplo, considere el siguiente arreglo:
 
 \begin{center}
 \begin{tikzpicture}[scale=0.7]
@@ -1297,7 +1296,7 @@ For example, consider the following array:
 \end{tikzpicture}
 \end{center}
 
-The difference array for the above array is as follows:
+El arreglo de diferencias para el arreglo anterior es el siguiente:
 \begin{center}
 \begin{tikzpicture}[scale=0.7]
 \draw (0,0) grid (8,1);
@@ -1324,20 +1323,20 @@ The difference array for the above array is as follows:
 \end{tikzpicture}
 \end{center}
 
-For example, the value 2 at position 6 in the original array
-corresponds to the sum $3-2+4-3=2$ in the difference array.
+Por ejemplo, el valor 2 en la posición 6 en el arreglo original
+corresponde a la suma $3-2+4-3=2$ en el arreglo de diferencias.
 
-The advantage of the difference array is
-that we can update a range
-in the original array by changing just
-two elements in the difference array.
-For example, if we want to 
-increase the original array 
-values between positions 1 and 4 by 5,
-it suffices to increase the
-difference array value at position 1 by 5
-and decrease the value at position 5 by 5.
-The result is as follows:
+La ventaja del arreglo de diferencias es
+que podemos actualizar un rango
+en el arreglo original cambiando solo
+dos elementos en el arreglo de diferencias.
+Por ejemplo, si queremos
+aumentar los valores del arreglo original
+entre las posiciones 1 y 4 en 5,
+basta con aumentar el
+valor del arreglo de diferencias en la posición 1 en 5
+y disminuir el valor en la posición 5 en 5.
+El resultado es el siguiente:
 
 \begin{center}
 \begin{tikzpicture}[scale=0.7]
@@ -1364,17 +1363,18 @@ The result is as follows:
 \end{tikzpicture}
 \end{center}
 
-More generally, to increase the values
-in range $[a,b]$ by $x$,
-we increase the value at position $a$ by $x$
-and decrease the value at position $b+1$ by $x$.
-Thus, it is only needed to update single values
-and process sum queries,
-so we can use a binary indexed tree or a segment tree.
+Más generalmente, para aumentar los valores
+en el rango $[a,b]$ por $x$,
+aumentamos el valor en la posición $a$ en $x$
+y disminuimos el valor en la posición $b+1$ en $x$.
+Por lo tanto, solo es necesario actualizar valores individuales
+y procesar consultas de suma,
+así que podemos usar un árbol binario indexado o un árbol de segmentos.
 
-A more difficult problem is to support both
-range queries and range updates.
-In Chapter 28 we will see that even this is possible.
+Un problema más difícil es admitir tanto
+consultas de rango como actualizaciones de rango.
+En el Capítulo 28 veremos que incluso esto es posible.
+
 
 
 
