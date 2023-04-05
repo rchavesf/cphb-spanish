@@ -775,7 +775,7 @@ Como ejemplo, considere el siguiente arreglo:
 \node at (7.5,1.4) {$7$};
 \end{tikzpicture}
 \end{center}
-The corresponding segment tree is as follows:
+El árbol de segmentos correspondiente es el siguiente:
 \begin{center}
 \begin{tikzpicture}[scale=0.7]
 \draw (0,0) grid (8,1);
@@ -815,18 +815,18 @@ The corresponding segment tree is as follows:
 \end{tikzpicture}
 \end{center}
 
-Each internal tree node
-corresponds to an array range
-whose size is a power of two.
-In the above tree, the value of each internal
-node is the sum of the corresponding array values,
-and it can be calculated as the sum of
-the values of its left and right child node.
+Cada nodo interno del árbol
+corresponde a un rango de arreglo
+cuyo tamaño es una potencia de dos.
+En el árbol anterior, el valor de cada interno
+nodo es la suma de los valores del arreglo correspondiente,
+y se puede calcular como la suma de
+los valores de su nodo hijo izquierdo y derecho.
 
-It turns out that any range $[a,b]$
-can be divided into $O(\log n)$ ranges
-whose values are stored in tree nodes.
-For example, consider the range [2,7]:
+Resulta que cualquier rango $[a,b]$
+puede dividirse en $O(\log n)$ rangos
+cuyos valores se almacenan en nodos del árbol.
+Por ejemplo, considere el rango [2,7]:
 \begin{center}
 \begin{tikzpicture}[scale=0.7]
 \fill[color=gray!50] (2,0) rectangle (8,1);
@@ -852,9 +852,9 @@ For example, consider the range [2,7]:
 \node at (7.5,1.4) {$7$};
 \end{tikzpicture}
 \end{center}
-Here $\texttt{sum}_q(2,7)=6+3+2+7+2+6=26$.
-In this case, the following two tree nodes
-correspond to the range:
+Aquí $\texttt{sum}_q(2,7)=6+3+2+7+2+6=26$.
+En este caso, los siguientes dos nodos del árbol
+corresponden al rango:
 \begin{center}
 \begin{tikzpicture}[scale=0.7]
 \draw (0,0) grid (8,1);
@@ -893,24 +893,24 @@ correspond to the range:
 \path[draw,thick,-] (m) -- (j);
 \end{tikzpicture}
 \end{center}
-Thus, another way to calculate the sum is $9+17=26$.
+Por lo tanto, otra forma de calcular la suma es $9+17=26$.
 
-When the sum is calculated using nodes
-located as high as possible in the tree,
-at most two nodes on each level
-of the tree are needed.
-Hence, the total number of nodes
-is $O(\log n)$.
+Cuando se calcula la suma utilizando nodos
+ubicados lo más alto posible en el árbol,
+se necesitan como máximo dos nodos en cada nivel
+del árbol.
+Por lo tanto, el número total de nodos
+es $O(\log n)$.
 
-After an array update,
-we should update all nodes
-whose value depends on the updated value.
-This can be done by traversing the path
-from the updated array element to the top node
-and updating the nodes along the path.
+Después de una actualización de arreglo,
+debemos actualizar todos los nodos
+cuyo valor depende del valor actualizado.
+Esto se puede hacer recorriendo el camino
+desde el elemento de matriz actualizado hasta el nodo superior
+y actualizando los nodos a lo largo del camino.
 
-The following picture shows which tree nodes
-change if the array value 7 changes:
+La siguiente imagen muestra qué nodos del árbol
+cambian si cambia el valor 7 del arreglo:
 
 \begin{center}
 \begin{tikzpicture}[scale=0.7]
@@ -952,25 +952,25 @@ change if the array value 7 changes:
 \end{tikzpicture}
 \end{center}
 
-The path from bottom to top
-always consists of $O(\log n)$ nodes,
-so each update changes $O(\log n)$ nodes in the tree.
+El camino de abajo hacia arriba
+siempre consta de $O(\log n)$ nodos,
+por lo que cada actualización cambia $O(\log n)$ nodos en el árbol.
 
-\subsubsection{Implementation}
+\subsubsection{Implementación}
 
-We store a segment tree as an array
-of $2n$ elements where $n$ is the size of
-the original array and a power of two.
-The tree nodes are stored from top to bottom:
-$\texttt{tree}[1]$ is the top node,
-$\texttt{tree}[2]$ and $\texttt{tree}[3]$
-are its children, and so on.
-Finally, the values from $\texttt{tree}[n]$
-to $\texttt{tree}[2n-1]$ correspond to
-the values of the original array
-on the bottom level of the tree.
+Almacenamos un árbol de segmentos como un arreglo
+de $2n$ elementos donde $n$ es el tamaño de
+el arreglo original y una potencia de dos.
+Los nodos del árbol se almacenan de arriba hacia abajo:
+$\texttt{arbol}[1]$ es el nodo superior,
+$\texttt{arbol}[2]$ y $\texttt{arbol}[3]$
+son sus hijos, y así sucesivamente.
+Finalmente, los valores desde $\texttt{arbol}[n]$
+hasta $\texttt{arbol}[2n-1]$ corresponden a
+los valores del arreglo original
+en el nivel inferior del árbol.
 
-For example, the segment tree
+Por ejemplo, el árbol de segmentos
 \begin{center}
 \begin{tikzpicture}[scale=0.7]
 \draw (0,0) grid (8,1);
@@ -1009,7 +1009,7 @@ For example, the segment tree
 \path[draw,thick,-] (m) -- (j);
 \end{tikzpicture}
 \end{center}
-is stored as follows:
+se almacena de la siguiente manera:
 \begin{center}
 \begin{tikzpicture}[scale=0.7]
 \draw (0,0) grid (15,1);
@@ -1048,13 +1048,13 @@ is stored as follows:
 \node at (14.5,1.4) {$15$};
 \end{tikzpicture}
 \end{center}
-Using this representation,
-the parent of $\texttt{tree}[k]$
-is $\texttt{tree}[\lfloor k/2 \rfloor]$,
-and its children are $\texttt{tree}[2k]$
-and $\texttt{tree}[2k+1]$.
-Note that this implies that the position of a node
-is even if it is a left child and odd if it is a right child.
+Usando esta representación,
+el padre de $\texttt{arbol}[k]$
+es $\texttt{arbol}[\lfloor k/2 \rfloor]$,
+y sus hijos son $\texttt{arbol}[2k]$
+y $\texttt{arbol}[2k+1]$.
+Nótese que esto implica que la posición de un nodo
+es par si es un hijo izquierdo e impar si es un hijo derecho.
 
 The following function
 calculates the value of $\texttt{sum}_q(a,b)$:
