@@ -452,16 +452,16 @@ ya que facilita la implementación.
 
 Sea $p(k)$ la mayor potencia de dos que
 divide a $k$.
-Almacenamos un árbol binario indexado como un arreglo \texttt{tree}
+Almacenamos un árbol binario indexado como un arreglo \texttt{arbol}
 tal que
-\[ \texttt{tree}[k] = \texttt{sum}_q(k-p(k)+1,k),\]
+\[ \texttt{arbol}[k] = \texttt{suma}_q(k-p(k)+1,k),\]
 es decir, cada posición $k$ contiene la suma de los valores
 en un rango del arreglo original cuya longitud es $p(k)$
 y que termina en la posición $k$.
-For example, since $p(6)=2$, $\texttt{tree}[6]$
-contains the value of $\texttt{sum}_q(5,6)$.
+Por ejemplo, dado que $p(6)=2$, $\texttt{arbol}[6]$
+contiene el valor de $\texttt{suma}_q(5,6)$.
 
-For example, consider the following array:
+Por ejemplo, considere el siguiente arreglo:
 \begin{center}
 \begin{tikzpicture}[scale=0.7]
 \draw (0,0) grid (8,1);
@@ -487,7 +487,7 @@ For example, consider the following array:
 \end{tikzpicture}
 \end{center}
 
-The corresponding binary indexed tree is as follows:
+El árbol binario indexado correspondiente es el siguiente:
 \begin{center}
 \begin{tikzpicture}[scale=0.7]
 \draw (0,0) grid (8,1);
@@ -513,9 +513,9 @@ The corresponding binary indexed tree is as follows:
 \end{tikzpicture}
 \end{center}
 
-The following picture shows more clearly
-how each value in the binary indexed tree
-corresponds to a range in the original array:
+La siguiente imagen muestra de manera más clara
+cómo cada valor en el árbol binario indexado
+corresponde a un rango en el arreglo original:
 
 \begin{center}
 \begin{tikzpicture}[scale=0.7]
@@ -560,14 +560,14 @@ corresponds to a range in the original array:
 \end{tikzpicture}
 \end{center}
 
-Using a binary indexed tree,
-any value of $\texttt{sum}_q(1,k)$
-can be calculated in $O(\log n)$ time,
-because a range $[1,k]$ can always be divided into
-$O(\log n)$ ranges whose sums are stored in the tree.
+Usando un árbol binario indexado,
+cualquier valor de $\texttt{suma}_q(1,k)$
+se puede calcular en $O(\log n)$ tiempo,
+porque un rango $[1,k]$ siempre se puede dividir en
+$O(\log n)$ rangos cuyas sumas están almacenadas en el árbol.
 
-For example, the range $[1,7]$ consists of
-the following ranges:
+Por ejemplo, el rango $[1,7]$ consta de
+los siguientes rangos:
 \begin{center}
 \begin{tikzpicture}[scale=0.7]
 \draw (0,0) grid (8,1);
@@ -610,21 +610,21 @@ the following ranges:
 \draw (0,-4) -- (8,-4) -- (8,-4.5) -- (0,-4.5) -- (0,-4);
 \end{tikzpicture}
 \end{center}
-Thus, we can calculate the corresponding sum as follows:
-\[\texttt{sum}_q(1,7)=\texttt{sum}_q(1,4)+\texttt{sum}_q(5,6)+\texttt{sum}_q(7,7)=16+7+4=27\]
+Por lo tanto, podemos calcular la suma correspondiente de la siguiente manera:
+\[\texttt{suma}_q(1,7)=\texttt{suma}_q(1,4)+\texttt{suma}_q(5,6)+\texttt{suma}_q(7,7)=16+7+4=27\]
 
-To calculate the value of $\texttt{sum}_q(a,b)$ where $a>1$,
-we can use the same trick that we used with prefix sum arrays:
-\[ \texttt{sum}_q(a,b) = \texttt{sum}_q(1,b) - \texttt{sum}_q(1,a-1).\]
-Since we can calculate both $\texttt{sum}_q(1,b)$
-and $\texttt{sum}_q(1,a-1)$ in $O(\log n)$ time,
-the total time complexity is $O(\log n)$.
+Para calcular el valor de $\texttt{suma}_q(a,b)$ donde $a>1$,
+podemos usar el mismo truco que utilizamos con arreglos de sumas de prefijos:
+\[ \texttt{suma}_q(a,b) = \texttt{suma}_q(1,b) - \texttt{suma}_q(1,a-1).\]
+Dado que podemos calcular tanto $\texttt{suma}_q(1,b)$
+como $\texttt{suma}_q(1,a-1)$ en tiempo $O(\log n)$,
+la complejidad total del tiempo es $O(\log n)$.
 
-Then, after updating a value in the original array,
-several values in the binary indexed tree
-should be updated.
-For example, if the value at position 3 changes,
-the sums of the following ranges change:
+Luego, después de actualizar un valor en el arreglo original,
+varios valores en el árbol binario indexado
+deben ser actualizados.
+Por ejemplo, si el valor en la posición 3 cambia,
+las sumas de los siguientes rangos cambian:
 \begin{center}
 \begin{tikzpicture}[scale=0.7]
 \draw (0,0) grid (8,1);
@@ -668,89 +668,89 @@ the sums of the following ranges change:
 \end{tikzpicture}
 \end{center}
 
-Since each array element belongs to $O(\log n)$
-ranges in the binary indexed tree,
-it suffices to update $O(\log n)$ values in the tree.
+Dado que cada elemento del arreglo pertenece a $O(\log n)$
+rangos en el árbol binario indexado,
+basta con actualizar $O(\log n)$ valores en el árbol.
 
-\subsubsection{Implementation}
+\subsubsection{Implementación}
 
-The operations of a binary indexed tree can be
-efficiently implemented using bit operations.
-The key fact needed is that we can
-calculate any value of $p(k)$ using the formula
+Las operaciones de un árbol binario indexado pueden ser
+implementadas de manera eficiente usando operaciones de bits.
+El hecho clave necesario es que podemos
+calcular cualquier valor de $p(k)$ usando la fórmula
 \[p(k) = k \& -k.\]
 
-The following function calculates the value of $\texttt{sum}_q(1,k)$:
+La siguiente función calcula el valor de $\texttt{suma}_q(1,k)$:
 \begin{lstlisting}
-int sum(int k) {
+int suma(int k) {
     int s = 0;
     while (k >= 1) {
-        s += tree[k];
+        s += arbol[k];
         k -= k&-k;
     }
     return s;
 }
 \end{lstlisting}
 
-The following function increases the
-array value at position $k$ by $x$
-($x$ can be positive or negative):
+La siguiente función aumenta el
+valor del arreglo en la posición $k$ por $x$
+($x$ puede ser positivo o negativo):
 \begin{lstlisting}
-void add(int k, int x) {
+void agregar(int k, int x) {
     while (k <= n) {
-        tree[k] += x;
+        arbol[k] += x;
         k += k&-k;
     }
 }
 \end{lstlisting}
 
-The time complexity of both the functions is
-$O(\log n)$, because the functions access $O(\log n)$
-values in the binary indexed tree, and each move
-to the next position takes $O(1)$ time.
+La complejidad en tiempo de ambas funciones es
+$O(\log n)$, porque las funciones acceden a $O(\log n)$
+valores en el árbol binario indexado, y cada movimiento
+a la siguiente posición toma $O(1)$ tiempo.
 
-\section{Segment tree}
+\section{Árbol de segmentos}
 
-\index{segment tree}
+\index{árbol de segmentos}
 
-A \key{segment tree}\footnote{The bottom-up-implementation in this chapter corresponds to
-that in \cite{sta06}. Similar structures were used
-in late 1970's to solve geometric problems \cite{ben80}.} is a data structure
-that supports two operations:
-processing a range query and
-updating an array value.
-Segment trees can support
-sum queries, minimum and maximum queries and many other
-queries so that both operations work in $O(\log n)$ time.
+Un \key{árbol de segmentos}\footnote{La implementación de abajo hacia arriba en este capítulo corresponde
+a la que aparece en \cite{sta06}. Estructuras similares se utilizaron
+a finales de la década de 1970 para resolver problemas geométricos \cite{ben80}.} es una estructura de datos
+que soporta dos operaciones:
+procesar una consulta de rango y
+actualizar un valor del arreglo.
+Los árboles de segmentos pueden soportar
+consultas de suma, consultas de mínimo y máximo, y muchas otras
+consultas de modo que ambas operaciones funcionen en $O(\log n)$ tiempo.
 
-Compared to a binary indexed tree,
-the advantage of a segment tree is that it is
-a more general data structure.
-While binary indexed trees only support
-sum queries\footnote{In fact, using \emph{two} binary
-indexed trees it is possible to support minimum queries \cite{dim15},
-but this is more complicated than to use a segment tree.},
-segment trees also support other queries.
-On the other hand, a segment tree requires more
-memory and is a bit more difficult to implement.
+En comparación con un árbol binario indexado,
+la ventaja de un árbol de segmentos es que es
+una estructura de datos más general.
+Mientras que los árboles binarios indexados solo admiten
+consultas de suma\footnote{De hecho, utilizando \emph{dos} árboles
+binarios indexados es posible soportar consultas de mínimo \cite{dim15},
+pero esto es más complicado que usar un árbol de segmentos.},
+los árboles de segmentos también admiten otras consultas.
+Por otro lado, un árbol de segmentos requiere más
+memoria y es un poco más difícil de implementar.
 
-\subsubsection{Structure}
+\subsubsection{Estructura}
 
-A segment tree is a binary tree
-such that the nodes on the bottom level of the tree
-correspond to the array elements,
-and the other nodes
-contain information needed for processing range queries.
+Un árbol de segmentos es un árbol binario
+tal que los nodos en el nivel inferior del árbol
+corresponden a los elementos del arreglo,
+y los otros nodos
+contienen información necesaria para procesar consultas de rango.
 
-In this section, we assume that the size
-of the array is a power of two and zero-based
-indexing is used, because it is convenient to build
-a segment tree for such an array.
-If the size of the array is not a power of two,
-we can always append extra elements to it.
+En esta sección, asumimos que el tamaño
+del arreglo es una potencia de dos y se utiliza indexación basada en cero,
+porque es conveniente construir
+un árbol de segmentos para tal arreglo.
+Si el tamaño del arreglo no es una potencia de dos,
+siempre podemos agregar elementos adicionales.
 
-We will first discuss segment trees that support sum queries.
-As an example, consider the following array:
+Primero discutiremos árboles de segmentos que admiten consultas de suma.
+Como ejemplo, considere el siguiente arreglo:
 \begin{center}
 \begin{tikzpicture}[scale=0.7]
 \draw (0,0) grid (8,1);
