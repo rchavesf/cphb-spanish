@@ -1,63 +1,63 @@
-\chapter{Bit manipulation}
+\chapter{Manipulación de bits}
 
-All data in computer programs is internally stored as bits,
-i.e., as numbers 0 and 1.
-This chapter discusses the bit representation
-of integers, and shows examples
-of how to use bit operations.
-It turns out that there are many uses for
-bit manipulation in algorithm programming.
+Todos los datos en los programas de computadora se almacenan internamente como bits,
+es decir, como números 0 y 1.
+Este capítulo discute la representación de bits
+de los enteros y muestra ejemplos
+de cómo usar operaciones de bits.
+Resulta que hay muchos usos para
+la manipulación de bits en la programación de algoritmos.
 
-\section{Bit representation}
+\section{Representación de bits}
 
-\index{bit representation}
+\index{representación de bits}
 
-In programming, an $n$ bit integer is internally
-stored as a binary number that consists of $n$ bits.
-For example, the C++ type \texttt{int} is
-a 32-bit type, which means that every \texttt{int}
-number consists of 32 bits.
+En la programación, un entero de $n$ bits se guarda internamente
+como un número binario que consta de $n$ bits.
+Por ejemplo, el tipo \texttt{int} en C++ es
+un tipo de 32 bits, lo que significa que cada número \texttt{int}
+consta de 32 bits.
 
-Here is the bit representation of
-the \texttt{int} number 43: 
+Aquí está la representación de bits de
+el número \texttt{int} 43: 
 \[00000000000000000000000000101011\]
-The bits in the representation are indexed from right to left.
-To convert a bit representation $b_k \cdots b_2 b_1 b_0$ into a number,
-we can use the formula
+Los bits en la representación se indexan de derecha a izquierda.
+Para convertir una representación de bits $b_k \cdots b_2 b_1 b_0$ en un número,
+podemos usar la fórmula
 \[b_k 2^k + \ldots + b_2 2^2 + b_1 2^1 + b_0 2^0.\]
-For example,
+Por ejemplo,
 \[1 \cdot 2^5 + 1 \cdot 2^3 + 1 \cdot 2^1 + 1 \cdot 2^0 = 43.\]
 
-The bit representation of a number is either
-\key{signed} or \key{unsigned}.
-Usually a signed representation is used,
-which means that both negative and positive
-numbers can be represented.
-A signed variable of $n$ bits can contain any
-integer between $-2^{n-1}$ and $2^{n-1}-1$.
-For example, the \texttt{int} type in C++ is
-a signed type, so an \texttt{int} variable can contain any
-integer between $-2^{31}$ and $2^{31}-1$.
+La representación de bits de un número es
+\key{con signo} o \key{sin signo}.
+Por lo general, se utiliza una representación con signo,
+lo que significa que se pueden representar
+números negativos y positivos.
+Una variable con signo de $n$ bits puede contener cualquier
+entero entre $-2^{n-1}$ y $2^{n-1}-1$.
+Por ejemplo, el tipo \texttt{int} en C++ es
+un tipo con signo, por lo que una variable \texttt{int} puede contener cualquier
+entero entre $-2^{31}$ y $2^{31}-1$.
 
-The first bit in a signed representation
-is the sign of the number (0 for nonnegative numbers
-and 1 for negative numbers), and
-the remaining $n-1$ bits contain the magnitude of the number.
-\key{Two's complement} is used, which means that the
-opposite number of a number is calculated by first
-inverting all the bits in the number,
-and then increasing the number by one.
+El primer bit en una representación con signo
+es el signo del número (0 para números no negativos
+y 1 para números negativos) y
+los $n-1$ bits restantes contienen la magnitud del número.
+Se utiliza el \key{complemento a dos}, lo que significa que el
+número opuesto de un número se calcula primero
+invirtiendo todos los bits en el número,
+y luego incrementando el número en uno.
 
-For example, the bit representation of
-the \texttt{int} number $-43$ is
+Por ejemplo, la representación de bits de
+el número \texttt{int} $-43$ es
 \[11111111111111111111111111010101.\]
 
-In an unsigned representation, only nonnegative
-numbers can be used, but the upper bound for the values is larger.
-An unsigned variable of $n$ bits can contain any
-integer between $0$ and $2^n-1$.
-For example, in C++, an \texttt{unsigned int} variable
-can contain any integer between $0$ and $2^{32}-1$.
+En una representación sin signo, solo se pueden usar
+números no negativos, pero el límite superior para los valores es mayor.
+Una variable sin signo de $n$ bits puede contener cualquier
+entero entre $0$ y $2^n-1$.
+Por ejemplo, en C++, una variable \texttt{unsigned int}
+puede contener cualquier entero entre $0$ y $2^{32}-1$.
 
 There is a connection between the
 representations:
