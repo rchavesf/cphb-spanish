@@ -569,45 +569,44 @@ En este escenario, el precio total mínimo es $5$:
 
 Deje que $\texttt{precio}[x][d]$ denote el precio del producto $x$
 en el día $d$.
-For example, in the above scenario $\texttt{price}[2][3] = 7$.
-Then, let $\texttt{total}(S,d)$ denote the minimum total
-price for buying a subset $S$ of products by day $d$.
-Using this function, the solution to the problem is
+Por ejemplo, en el escenario anterior $\texttt{precio}[2][3] = 7$.
+Luego, que $\texttt{total}(S,d)$ denote el precio total mínimo
+para comprar un subconjunto $S$ de productos en el día $d$.
+Usando esta función, la solución al problema es
 $\texttt{total}(\{0 \ldots k-1\},n-1)$.
 
-First, $\texttt{total}(\emptyset,d) = 0$,
-because it does not cost anything to buy an empty set,
-and $\texttt{total}(\{x\},0) = \texttt{price}[x][0]$,
-because there is one way to buy one product on the first day.
-Then, the following recurrence can be used:
+Primero, $\texttt{total}(\emptyset,d) = 0$,
+porque no cuesta nada comprar un conjunto vacío,
+y $\texttt{total}(\{x\},0) = \texttt{precio}[x][0]$,
+porque hay una forma de comprar un producto en el primer día.
+Luego, se puede utilizar la siguiente recurrencia:
 \begin{equation*}
 \begin{split}
 \texttt{total}(S,d) = \min( & \texttt{total}(S,d-1), \\
-& \min_{x \in S} (\texttt{total}(S \setminus x,d-1)+\texttt{price}[x][d]))
+& \min_{x \in S} (\texttt{total}(S \setminus x,d-1)+\texttt{precio}[x][d]))
 \end{split}
 \end{equation*}
-This means that we either do not buy any product on day $d$
-or buy a product $x$ that belongs to $S$.
-In the latter case, we remove $x$ from $S$ and add the
-price of $x$ to the total price.
+Esto significa que no compramos ningún producto en el día $d$
+o compramos un producto $x$ que pertenece a $S$.
+En este último caso, quitamos $x$ de $S$ y añadimos el
+precio de $x$ al precio total.
 
-The next step is to calculate the values of the function
-using dynamic programming.
-To store the function values, we declare an array
+El siguiente paso es calcular los valores de la función
+usando programación dinámica.
+Para almacenar los valores de la función, declaramos una matriz
 \begin{lstlisting}
 int total[1<<K][N];
 \end{lstlisting}
-where $K$ and $N$ are suitably large constants.
-The first dimension of the array corresponds to a bit
-representation of a subset.
+donde $K$ y $N$ son constantes adecuadamente grandes.
+La primera dimensión de la matriz corresponde a una representación de bits de un subconjunto.
 
-First, the cases where $d=0$ can be processed as follows:
+Primero, los casos donde $d=0$ se pueden procesar de la siguiente manera:
 \begin{lstlisting}
 for (int x = 0; x < k; x++) {
-    total[1<<x][0] = price[x][0];
+    total[1<<x][0] = precio[x][0];
 }
 \end{lstlisting}
-Then, the recurrence translates into the following code:
+Luego, la recurrencia se traduce en el siguiente código:
 \begin{lstlisting}
 for (int d = 1; d < n; d++) {
     for (int s = 0; s < (1<<k); s++) {
@@ -615,13 +614,13 @@ for (int d = 1; d < n; d++) {
         for (int x = 0; x < k; x++) {
             if (s&(1<<x)) {
                 total[s][d] = min(total[s][d],
-                                    total[s^(1<<x)][d-1]+price[x][d]);
+                                    total[s^(1<<x)][d-1]+precio[x][d]);
             }
         }
     }
 }
 \end{lstlisting}
-The time complexity of the algorithm is $O(n 2^k k)$.
+La complejidad temporal del algoritmo es $O(n 2^k k)$.
 
 \subsubsection{From permutations to subsets}
 
