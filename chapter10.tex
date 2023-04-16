@@ -59,12 +59,12 @@ entero entre $0$ y $2^n-1$.
 Por ejemplo, en C++, una variable \texttt{unsigned int}
 puede contener cualquier entero entre $0$ y $2^{32}-1$.
 
-There is a connection between the
-representations:
-a signed number $-x$ equals an unsigned number $2^n-x$.
-For example, the following code shows that
-the signed number $x=-43$ equals the unsigned
-number $y=2^{32}-43$:
+Existe una conexión entre las
+representaciones:
+un número con signo $-x$ es igual a un número sin signo $2^n-x$.
+Por ejemplo, el siguiente código muestra que
+el número con signo $x=-43$ es igual al número sin signo
+$y=2^{32}-43$:
 \begin{lstlisting}
 int x = -43;
 unsigned int y = x;
@@ -72,13 +72,13 @@ cout << x << "\n"; // -43
 cout << y << "\n"; // 4294967253
 \end{lstlisting}
 
-If a number is larger than the upper bound
-of the bit representation, the number will overflow.
-In a signed representation,
-the next number after $2^{n-1}-1$ is $-2^{n-1}$,
-and in an unsigned representation,
-the next number after $2^n-1$ is $0$.
-For example, consider the following code:
+Si un número es mayor que el límite superior
+de la representación de bits, el número se desbordará.
+En una representación con signo,
+el siguiente número después de $2^{n-1}-1$ es $-2^{n-1}$,
+y en una representación sin signo,
+el siguiente número después de $2^n-1$ es $0$.
+Por ejemplo, considere el siguiente código:
 \begin{lstlisting}
 int x = 2147483647
 cout << x << "\n"; // 2147483647
@@ -86,24 +86,24 @@ x++;
 cout << x << "\n"; // -2147483648
 \end{lstlisting}
 
-Initially, the value of $x$ is $2^{31}-1$.
-This is the largest value that can be stored
-in an \texttt{int} variable,
-so the next number after $2^{31}-1$ is $-2^{31}$.
+Inicialmente, el valor de $x$ es $2^{31}-1$.
+Este es el valor más grande que se puede almacenar
+en una variable \texttt{int},
+entonces el siguiente número después de $2^{31}-1$ es $-2^{31}$.
 
 
-\section{Bit operations}
+\section{Operaciones de bits}
 
 \newcommand\XOR{\mathbin{\char`\^}}
 
-\subsubsection{And operation}
+\subsubsection{Operación and}
 
-\index{and operation}
+\index{operación and}
 
-The \key{and} operation $x$ \& $y$ produces a number
-that has one bits in positions where both
-$x$ and $y$ have one bits.
-For example, $22$ \& $26$ = 18, because
+La operación \key{and} $x$ \& $y$ produce un número
+que tiene bits uno en las posiciones donde ambos
+$x$ y $y$ tienen bits uno.
+Por ejemplo, $22$ \& $26$ = 18, porque
 
 \begin{center}
 \begin{tabular}{rrr}
@@ -114,39 +114,22 @@ For example, $22$ \& $26$ = 18, because
 \end{tabular}
 \end{center}
 
-Using the and operation, we can check if a number
-$x$ is even because
-$x$ \& $1$ = 0 if $x$ is even, and
-$x$ \& $1$ = 1 if $x$ is odd.
-More generally, $x$ is divisible by $2^k$
-exactly when $x$ \& $(2^k-1)$ = 0.
+Usando la operación and, podemos verificar si un número
+$x$ es par porque
+$x$ \& $1$ = 0 si $x$ es par, y
+$x$ \& $1$ = 1 si $x$ es impar.
+Más en general, $x$ es divisible por $2^k$
+exactamente cuando $x$ \& $(2^k-1)$ = 0.
 
-\subsubsection{Or operation}
+\subsubsection{Operación or}
 
-\index{or operation}
+\index{operación or}
 
-The \key{or} operation $x$ | $y$ produces a number
-that has one bits in positions where at least one
-of $x$ and $y$ have one bits.
-For example, $22$ | $26$ = 30, because
+La operación \key{or} $x$ | $y$ produce un número
+que tiene bits uno en posiciones donde al menos uno
+de $x$ y $y$ tienen bits uno.
+Por ejemplo, $22$ | $26$ = 30, porque
 
-\begin{center}
-\begin{tabular}{rrr}
-& 10110 & (22)\\
-| & 11010 & (26) \\
-\hline
- = & 11110 & (30) \\
-\end{tabular}
-\end{center}
-
-\subsubsection{Xor operation}
-
-\index{xor operation}
-
-The \key{xor} operation $x$ $\XOR$ $y$ produces a number
-that has one bits in positions where exactly one
-of $x$ and $y$ have one bits.
-For example, $22$ $\XOR$ $26$ = 12, because
 
 \begin{center}
 \begin{tabular}{rrr}
