@@ -760,68 +760,69 @@ Por ejemplo, suponga que $n=3$ y los valores son los siguientes:
 \item $\texttt{valor}[\{0,1,2\}] = 3$
 \end{itemize}
 \end{multicols}
-In this case, for example,
+En este caso, por ejemplo,
 \begin{equation*}
 \begin{split}
-\texttt{sum}(\{0,2\}) &= \texttt{value}[\emptyset]+\texttt{value}[\{0\}]+\texttt{value}[\{2\}]+\texttt{value}[\{0,2\}] \\ 
+\texttt{suma}(\{0,2\}) &= \texttt{valor}[\emptyset]+\texttt{valor}[\{0\}]+\texttt{valor}[\{2\}]+\texttt{valor}[\{0,2\}] \\ 
                       &= 3 + 1 + 5 + 1 = 10.
 \end{split}
 \end{equation*}
 
-Because there are a total of $2^n$ subsets,
-one possible solution is to go through all
-pairs of subsets in $O(2^{2n})$ time.
-However, using dynamic programming, we
-can solve the problem in $O(2^n n)$ time.
-The idea is to focus on sums where the
-elements that may be removed from $S$ are restricted.
+Debido a que hay un total de $2^n$ subconjuntos,
+una posible solución es recorrer todos
+los pares de subconjuntos en tiempo $O(2^{2n})$.
+Sin embargo, usando programación dinámica, podemos
+resolver el problema en tiempo $O(2^n n)$.
+La idea es centrarse en las sumas donde los
+elementos que pueden eliminarse de $S$ están restringidos.
 
-Let $\texttt{partial}(S,k)$ denote the sum of
-values of subsets of $S$ with the restriction
-that only elements $0 \ldots k$
-may be removed from $S$.
-For example,
-\[\texttt{partial}(\{0,2\},1)=\texttt{value}[\{2\}]+\texttt{value}[\{0,2\}],\]
-because we may only remove elements $0 \ldots 1$.
-We can calculate values of \texttt{sum} using
-values of \texttt{partial}, because
-\[\texttt{sum}(S) = \texttt{partial}(S,n-1).\]
-The base cases for the function are
-\[\texttt{partial}(S,-1)=\texttt{value}[S],\]
-because in this case no elements can be removed from $S$.
-Then, in the general case we can use the following recurrence:
+Denotemos a $\texttt{parcial}(S,k)$ como la suma de
+valores de subconjuntos de $S$ con la restricción
+de que solo los elementos $0 \ldots k$
+pueden eliminarse de $S$.
+Por ejemplo,
+\[\texttt{parcial}(\{0,2\},1)=\texttt{valor}[\{2\}]+\texttt{valor}[\{0,2\}],\]
+porque solo podemos eliminar elementos $0 \ldots 1$.
+Podemos calcular valores de \texttt{suma} usando
+valores de \texttt{parcial}, porque
+\[\texttt{suma}(S) = \texttt{parcial}(S,n-1).\]
+Los casos base para la función son
+\[\texttt{parcial}(S,-1)=\texttt{valor}[S],\]
+porque en este caso no se pueden eliminar elementos de $S$.
+Luego, en el caso general, podemos usar la siguiente recurrencia:
 \begin{equation*}
-    \texttt{partial}(S,k) = \begin{cases}
-               \texttt{partial}(S,k-1) & k \notin S \\
-               \texttt{partial}(S,k-1) + \texttt{partial}(S \setminus \{k\},k-1) & k \in S
+    \texttt{parcial}(S,k) = \begin{cases}
+               \texttt{parcial}(S,k-1) & k \notin S \\
+               \texttt{parcial}(S,k-1) + \texttt{parcial}(S \setminus \{k\},k-1) & k \in S
            \end{cases}
 \end{equation*}
-Here we focus on the element $k$.
-If $k \in S$, we have two options: we may either keep $k$ in $S$
-or remove it from $S$.
+Aquí nos centramos en el elemento $k$.
+Si $k \in S$, tenemos dos opciones: podemos mantener $k$ en $S$
+o eliminarlo de $S$.
 
-There is a particularly clever way to implement the
-calculation of sums. We can declare an array
+Hay una forma especialmente ingeniosa de implementar el
+cálculo de sumas. Podemos declarar un arreglo
 \begin{lstlisting}
-int sum[1<<N];
+int suma[1<<N];
 \end{lstlisting}
-that will contain the sum of each subset.
-The array is initialized as follows:
+que contendrá la suma de cada subconjunto.
+El arreglo se inicializa de la siguiente manera:
 \begin{lstlisting}
 for (int s = 0; s < (1<<n); s++) {
-    sum[s] = value[s];
+    suma[s] = valor[s];
 }
 \end{lstlisting}
-Then, we can fill the array as follows:
+Luego, podemos llenar el arreglo de la siguiente manera:
 \begin{lstlisting}
 for (int k = 0; k < n; k++) {
     for (int s = 0; s < (1<<n); s++) {
-        if (s&(1<<k)) sum[s] += sum[s^(1<<k)];
+        if (s&(1<<k)) suma[s] += suma[s^(1<<k)];
     }
 }
 \end{lstlisting}
-This code calculates the values of $\texttt{partial}(S,k)$
-for $k=0 \ldots n-1$ to the array \texttt{sum}.
-Since $\texttt{partial}(S,k)$ is always based on
-$\texttt{partial}(S,k-1)$, we can reuse the array
-\texttt{sum}, which yields a very efficient implementation.
+Este código calcula los valores de $\texttt{parcial}(S,k)$
+para $k=0 \ldots n-1$ en el arreglo \texttt{suma}.
+Dado que $\texttt{parcial}(S,k)$ siempre se basa en
+$\texttt{parcial}(S,k-1)$, podemos reutilizar el arreglo
+\texttt{suma}, lo que resulta en una implementación muy eficiente.
+
