@@ -367,24 +367,24 @@ el número de posiciones en las que las cadenas difieren.
 Por ejemplo,
 \[\texttt{hamming}(01101,11001)=2.\]
 
-Consider the following problem: Given
-a list of $n$ bit strings, each of length $k$,
-calculate the minimum Hamming distance
-between two strings in the list.
-For example, the answer for $[00111,01101,11110]$
-is 2, because
+Considere el siguiente problema: Dado
+una lista de $n$ cadenas de bits, cada una de longitud $k$,
+calcule la distancia mínima de Hamming
+entre dos cadenas en la lista.
+Por ejemplo, la respuesta para $[00111,01101,11110]$
+es 2, porque
 \begin{itemize}[noitemsep]
 \item $\texttt{hamming}(00111,01101)=2$,
-\item $\texttt{hamming}(00111,11110)=3$, and
+\item $\texttt{hamming}(00111,11110)=3$, y
 \item $\texttt{hamming}(01101,11110)=3$.
 \end{itemize}
 
-A straightforward way to solve the problem is
-to go through all pairs of strings and calculate
-their Hamming distances,
-which yields an $O(n^2 k)$ time algorithm.
-The following function can be used to
-calculate distances:
+Una forma directa de resolver el problema es
+recorrer todos los pares de cadenas y calcular
+sus distancias de Hamming,
+lo que produce un algoritmo de tiempo $O(n^2 k)$.
+La siguiente función se puede utilizar para
+calcular distancias:
 \begin{lstlisting}
 int hamming(string a, string b) {
     int d = 0;
@@ -395,40 +395,40 @@ int hamming(string a, string b) {
 }
 \end{lstlisting}
 
-However, if $k$ is small, we can optimize the code
-by storing the bit strings as integers and
-calculating the Hamming distances using bit operations.
-In particular, if $k \le 32$, we can just store
-the strings as \texttt{int} values and use the
-following function to calculate distances:
+Sin embargo, si $k$ es pequeño, podemos optimizar el código
+almacenando las cadenas de bits como enteros y
+calculando las distancias de Hamming usando operaciones de bits.
+En particular, si $k \le 32$, podemos almacenar
+las cadenas como valores \texttt{int} y usar la
+siguiente función para calcular distancias:
 \begin{lstlisting}
 int hamming(int a, int b) {
     return __builtin_popcount(a^b);
 }
 \end{lstlisting}
-In the above function, the xor operation constructs
-a bit string that has one bits in positions
-where $a$ and $b$ differ.
-Then, the number of bits is calculated using
-the \texttt{\_\_builtin\_popcount} function.
+En la función anterior, la operación xor construye
+una cadena de bits que tiene unos en posiciones
+donde $a$ y $b$ difieren.
+Luego, se calcula el número de bits usando
+la función \texttt{\_\_builtin\_popcount}.
 
-To compare the implementations, we generated
-a list of 10000 random bit strings of length 30.
-Using the first approach, the search took
-13.5 seconds, and after the bit optimization,
-it only took 0.5 seconds.
-Thus, the bit optimized code was almost
-30 times faster than the original code.
+Para comparar las implementaciones, generamos
+una lista de 10000 cadenas de bits aleatorias de longitud 30.
+Usando el primer enfoque, la búsqueda tomó
+13.5 segundos, y después de la optimización de bits,
+sólo tomó 0.5 segundos.
+Por lo tanto, el código optimizado de bits fue casi
+30 veces más rápido que el código original.
 
-\subsubsection{Counting subgrids}
+\subsubsection{Contando subcuadrículas}
 
-As another example, consider the
-following problem:
-Given an $n \times n$ grid whose
-each square is either black (1) or white (0),
-calculate the number of subgrids
-whose all corners are black.
-For example, the grid
+Como otro ejemplo, considere el
+siguiente problema:
+Dado una cuadrícula de $n \times n$ cuyo
+cada cuadrado es negro (1) o blanco (0),
+calcule el número de subcuadrículas
+cuyas cuatro esquinas son negras.
+Por ejemplo, la cuadrícula
 \begin{center}
 \begin{tikzpicture}[scale=0.5]
 \fill[black] (1,1) rectangle (2,2);
@@ -442,7 +442,7 @@ For example, the grid
 \draw (0,0) grid (5,5);
 \end{tikzpicture}
 \end{center}
-contains two such subgrids:
+contiene dos de estas subcuadrículas:
 \begin{center}
 \begin{tikzpicture}[scale=0.5]
 \fill[black] (1,1) rectangle (2,2);
