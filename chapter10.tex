@@ -210,37 +210,37 @@ y la fórmula
 $x$ $\XOR$ $(1 < < k)$
 invierte el bit $k$ de $x$.
 
-The formula $x$ \& $(x-1)$ sets the last
-one bit of $x$ to zero,
-and the formula $x$ \& $-x$ sets all the
-one bits to zero, except for the last one bit.
-The formula $x$ | $(x-1)$
-inverts all the bits after the last one bit.
-Also note that a positive number $x$ is
-a power of two exactly when $x$ \& $(x-1) = 0$.
+La fórmula $x$ \& $(x-1)$ establece el último
+bit uno de $x$ a cero,
+y la fórmula $x$ \& $-x$ establece todos los
+bits uno a cero, excepto el último bit uno.
+La fórmula $x$ | $(x-1)$
+invierte todos los bits después del último bit uno.
+Además, se debe tener en cuenta que un número positivo $x$ es
+una potencia de dos exactamente cuando $x$ \& $(x-1) = 0$.
 
-\subsubsection*{Additional functions}
+\subsubsection*{Funciones adicionales}
 
-The g++ compiler provides the following
-functions for counting bits:
+El compilador g++ proporciona las siguientes
+funciones para contar bits:
 
 \begin{itemize}
 \item
 $\texttt{\_\_builtin\_clz}(x)$:
-the number of zeros at the beginning of the number
+la cantidad de ceros al principio del número
 \item
 $\texttt{\_\_builtin\_ctz}(x)$:
-the number of zeros at the end of the number
+la cantidad de ceros al final del número
 \item
 $\texttt{\_\_builtin\_popcount}(x)$:
-the number of ones in the number
+la cantidad de unos en el número
 \item
 $\texttt{\_\_builtin\_parity}(x)$:
-the parity (even or odd) of the number of ones
+la paridad (par o impar) de la cantidad de unos
 \end{itemize}
 \begin{samepage}
 
-The functions can be used as follows:
+Las funciones se pueden utilizar de la siguiente manera:
 \begin{lstlisting}
 int x = 5328; // 00000000000000000001010011010000
 cout << __builtin_clz(x) << "\n"; // 19
@@ -250,35 +250,31 @@ cout << __builtin_parity(x) << "\n"; // 1
 \end{lstlisting}
 \end{samepage}
 
-While the above functions only support \texttt{int} numbers,
-there are also \texttt{long long} versions of
-the functions available with the suffix \texttt{ll}.
+\section{Representación de conjuntos}
 
-\section{Representing sets}
-
-Every subset of a set
+Cada subconjunto de un conjunto
 $\{0,1,2,\ldots,n-1\}$
-can be represented as an $n$ bit integer
-whose one bits indicate which
-elements belong to the subset.
-This is an efficient way to represent sets,
-because every element requires only one bit of memory,
-and set operations can be implemented as bit operations.
+se puede representar como un número entero de $n$ bits
+cuyos bits uno indican qué
+elementos pertenecen al subconjunto.
+Esta es una forma eficiente de representar conjuntos,
+porque cada elemento requiere solo un bit de memoria,
+y las operaciones de conjuntos se pueden implementar como operaciones de bits.
 
-For example, since \texttt{int} is a 32-bit type,
-an \texttt{int} number can represent any subset
-of the set $\{0,1,2,\ldots,31\}$.
-The bit representation of the set $\{1,3,4,8\}$ is
+Por ejemplo, dado que \texttt{int} es un tipo de 32 bits,
+un número \texttt{int} puede representar cualquier subconjunto
+del conjunto $\{0,1,2,\ldots,31\}$.
+La representación de bits del conjunto $\{1,3,4,8\}$ es
 \[00000000000000000000000100011010,\]
-which corresponds to the number $2^8+2^4+2^3+2^1=282$.
+que corresponde al número $2^8+2^4+2^3+2^1=282$.
 
-\subsubsection{Set implementation}
+\subsubsection{Implementación de conjuntos}
 
-The following code declares an \texttt{int}
-variable $x$ that can contain
-a subset of $\{0,1,2,\ldots,31\}$.
-After this, the code adds the elements 1, 3, 4 and 8
-to the set and prints the size of the set.
+El siguiente código declara una variable \texttt{int}
+$x$ que puede contener
+un subconjunto de $\{0,1,2,\ldots,31\}$.
+Después de esto, el código agrega los elementos 1, 3, 4 y 8
+al conjunto e imprime el tamaño del conjunto.
 \begin{lstlisting}
 int x = 0;
 x |= (1<<1);
@@ -287,13 +283,13 @@ x |= (1<<4);
 x |= (1<<8);
 cout << __builtin_popcount(x) << "\n"; // 4
 \end{lstlisting}
-Then, the following code prints all
-elements that belong to the set:
+Luego, el siguiente código imprime todos
+los elementos que pertenecen al conjunto:
 \begin{lstlisting}
 for (int i = 0; i < 32; i++) {
     if (x&(1<<i)) cout << i << " ";
 }
-// output: 1 3 4 8
+// salida: 1 3 4 8
 \end{lstlisting}
 
 \subsubsection{Set operations}
