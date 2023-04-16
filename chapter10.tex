@@ -470,64 +470,64 @@ contiene dos de estas subcuadrículas:
 \end{tikzpicture}
 \end{center}
 
-There is an $O(n^3)$ time algorithm for solving the problem:
-go through all $O(n^2)$ pairs of rows and for each pair
-$(a,b)$ calculate the number of columns that contain a black
-square in both rows in $O(n)$ time.
-The following code assumes that $\texttt{color}[y][x]$
-denotes the color in row $y$ and column $x$:
+Existe un algoritmo de tiempo $O(n^3)$ para resolver el problema:
+recorre todos los $O(n^2)$ pares de filas y para cada par
+$(a, b)$ calcula el número de columnas que contienen un cuadrado negro
+en ambas filas en tiempo $O(n)$.
+El siguiente código asume que $\texttt{color}[y][x]$
+denota el color en la fila $y$ y columna $x$:
 \begin{lstlisting}
-int count = 0;
+int conteo = 0;
 for (int i = 0; i < n; i++) {
-    if (color[a][i] == 1 && color[b][i] == 1) count++;
+    if (color[a][i] == 1 && color[b][i] == 1) conteo++;
 }
 \end{lstlisting}
-Then, those columns
-account for $\texttt{count}(\texttt{count}-1)/2$ subgrids with black corners,
-because we can choose any two of them to form a subgrid.
+Entonces, esas columnas
+representan $\texttt{conteo}(\texttt{conteo}-1)/2$ subcuadrículas con esquinas negras,
+porque podemos elegir cualquiera de los dos para formar una subcuadrícula.
 
-To optimize this algorithm, we divide the grid into blocks
-of columns such that each block consists of $N$
-consecutive columns. Then, each row is stored as
-a list of $N$-bit numbers that describe the colors
-of the squares. Now we can process $N$ columns at the same time
-using bit operations. In the following code,
-$\texttt{color}[y][k]$ represents
-a block of $N$ colors as bits.
+Para optimizar este algoritmo, dividimos la cuadrícula en bloques
+de columnas de tal manera que cada bloque consta de $N$
+columnas consecutivas. Luego, cada fila se almacena como
+una lista de números de $N$ bits que describen los colores
+de los cuadrados. Ahora podemos procesar $N$ columnas al mismo tiempo
+usando operaciones de bits. En el siguiente código,
+$\texttt{color}[y][k]$ representa
+un bloque de $N$ colores como bits.
 \begin{lstlisting}
-int count = 0;
+int conteo = 0;
 for (int i = 0; i <= n/N; i++) {
-    count += __builtin_popcount(color[a][i]&color[b][i]);
+    conteo += __builtin_popcount(color[a][i]&color[b][i]);
 }
 \end{lstlisting}
-The resulting algorithm works in $O(n^3/N)$ time.
+El algoritmo resultante funciona en tiempo $O(n^3/N)$.
 
-We generated a random grid of size $2500 \times 2500$
-and compared the original and bit optimized implementation.
-While the original code took $29.6$ seconds,
-the bit optimized version only took $3.1$ seconds
-with $N=32$ (\texttt{int} numbers) and $1.7$ seconds
-with $N=64$ (\texttt{long long} numbers).
+Generamos una cuadrícula aleatoria de tamaño $2500 \times 2500$
+y comparamos la implementación original y la optimizada con bits.
+Mientras que el código original tardó $29.6$ segundos,
+la versión optimizada con bits solo tardó $3.1$ segundos
+con $N=32$ (números \texttt{int}) y $1.7$ segundos
+con $N=64$ (números \texttt{long long}).
 
-\section{Dynamic programming}
+\section{Programación dinámica}
 
-Bit operations provide an efficient and convenient
-way to implement dynamic programming algorithms
-whose states contain subsets of elements,
-because such states can be stored as integers.
-Next we discuss examples of combining
-bit operations and dynamic programming.
+Las operaciones de bits proporcionan una forma eficiente y conveniente
+de implementar algoritmos de programación dinámica
+cuyos estados contienen subconjuntos de elementos,
+porque tales estados se pueden almacenar como enteros.
+A continuación, discutimos ejemplos de combinación
+de operaciones de bits y programación dinámica.
 
-\subsubsection{Optimal selection}
+\subsubsection{Selección óptima}
 
-As a first example, consider the following problem:
-We are given the prices of $k$ products
-over $n$ days, and we want to buy each product
-exactly once.
-However, we are allowed to buy at most one product
-in a day.
-What is the minimum total price?
-For example, consider the following scenario ($k=3$ and $n=8$):
+Como primer ejemplo, considere el siguiente problema:
+Se nos dan los precios de $k$ productos
+durante $n$ días, y queremos comprar cada producto
+exactamente una vez.
+Sin embargo, solo se nos permite comprar un producto como máximo
+en un día.
+¿Cuál es el precio total mínimo?
+Por ejemplo, considere el siguiente escenario ($k=3$ y $n=8$):
 \begin{center}
 \begin{tikzpicture}[scale=.65]
     \draw (0, 0) grid (8,3);
@@ -545,7 +545,7 @@ For example, consider the following scenario ($k=3$ and $n=8$):
         {\node at (\x+0.5,0.5) {\v};}
 \end{tikzpicture}
 \end{center}
-In this scenario, the minimum total price is $5$:
+En este escenario, el precio total mínimo es $5$:
 \begin{center}
 \begin{tikzpicture}[scale=.65]
     \fill [color=lightgray] (1, 1) rectangle (2, 2);
@@ -567,8 +567,8 @@ In this scenario, the minimum total price is $5$:
 \end{tikzpicture}
 \end{center}
 
-Let $\texttt{price}[x][d]$ denote the price of product $x$
-on day $d$.
+Deje que $\texttt{precio}[x][d]$ denote el precio del producto $x$
+en el día $d$.
 For example, in the above scenario $\texttt{price}[2][3] = 7$.
 Then, let $\texttt{total}(S,d)$ denote the minimum total
 price for buying a subset $S$ of products by day $d$.
