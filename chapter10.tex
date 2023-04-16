@@ -665,7 +665,7 @@ y luego $\{1,4\}$ (peso total 9).
 
 El problema se puede resolver fácilmente en tiempo $O(n! n)$
 probando todas las permutaciones posibles de $n$ personas.
-Sin embargo, podemos utilizar la programación dinámica para obtener
+Sin embargo, podemos utilizar programación dinámica para obtener
 un algoritmo más eficiente en tiempo $O(2^n n)$.
 La idea es calcular para cada subconjunto de personas
 dos valores: el número mínimo de viajes necesarios y
@@ -686,78 +686,78 @@ y el segundo viaje tiene un peso de 5.
 Por supuesto, nuestro objetivo final es calcular el valor
 de $\texttt{viajes}(\{0 \ldots n-1\})$.
 
-We can calculate the values
-of the functions recursively and then apply
-dynamic programming.
-The idea is to go through all people
-who belong to $S$ and optimally
-choose the last person $p$ who enters the elevator.
-Each such choice yields a subproblem
-for a smaller subset of people.
-If $\texttt{last}(S \setminus p)+\texttt{weight}[p] \le x$,
-we can add $p$ to the last ride.
-Otherwise, we have to reserve a new ride
-that initially only contains $p$.
+Podemos calcular los valores
+de las funciones de forma recursiva y luego aplicar
+programación dinámica.
+La idea es recorrer todas las personas
+que pertenecen a $S$ y escoger de manera óptima
+la última persona $p$ que entra en el ascensor.
+Cada una de estas elecciones genera un subproblema
+para un subconjunto más pequeño de personas.
+Si $\texttt{ultimo}(S \setminus p)+\texttt{peso}[p] \le x$,
+podemos agregar $p$ al último viaje.
+De lo contrario, debemos reservar un nuevo viaje
+que inicialmente solo contiene $p$.
 
-To implement dynamic programming,
-we declare an array
+Para implementar programación dinámica,
+declaramos un array
 \begin{lstlisting}
-pair<int,int> best[1<<N];
+pair<int,int> mejor[1<<N];
 \end{lstlisting}
-that contains for each subset $S$
-a pair $(\texttt{rides}(S),\texttt{last}(S))$.
-We set the value for an empty group as follows:
+que contiene para cada subconjunto $S$
+un par $(\texttt{viajes}(S),\texttt{ultimo}(S))$.
+Establecemos el valor para un grupo vacío de la siguiente manera:
 \begin{lstlisting}
-best[0] = {1,0};
+mejor[0] = {1,0};
 \end{lstlisting}
-Then, we can fill the array as follows:
+Entonces, podemos llenar el array de la siguiente manera:
 
 \begin{lstlisting}
 for (int s = 1; s < (1<<n); s++) {
-    // initial value: n+1 rides are needed
-    best[s] = {n+1,0};
+    // valor inicial: se necesitan n+1 viajes
+    mejor[s] = {n+1,0};
     for (int p = 0; p < n; p++) {
         if (s&(1<<p)) {
-            auto option = best[s^(1<<p)];
-            if (option.second+weight[p] <= x) {
-                // add p to an existing ride
-                option.second += weight[p];
+            auto opcion = mejor[s^(1<<p)];
+            if (opcion.second+peso[p] <= x) {
+                // agregar p a un viaje existente
+                opcion.second += peso[p];
             } else {
-                // reserve a new ride for p
-                option.first++;
-                option.second = weight[p];
+                // reservar un nuevo viaje para p
+                opcion.first++;
+                opcion.second = peso[p];
             }
-            best[s] = min(best[s], option);
+            mejor[s] = min(mejor[s], opcion);
         }
     }
 }
 \end{lstlisting}
-Note that the above loop guarantees that
-for any two subsets $S_1$ and $S_2$
-such that $S_1 \subset S_2$, we process $S_1$ before $S_2$.
-Thus, the dynamic programming values are calculated in the
-correct order.
+Tenga en cuenta que el bucle anterior garantiza que
+para cualquier dos subconjuntos $S_1$ y $S_2$
+tal que $S_1 \subset S_2$, procesamos $S_1$ antes de $S_2$.
+Por lo tanto, los valores de programación dinámica se calculan en el
+orden correcto.
 
-\subsubsection{Counting subsets}
+\subsubsection{Contar subconjuntos}
 
-Our last problem in this chapter is as follows:
-Let $X=\{0 \ldots n-1\}$, and each subset $S \subset X$
-is assigned an integer $\texttt{value}[S]$.
-Our task is to calculate for each $S$
-\[\texttt{sum}(S) = \sum_{A \subset S} \texttt{value}[A],\]
-i.e., the sum of values of subsets of $S$.
+Nuestro último problema en este capítulo es el siguiente:
+Sea $X=\{0 \ldots n-1\}$, y a cada subconjunto $S \subset X$
+se le asigna un entero $\texttt{valor}[S]$.
+Nuestra tarea es calcular para cada $S$
+\[\texttt{suma}(S) = \sum_{A \subset S} \texttt{valor}[A],\]
+es decir, la suma de los valores de los subconjuntos de $S$.
 
-For example, suppose that $n=3$ and the values are as follows:
+Por ejemplo, suponga que $n=3$ y los valores son los siguientes:
 \begin{multicols}{2}
 \begin{itemize}
-\item $\texttt{value}[\emptyset] = 3$
-\item $\texttt{value}[\{0\}] = 1$
-\item $\texttt{value}[\{1\}] = 4$
-\item $\texttt{value}[\{0,1\}] = 5$
-\item $\texttt{value}[\{2\}] = 5$
-\item $\texttt{value}[\{0,2\}] = 1$
-\item $\texttt{value}[\{1,2\}] = 3$
-\item $\texttt{value}[\{0,1,2\}] = 3$
+\item $\texttt{valor}[\emptyset] = 3$
+\item $\texttt{valor}[\{0\}] = 1$
+\item $\texttt{valor}[\{1\}] = 4$
+\item $\texttt{valor}[\{0,1\}] = 5$
+\item $\texttt{valor}[\{2\}] = 5$
+\item $\texttt{valor}[\{0,2\}] = 1$
+\item $\texttt{valor}[\{1,2\}] = 3$
+\item $\texttt{valor}[\{0,1,2\}] = 3$
 \end{itemize}
 \end{multicols}
 In this case, for example,
