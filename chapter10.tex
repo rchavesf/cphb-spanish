@@ -292,24 +292,24 @@ for (int i = 0; i < 32; i++) {
 // salida: 1 3 4 8
 \end{lstlisting}
 
-\subsubsection{Set operations}
+\subsubsection{Operaciones de conjuntos}
 
-Set operations can be implemented as follows as bit operations:
+Las operaciones de conjuntos se pueden implementar como operaciones de bits de la siguiente manera:
 
 \begin{center}
 \begin{tabular}{lll}
-& set syntax & bit syntax \\
+& sintaxis de conjuntos & sintaxis de bits \\
 \hline
-intersection & $a \cap b$ & $a$ \& $b$ \\
-union & $a \cup b$ & $a$ | $b$ \\
-complement & $\bar a$ & \textasciitilde$a$ \\
-difference & $a \setminus b$ & $a$ \& (\textasciitilde$b$) \\
+intersección & $a \cap b$ & $a$ \& $b$ \\
+unión & $a \cup b$ & $a$ | $b$ \\
+complemento & $\bar a$ & \textasciitilde$a$ \\
+diferencia & $a \setminus b$ & $a$ \& (\textasciitilde$b$) \\
 \end{tabular}
 \end{center}
 
-For example, the following code first constructs
-the sets $x=\{1,3,4,8\}$ and $y=\{3,6,8,9\}$,
-and then constructs the set $z = x \cup y = \{1,3,4,6,8,9\}$:
+Por ejemplo, el siguiente código primero construye
+los conjuntos $x=\{1,3,4,8\}$ y $y=\{3,6,8,9\}$,
+y luego construye el conjunto $z = x \cup y = \{1,3,4,6,8,9\}$:
 
 \begin{lstlisting}
 int x = (1<<1)|(1<<3)|(1<<4)|(1<<8);
@@ -318,53 +318,53 @@ int z = x|y;
 cout << __builtin_popcount(z) << "\n"; // 6
 \end{lstlisting}
 
-\subsubsection{Iterating through subsets}
+\subsubsection{Iteración a través de subconjuntos}
 
-The following code goes through
-the subsets of $\{0,1,\ldots,n-1\}$:
+El siguiente código recorre
+los subconjuntos de $\{0,1,\ldots,n-1\}$:
 
 \begin{lstlisting}
 for (int b = 0; b < (1<<n); b++) {
-    // process subset b
+    // procesar subconjunto b
 }
 \end{lstlisting}
-The following code goes through
-the subsets with exactly $k$ elements:
+El siguiente código recorre
+los subconjuntos con exactamente $k$ elementos:
 \begin{lstlisting}
 for (int b = 0; b < (1<<n); b++) {
     if (__builtin_popcount(b) == k) {
-        // process subset b
+        // procesar subconjunto b
     }
 }
 \end{lstlisting}
-The following code goes through the subsets
-of a set $x$:
+El siguiente código recorre los subconjuntos
+de un conjunto $x$:
 \begin{lstlisting}
 int b = 0;
 do {
-    // process subset b
+    // procesar subconjunto b
 } while (b=(b-x)&x);
 \end{lstlisting}
 
-\section{Bit optimizations}
+\section{Optimizaciones de bits}
 
-Many algorithms can be optimized using
-bit operations.
-Such optimizations do not change the
-time complexity of the algorithm,
-but they may have a large impact
-on the actual running time of the code.
-In this section we discuss examples
-of such situations.
+Muchos algoritmos se pueden optimizar utilizando
+operaciones de bits.
+Estas optimizaciones no cambian la
+complejidad del tiempo del algoritmo,
+pero pueden tener un gran impacto
+en el tiempo de ejecución real del código.
+En esta sección discutimos ejemplos
+de tales situaciones.
 
-\subsubsection{Hamming distances}
+\subsubsection{Distancias de Hamming}
 
-\index{Hamming distance}
-The \key{Hamming distance}
-$\texttt{hamming}(a,b)$ between two
-strings $a$ and $b$ of equal length is
-the number of positions where the strings differ.
-For example,
+\index{Distancia de Hamming}
+La \key{distancia de Hamming}
+$\texttt{hamming}(a,b)$ entre dos
+cadenas $a$ y $b$ de igual longitud es
+el número de posiciones en las que las cadenas difieren.
+Por ejemplo,
 \[\texttt{hamming}(01101,11001)=2.\]
 
 Consider the following problem: Given
