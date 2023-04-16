@@ -140,21 +140,21 @@ $\XOR$ & 11010 & (26) \\
 \end{tabular}
 \end{center}
 
-\subsubsection{Not operation}
+\subsubsection{Operación not}
 
-\index{not operation}
+\index{operación not}
 
-The \key{not} operation \textasciitilde$x$
-produces a number where all the bits of $x$
-have been inverted.
-The formula \textasciitilde$x = -x-1$ holds,
-for example, \textasciitilde$29 = -30$.
+La operación \key{not} \textasciitilde$x$
+produce un número donde todos los bits de $x$
+han sido invertidos.
+La fórmula \textasciitilde$x = -x-1$ se mantiene,
+por ejemplo, \textasciitilde$29 = -30$.
 
-The result of the not operation at the bit level
-depends on the length of the bit representation,
-because the operation inverts all bits.
-For example, if the numbers are 32-bit
-\texttt{int} numbers, the result is as follows:
+El resultado de la operación not a nivel de bit
+depende de la longitud de la representación de bits,
+porque la operación invierte todos los bits.
+Por ejemplo, si los números son de 32 bits,
+números \texttt{int}, el resultado es el siguiente:
 
 \begin{center}
 \begin{tabular}{rrrr}
@@ -163,34 +163,34 @@ $x$ & = & 29 &   00000000000000000000000000011101 \\
 \end{tabular}
 \end{center}
 
-\subsubsection{Bit shifts}
+\subsubsection{Desplazamientos de bits}
 
-\index{bit shift}
+\index{desplazamiento de bits}
 
-The left bit shift $x < < k$ appends $k$
-zero bits to the number,
-and the right bit shift $x > > k$
-removes the $k$ last bits from the number.
-For example, $14 < < 2 = 56$,
-because $14$ and $56$ correspond to 1110 and 111000.
-Similarly, $49 > > 3 = 6$,
-because $49$ and $6$ correspond to 110001 and 110.
+El desplazamiento de bits a la izquierda $x < < k$ añade $k$
+bits de cero al número,
+y el desplazamiento de bits a la derecha $x > > k$
+elimina los últimos $k$ bits del número.
+Por ejemplo, $14 < < 2 = 56$,
+porque $14$ y $56$ corresponden a 1110 y 111000.
+De manera similar, $49 > > 3 = 6$,
+porque $49$ y $6$ corresponden a 110001 y 110.
 
-Note that $x < < k$
-corresponds to multiplying $x$ by $2^k$,
-and $x > > k$
-corresponds to dividing $x$ by $2^k$
-rounded down to an integer.
+Tenga en cuenta que $x < < k$
+corresponde a multiplicar $x$ por $2^k$,
+y $x > > k$
+corresponde a dividir $x$ por $2^k$
+redondeado hacia abajo a un entero.
 
-\subsubsection{Applications}
+\subsubsection{Aplicaciones}
 
-A number of the form $1 < < k$ has a one bit
-in position $k$ and all other bits are zero,
-so we can use such numbers to access single bits of numbers.
-In particular, the $k$th bit of a number is one
-exactly when $x$ \& $(1 < < k)$ is not zero.
-The following code prints the bit representation
-of an \texttt{int} number $x$:
+Un número de la forma $1 < < k$ tiene un bit de uno
+en la posición $k$ y todos los demás bits son cero,
+por lo que podemos usar tales números para acceder a bits individuales de los números.
+En particular, el bit $k$ de un número es uno
+exactamente cuando $x$ \& $(1 < < k)$ no es cero.
+El siguiente código imprime la representación de bits
+de un número \texttt{int} $x$:
 
 \begin{lstlisting}
 for (int i = 31; i >= 0; i--) {
@@ -199,16 +199,16 @@ for (int i = 31; i >= 0; i--) {
 }
 \end{lstlisting}
 
-It is also possible to modify single bits
-of numbers using similar ideas.
-For example, the formula $x$ | $(1 < < k)$
-sets the $k$th bit of $x$ to one,
-the formula
+También es posible modificar bits individuales
+de números usando ideas similares.
+Por ejemplo, la fórmula $x$ | $(1 < < k)$
+establece el bit $k$ de $x$ en uno,
+la fórmula
 $x$ \& \textasciitilde $(1 < < k)$
-sets the $k$th bit of $x$ to zero,
-and the formula
+establece el bit $k$ de $x$ en cero,
+y la fórmula
 $x$ $\XOR$ $(1 < < k)$
-inverts the $k$th bit of $x$.
+invierte el bit $k$ de $x$.
 
 The formula $x$ \& $(x-1)$ sets the last
 one bit of $x$ to zero,
