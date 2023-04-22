@@ -172,17 +172,17 @@ bool esPrimo(int n) {
 \end{lstlisting}
 
 \noindent
-The following function \texttt{factors}
-constructs a vector that contains the prime
-factorization of $n$.
-The function divides $n$ by its prime factors,
-and adds them to the vector.
-The process ends when the remaining number $n$
-has no factors between $2$ and $\lfloor \sqrt n \rfloor$.
-If $n>1$, it is prime and the last factor.
+La siguiente función \texttt{factores}
+construye un vector que contiene la factorización
+prima de $n$.
+La función divide $n$ por sus factores primos,
+y los agrega al vector.
+El proceso termina cuando el número restante $n$
+no tiene factores entre $2$ y $\lfloor \sqrt n \rfloor$.
+Si $n>1$, es primo y el último factor.
 
 \begin{lstlisting}
-vector<int> factors(int n) {
+vector<int> factores(int n) {
     vector<int> f;
     for (int x = 2; x*x <= n; x++) {
         while (n%x == 0) {
@@ -195,38 +195,38 @@ vector<int> factors(int n) {
 }
 \end{lstlisting}
 
-Note that each prime factor appears in the vector
-as many times as it divides the number.
-For example, $24=2^3 \cdot 3$,
-so the result of the function is $[2,2,2,3]$.
+Tenga en cuenta que cada factor primo aparece en el vector
+tantas veces como divide el número.
+Por ejemplo, $24=2^3 \cdot 3$,
+entonces el resultado de la función es $[2,2,2,3]$.
 
-\subsubsection{Sieve of Eratosthenes}
+\subsubsection{Criba de Eratóstenes}
 
-\index{sieve of Eratosthenes}
+\index{criba de Eratóstenes}
 
-The \key{sieve of Eratosthenes}
-%\footnote{Eratosthenes (c. 276 BC -- c. 194 BC) was a Greek mathematician.}
-is a preprocessing
-algorithm that builds an array using which we
-can efficiently check if a given number between $2 \ldots n$
-is prime and, if it is not, find one prime factor of the number.
+La \key{criba de Eratóstenes}
+%\footnote{Eratóstenes (c. 276 a.C. -- c. 194 a.C.) fue un matemático griego.}
+es un algoritmo de preprocesamiento
+que construye una matriz con la que podemos
+comprobar de manera eficiente si un número dado entre $2 \ldots n$
+es primo y, si no lo es, encontrar un factor primo del número.
 
-The algorithm builds an array $\texttt{sieve}$
-whose positions $2,3,\ldots,n$ are used.
-The value $\texttt{sieve}[k]=0$ means
-that $k$ is prime,
-and the value $\texttt{sieve}[k] \neq 0$
-means that $k$ is not a prime and one
-of its prime factors is $\texttt{sieve}[k]$.
+El algoritmo construye una matriz $\texttt{criba}$
+cuyas posiciones $2,3,\ldots,n$ se utilizan.
+El valor $\texttt{criba}[k]=0$ significa
+que $k$ es primo,
+y el valor $\texttt{criba}[k] \neq 0$
+significa que $k$ no es un primo y uno
+de sus factores primos es $\texttt{criba}[k]$.
 
-The algorithm iterates through the numbers
-$2 \ldots n$ one by one.
-Always when a new prime $x$ is found,
-the algorithm records that the multiples
-of $x$ ($2x,3x,4x,\ldots$) are not primes,
-because the number $x$ divides them.
+El algoritmo itera a través de los números
+$2 \ldots n$ uno por uno.
+Siempre que se encuentra un nuevo primo $x$,
+el algoritmo registra que los múltiplos
+de $x$ ($2x,3x,4x,\ldots$) no son primos,
+porque el número $x$ los divide.
 
-For example, if $n=20$, the array is as follows:
+Por ejemplo, si $n=20$, la matriz es la siguiente:
 
 \begin{center}
 \begin{tikzpicture}[scale=0.7]
