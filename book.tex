@@ -2,7 +2,15 @@
 
 %\includeonly{chapter04,list}
 
-\renewcommand{\chaptername}{Capítulo}
+\usepackage{titlesec}
+\titleformat{\chapter}[display]
+{\centering\Huge\bfseries}
+{Capítulo \thechapter}{1em}{}
+
+\titleformat{\part}[display]
+{\centering\Huge\bfseries}
+{Parte \thepart}{1em}{}
+
 
 \usepackage[english]{babel}
 \usepackage[utf8]{inputenc}
