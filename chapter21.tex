@@ -277,76 +277,75 @@ Por ejemplo, si $n=20$, la matriz es la siguiente:
 \end{tikzpicture}
 \end{center}
 
-The following code implements the sieve of
-Eratosthenes.
-The code assumes that each element of
-\texttt{sieve} is initially zero.
+El siguiente código implementa la criba de
+Eratóstenes.
+El código asume que cada elemento de
+\texttt{criba} es inicialmente cero.
 
 \begin{lstlisting}
 for (int x = 2; x <= n; x++) {
-    if (sieve[x]) continue;
+    if (criba[x]) continue;
     for (int u = 2*x; u <= n; u += x) {
-        sieve[u] = x;
+        criba[u] = x;
     }
 }
 \end{lstlisting}
 
-The inner loop of the algorithm is executed
-$n/x$ times for each value of $x$.
-Thus, an upper bound for the running time
-of the algorithm is the harmonic sum
+El bucle interno del algoritmo se ejecuta
+$n/x$ veces para cada valor de $x$.
+Por lo tanto, un límite superior para el tiempo de ejecución
+del algoritmo es la suma armónica
 \[\sum_{x=2}^n n/x = n/2 + n/3 + n/4 + \cdots + n/n = O(n \log n).\]
 
-\index{harmonic sum}
+\index{suma armónica}
 
-In fact, the algorithm is more efficient,
-because the inner loop will be executed only if
-the number $x$ is prime.
-It can be shown that the running time of the
-algorithm is only $O(n \log \log n)$,
-a complexity very near to $O(n)$. 
+De hecho, el algoritmo es más eficiente,
+porque el bucle interno solo se ejecutará si
+el número $x$ es primo.
+Se puede demostrar que el tiempo de ejecución del
+algoritmo es solo $O(n \log \log n)$,
+una complejidad muy cercana a $O(n)$. 
 
-\subsubsection{Euclid's algorithm}
+\subsubsection{Algoritmo de Euclides}
 
-\index{greatest common divisor}
-\index{least common multiple}
-\index{Euclid's algorithm}
+\index{máximo común divisor}
+\index{mínimo común múltiplo}
+\index{Algoritmo de Euclides}
 
-The \key{greatest common divisor} of
-numbers $a$ and $b$, $\gcd(a,b)$,
-is the greatest number that divides both $a$ and $b$,
-and the \key{least common multiple} of
-$a$ and $b$, $\textrm{lcm}(a,b)$,
-is the smallest number that is divisible by
-both $a$ and $b$.
-For example,
-$\gcd(24,36)=12$ and
-$\textrm{lcm}(24,36)=72$.
+El \key{máximo común divisor} de
+números $a$ y $b$, $\textrm{mcd}(a,b)$,
+es el número más grande que divide tanto a $a$ como a $b$,
+y el \key{mínimo común múltiplo} de
+$a$ y $b$, $\textrm{mcm}(a,b)$,
+es el número más pequeño que es divisible por
+ambos $a$ y $b$.
+Por ejemplo,
+$\textrm{mcd}(24,36)=12$ y
+$\textrm{mcm}(24,36)=72$.
 
-The greatest common divisor and the least common multiple
-are connected as follows:
-\[\textrm{lcm}(a,b)=\frac{ab}{\textrm{gcd}(a,b)}\]
+El máximo común divisor y el mínimo común múltiplo
+están conectados de la siguiente manera:
+\[\textrm{mcm}(a,b)=\frac{ab}{\textrm{mcd}(a,b)}\]
 
-\key{Euclid's algorithm}\footnote{Euclid was a Greek mathematician who
-lived in about 300 BC. This is perhaps the first known algorithm in history.} provides an efficient way
-to find the greatest common divisor of two numbers.
-The algorithm is based on the following formula:
+El \key{algoritmo de Euclides}\footnote{Euclides fue un matemático griego que
+vivió alrededor del año 300 a.C. Este es quizás el primer algoritmo conocido en la historia.} proporciona una forma eficiente
+para encontrar el máximo común divisor de dos números.
+El algoritmo se basa en la siguiente fórmula:
 \begin{equation*}
-    \textrm{gcd}(a,b) = \begin{cases}
+    \textrm{mcd}(a,b) = \begin{cases}
                a        & b = 0\\
-               \textrm{gcd}(b,a \bmod b) & b \neq 0\\
+               \textrm{mcd}(b,a \bmod b) & b \neq 0\\
            \end{cases}
 \end{equation*}
 
-For example,
-\[\textrm{gcd}(24,36) = \textrm{gcd}(36,24)
-= \textrm{gcd}(24,12) = \textrm{gcd}(12,0)=12.\]
+Por ejemplo,
+\[\textrm{mcd}(24,36) = \textrm{mcd}(36,24)= \textrm{mcd}(24,12) = \textrm{mcd}(12,0)=12.\]
 
-The algorithm can be implemented as follows:
+El algoritmo se puede implementar de la siguiente manera:
 \begin{lstlisting}
-int gcd(int a, int b) {
+int mcd(int a, int b) {
     if (b == 0) return a;
-    return gcd(b, a%b);
+    return mcd(b, a%b);
 }
 \end{lstlisting}
 
