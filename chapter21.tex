@@ -122,47 +122,47 @@ Por ejemplo, el número de primos entre
 $1$ y $10^6$ es $\pi(10^6)=78498$,
 y $10^6 / \ln 10^6 \approx 72382$.
 
-\subsubsection{Conjectures}
+\subsubsection{Conjeturas}
 
-There are many \emph{conjectures} involving primes.
-Most people think that the conjectures are true,
-but nobody has been able to prove them.
-For example, the following conjectures are famous:
+Hay muchas \emph{conjeturas} relacionadas con los números primos.
+La mayoría de las personas piensa que las conjeturas son verdaderas,
+pero nadie ha podido demostrarlas.
+Por ejemplo, las siguientes conjeturas son famosas:
 
 \begin{itemize}
-\index{Goldbach's conjecture}
-\item \key{Goldbach's conjecture}:
-Each even integer $n>2$ can be represented as a
-sum $n=a+b$ so that both $a$ and $b$ are primes.
-\index{twin prime}
-\item \key{Twin prime conjecture}:
-There is an infinite number of pairs
-of the form $\{p,p+2\}$,
-where both $p$ and $p+2$ are primes.
-\index{Legendre's conjecture}
-\item \key{Legendre's conjecture}:
-There is always a prime between numbers
-$n^2$ and $(n+1)^2$, where $n$ is any positive integer.
+\index{Conjetura de Goldbach}
+\item \key{Conjetura de Goldbach}:
+Cada número entero par $n>2$ puede ser representado como una
+suma $n=a+b$ de tal manera que tanto $a$ como $b$ sean primos.
+\index{números primos gemelos}
+\item \key{Conjetura de los números primos gemelos}:
+Hay una cantidad infinita de pares
+de la forma $\{p,p+2\}$,
+donde tanto $p$ como $p+2$ son primos.
+\index{Conjetura de Legendre}
+\item \key{Conjetura de Legendre}:
+Siempre hay un número primo entre los números
+$n^2$ y $(n+1)^2$, donde $n$ es cualquier número entero positivo.
 \end{itemize}
 
-\subsubsection{Basic algorithms}
+\subsubsection{Algoritmos básicos}
 
-If a number $n$ is not prime,
-it can be represented as a product $a \cdot b$,
-where $a \le \sqrt n$ or $b \le \sqrt n$,
-so it certainly has a factor between $2$ and $\lfloor \sqrt n \rfloor$.
-Using this observation, we can both test
-if a number is prime and find the prime factorization
-of a number in $O(\sqrt n)$ time.
+Si un número $n$ no es primo,
+se puede representar como un producto $a \cdot b$,
+donde $a \le \sqrt n$ o $b \le \sqrt n$,
+por lo que ciertamente tiene un factor entre $2$ y $\lfloor \sqrt n \rfloor$.
+Usando esta observación, podemos probar
+si un número es primo y encontrar la factorización en primos
+de un número en tiempo $O(\sqrt n)$.
 
-The following function \texttt{prime} checks
-if the given number $n$ is prime.
-The function attempts to divide $n$ by
-all numbers between $2$ and $\lfloor \sqrt n \rfloor$,
-and if none of them divides $n$, then $n$ is prime.
+La siguiente función \texttt{esPrimo} verifica
+si el número dado $n$ es primo.
+La función intenta dividir $n$ entre
+todos los números entre $2$ y $\lfloor \sqrt n \rfloor$,
+y si ninguno de ellos divide a $n$, entonces $n$ es primo.
 
 \begin{lstlisting}
-bool prime(int n) {
+bool esPrimo(int n) {
     if (n < 2) return false;
     for (int x = 2; x*x <= n; x++) {
         if (n%x == 0) return false;
