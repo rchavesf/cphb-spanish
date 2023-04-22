@@ -70,57 +70,57 @@ $\tau(84)=3 \cdot 2 \cdot 2 = 12$.
 Los factores son
 1, 2, 3, 4, 6, 7, 12, 14, 21, 28, 42 y 84.
 
-The \key{sum of factors} of $n$ is
+La \key{suma de factores} de $n$ es
 \[\sigma(n)=\prod_{i=1}^k (1+p_i+\ldots+p_i^{\alpha_i}) = \prod_{i=1}^k \frac{p_i^{a_i+1}-1}{p_i-1},\]
-where the latter formula is based on the geometric progression formula.
-For example, the sum of factors of 84 is
+donde la última fórmula se basa en la fórmula de progresión geométrica.
+Por ejemplo, la suma de factores de 84 es
 \[\sigma(84)=\frac{2^3-1}{2-1} \cdot \frac{3^2-1}{3-1} \cdot \frac{7^2-1}{7-1} = 7 \cdot 4 \cdot 8 = 224.\]
 
-The \key{product of factors} of $n$ is
+El \key{producto de factores} de $n$ es
 \[\mu(n)=n^{\tau(n)/2},\]
-because we can form $\tau(n)/2$ pairs from the factors,
-each with product $n$.
-For example, the factors of 84
-produce the pairs
+porque podemos formar $\tau(n)/2$ pares a partir de los factores,
+cada uno con producto $n$.
+Por ejemplo, los factores de 84
+producen los pares
 $1 \cdot 84$, $2 \cdot 42$, $3 \cdot 28$, etc.,
-and the product of the factors is $\mu(84)=84^6=351298031616$.
+y el producto de los factores es $\mu(84)=84^6=351298031616$.
 
-\index{perfect number}
+\index{número perfecto}
 
-A number $n$ is called a \key{perfect number} if $n=\sigma(n)-n$,
-i.e., $n$ equals the sum of its factors
-between $1$ and $n-1$.
-For example, 28 is a perfect number,
-because $28=1+2+4+7+14$.
+Un número $n$ se llama \key{número perfecto} si $n=\sigma(n)-n$,
+es decir, $n$ es igual a la suma de sus factores
+entre $1$ y $n-1$.
+Por ejemplo, 28 es un número perfecto,
+porque $28=1+2+4+7+14$.
 
-\subsubsection{Number of primes}
+\subsubsection{Número de primos}
 
-It is easy to show that there is an infinite number
-of primes.
-If the number of primes would be finite,
-we could construct a set $P=\{p_1,p_2,\ldots,p_n\}$
-that would contain all the primes.
-For example, $p_1=2$, $p_2=3$, $p_3=5$, and so on.
-However, using $P$, we could form a new prime
+Es fácil demostrar que hay una cantidad infinita
+de números primos.
+Si el número de primos fuera finito,
+podríamos construir un conjunto $P=\{p_1,p_2,\ldots,p_n\}$
+que contuviera todos los primos.
+Por ejemplo, $p_1=2$, $p_2=3$, $p_3=5$, y así sucesivamente.
+Sin embargo, usando $P$, podríamos formar un nuevo primo
 \[p_1 p_2 \cdots p_n+1\]
-that is larger than all elements in $P$.
-This is a contradiction, and the number of primes
-has to be infinite.
+que es más grande que todos los elementos en $P$.
+Esta es una contradicción, y el número de primos
+tiene que ser infinito.
 
-\subsubsection{Density of primes}
+\subsubsection{Densidad de primos}
 
-The density of primes means how often there are primes
-among the numbers.
-Let $\pi(n)$ denote the number of primes between
-$1$ and $n$. For example, $\pi(10)=4$, because
-there are 4 primes between $1$ and $10$: 2, 3, 5 and 7.
+La densidad de primos significa cuán a menudo hay primos
+entre los números.
+Dejemos que $\pi(n)$ denote el número de primos entre
+$1$ y $n$. Por ejemplo, $\pi(10)=4$, porque
+hay 4 primos entre $1$ y $10$: 2, 3, 5 y 7.
 
-It is possible to show that
+Es posible demostrar que
 \[\pi(n) \approx \frac{n}{\ln n},\]
-which means that primes are quite frequent.
-For example, the number of primes between
-$1$ and $10^6$ is $\pi(10^6)=78498$,
-and $10^6 / \ln 10^6 \approx 72382$.
+lo que significa que los primos son bastante frecuentes.
+Por ejemplo, el número de primos entre
+$1$ y $10^6$ es $\pi(10^6)=78498$,
+y $10^6 / \ln 10^6 \approx 72382$.
 
 \subsubsection{Conjectures}
 
