@@ -170,13 +170,13 @@ $\{8\}$.
 \end{tikzpicture}
 \end{center}
 
-\index{tree}
+\index{árbol}
 
-A \key{tree} is a connected graph
-that consists of $n$ nodes and $n-1$ edges.
-There is a unique path
-between any two nodes of a tree.
-For example, the following graph is a tree:
+Un \key{árbol} es un grafo conectado
+que consta de $n$ nodos y $n-1$ aristas.
+Hay un camino único
+entre cualquier par de nodos de un árbol.
+Por ejemplo, el siguiente grafo es un árbol:
 
 \begin{center}
 \begin{tikzpicture}[scale=0.9]
@@ -195,14 +195,14 @@ For example, the following graph is a tree:
 \end{tikzpicture}
 \end{center}
 
-\subsubsection{Edge directions}
+\subsubsection{Direcciones de las aristas}
 
-\index{directed graph}
+\index{grafo dirigido}
 
-A graph is \key{directed}
-if the edges can be traversed
-in one direction only.
-For example, the following graph is directed:
+Un grafo es \key{dirigido}
+si las aristas se pueden recorrer
+solo en una dirección.
+Por ejemplo, el siguiente grafo es dirigido:
 \begin{center}
 \begin{tikzpicture}[scale=0.9]
 \node[draw, circle] (1) at (1,3) {$1$};
@@ -219,19 +219,19 @@ For example, the following graph is directed:
 \end{tikzpicture}
 \end{center}
 
-The above graph contains
-a path $3 \rightarrow 1 \rightarrow 2 \rightarrow 5$
-from node $3$ to node $5$,
-but there is no path from node $5$ to node $3$.
+El grafo anterior contiene
+un camino $3 \rightarrow 1 \rightarrow 2 \rightarrow 5$
+desde el nodo $3$ hasta el nodo $5$,
+pero no hay un camino desde el nodo $5$ hasta el nodo $3$.
 
-\subsubsection{Edge weights}
+\subsubsection{Pesos de las aristas}
 
-\index{weighted graph}
+\index{grafo con pesos}
 
-In a \key{weighted} graph, each edge is assigned
-a \key{weight}.
-The weights are often interpreted as edge lengths.
-For example, the following graph is weighted:
+En un \key{grafo con pesos}, a cada arista se le asigna
+un \key{peso}.
+Los pesos a menudo se interpretan como longitudes de arista.
+Por ejemplo, el siguiente grafo es con pesos:
 \begin{center}
 \begin{tikzpicture}[scale=0.9]
 \node[draw, circle] (1) at (1,3) {$1$};
@@ -248,27 +248,27 @@ For example, the following graph is weighted:
 \end{tikzpicture}
 \end{center}
 
-The length of a path in a weighted graph
-is the sum of the edge weights on the path.
-For example, in the above graph,
-the length of the path
-$1 \rightarrow 2 \rightarrow 5$ is $12$,
-and the length of the path
-$1 \rightarrow 3 \rightarrow 4 \rightarrow 5$ is $11$.
-The latter path is the \key{shortest} path from node $1$ to node $5$.
+La longitud de un camino en un grafo con pesos
+es la suma de los pesos de las aristas en el camino.
+Por ejemplo, en el grafo anterior,
+la longitud del camino
+$1 \rightarrow 2 \rightarrow 5$ es $12$,
+y la longitud del camino
+$1 \rightarrow 3 \rightarrow 4 \rightarrow 5$ es $11$.
+Este último camino es el \key{más corto} desde el nodo $1$ hasta el nodo $5$.
 
-\subsubsection{Neighbors and degrees}
+\subsubsection{Vecinos y grados}
 
-\index{neighbor}
-\index{degree}
+\index{vecino}
+\index{grado}
 
-Two nodes are \key{neighbors} or \key{adjacent}
-if there is an edge between them.
-The \key{degree} of a node
-is the number of its neighbors.
-For example, in the following graph,
-the neighbors of node 2 are 1, 4 and 5,
-so its degree is 3.
+Dos nodos son \key{vecinos} o \key{adyacentes}
+si hay una arista entre ellos.
+El \key{grado} de un nodo
+es el número de sus vecinos.
+Por ejemplo, en el siguiente grafo,
+los vecinos del nodo 2 son 1, 4 y 5,
+por lo que su grado es 3.
 
 \begin{center}
 \begin{tikzpicture}[scale=0.9]
@@ -288,33 +288,33 @@ so its degree is 3.
 \end{tikzpicture}
 \end{center}
 
-The sum of degrees in a graph is always $2m$,
-where $m$ is the number of edges,
-because each edge
-increases the degree of exactly two nodes by one.
-For this reason, the sum of degrees is always even.
+La suma de los grados en un grafo siempre es $2m$,
+donde $m$ es el número de aristas,
+porque cada arista
+aumenta el grado de exactamente dos nodos en uno.
+Por esta razón, la suma de los grados siempre es par.
 
-\index{regular graph}
-\index{complete graph}
+\index{grafo regular}
+\index{grafo completo}
 
-A graph is \key{regular} if the
-degree of every node is a constant $d$.
-A graph is \key{complete} if the
-degree of every node is $n-1$, i.e.,
-the graph contains all possible edges
-between the nodes.
+Un grafo es \key{regular} si el
+grado de cada nodo es una constante $d$.
+Un grafo es \key{completo} si el
+grado de cada nodo es $n-1$, es decir,
+el grafo contiene todas las aristas posibles
+entre los nodos.
 
-\index{indegree}
-\index{outdegree}
+\index{grado de entrada}
+\index{grado de salida}
 
-In a directed graph, the \key{indegree}
-of a node is the number of edges
-that end at the node,
-and the \key{outdegree} of a node
-is the number of edges that start at the node.
-For example, in the following graph,
-the indegree of node 2 is 2,
-and the outdegree of node 2 is 1.
+En un grafo dirigido, el \key{grado de entrada}
+de un nodo es el número de aristas
+que terminan en el nodo,
+y el \key{grado de salida} de un nodo
+es el número de aristas que comienzan en el nodo.
+Por ejemplo, en el siguiente grafo,
+el grado de entrada del nodo 2 es 2,
+y el grado de salida del nodo 2 es 1.
 
 \begin{center}
 \begin{tikzpicture}[scale=0.9]
