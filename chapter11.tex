@@ -333,21 +333,21 @@ y el grado de salida del nodo 2 es 1.
 \end{tikzpicture}
 \end{center}
 
-\subsubsection{Colorings}
+\subsubsection{Coloración}
 
-\index{coloring}
-\index{bipartite graph}
+\index{coloración}
+\index{grafo bipartito}
 
-In a \key{coloring} of a graph,
-each node is assigned a color so that
-no adjacent nodes have the same color.
+En una \key{coloración} de un grafo,
+a cada nodo se le asigna un color de tal manera que
+no haya nodos adyacentes del mismo color.
 
-A graph is \key{bipartite} if
-it is possible to color it using two colors.
-It turns out that a graph is bipartite
-exactly when it does not contain a cycle
-with an odd number of edges.
-For example, the graph
+Un grafo es \key{bipartito} si
+es posible colorearlo usando dos colores.
+Resulta que un grafo es bipartito
+exactamente cuando no contiene un ciclo
+con un número impar de aristas.
+Por ejemplo, el grafo
 \begin{center}
 \begin{tikzpicture}[scale=0.9]
 \node[draw, circle] (1) at (1,3) {$2$};
@@ -364,7 +364,7 @@ For example, the graph
 \path[draw,thick,-] (5) -- (6);
 \end{tikzpicture}
 \end{center}
-is bipartite, because it can be colored as follows:
+es bipartito, porque se puede colorear de la siguiente manera:
 \begin{center}
 \begin{tikzpicture}[scale=0.9]
 \node[draw, circle, fill=blue!40] (1) at (1,3) {$2$};
@@ -381,7 +381,7 @@ is bipartite, because it can be colored as follows:
 \path[draw,thick,-] (5) -- (6);
 \end{tikzpicture}
 \end{center}
-However, the graph
+Sin embargo, el grafo
 \begin{center}
 \begin{tikzpicture}[scale=0.9]
 \node[draw, circle] (1) at (1,3) {$2$};
@@ -399,8 +399,8 @@ However, the graph
 \path[draw,thick,-] (1) -- (6);
 \end{tikzpicture}
 \end{center}
-is not bipartite, because it is not possible to color
-the following cycle of three nodes using two colors:
+no es bipartito, porque no es posible colorear
+el siguiente ciclo de tres nodos usando dos colores:
 \begin{center}
 \begin{tikzpicture}[scale=0.9]
 \node[draw, circle] (1) at (1,3) {$2$};
@@ -423,16 +423,16 @@ the following cycle of three nodes using two colors:
 \end{tikzpicture}
 \end{center}
 
-\subsubsection{Simplicity}
+\subsubsection{Simplicidad}
 
-\index{simple graph}
+\index{grafo simple}
 
-A graph is \key{simple}
-if no edge starts and ends at the same node,
-and there are no multiple
-edges between two nodes.
-Often we assume that graphs are simple.
-For example, the following graph is \emph{not} simple:
+Un grafo es \key{simple}
+si ninguna arista comienza y termina en el mismo nodo,
+y no hay múltiples
+aristas entre dos nodos.
+A menudo, asumimos que los grafos son simples.
+Por ejemplo, el siguiente grafo \emph{no} es simple:
 \begin{center}
 \begin{tikzpicture}[scale=0.9]
 \node[draw, circle] (1) at (1,3) {$2$};
