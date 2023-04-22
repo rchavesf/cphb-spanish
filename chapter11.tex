@@ -1,35 +1,35 @@
-\chapter{Basics of graphs}
+\chapter{Conceptos básicos de grafos}
 
-Many programming problems can be solved by
-modeling the problem as a graph problem
-and using an appropriate graph algorithm.
-A typical example of a graph is a network
-of roads and cities in a country.
-Sometimes, though, the graph is hidden
-in the problem and it may be difficult to detect it.
+Muchos problemas de programación se pueden resolver
+modelando el problema como un problema de grafo
+y utilizando un algoritmo de grafo adecuado.
+Un ejemplo típico de grafo es una red
+de carreteras y ciudades en un país.
+A veces, sin embargo, el grafo está oculto
+en el problema y puede ser difícil de detectarlo.
 
-This part of the book discusses graph algorithms,
-especially focusing on topics that
-are important in competitive programming.
-In this chapter, we go through concepts
-related to graphs,
-and study different ways to represent graphs in algorithms.
+Esta parte del libro discute los algoritmos de grafos,
+especialmente centrándose en temas que
+son importantes en la programación competitiva.
+En este capítulo, repasamos conceptos
+relacionados con grafos,
+y estudiamos diferentes formas de representar grafos en algoritmos.
 
-\section{Graph terminology}
+\section{Terminología de grafos}
 
-\index{graph}
-\index{node}
-\index{edge}
+\index{grafo}
+\index{nodo}
+\index{arista}
 
-A \key{graph} consists of \key{nodes}
-and \key{edges}. In this book,
-the variable $n$ denotes the number of nodes
-in a graph, and the variable $m$ denotes
-the number of edges.
-The nodes are numbered
-using integers $1,2,\ldots,n$.
+Un \key{grafo} consta de \key{nodos}
+y \key{aristas}. En este libro,
+la variable $n$ denota el número de nodos
+en un grafo, y la variable $m$ denota
+el número de aristas.
+Los nodos están numerados
+usando números enteros $1,2,\ldots,n$.
 
-For example, the following graph consists of 5 nodes and 7 edges:
+Por ejemplo, el siguiente grafo consta de 5 nodos y 7 aristas:
 
 \begin{center}
 \begin{tikzpicture}[scale=0.9]
@@ -49,16 +49,16 @@ For example, the following graph consists of 5 nodes and 7 edges:
 \end{tikzpicture}
 \end{center}
 
-\index{path}
+\index{camino}
 
-A \key{path} leads from node $a$ to node $b$
-through edges of the graph.
-The \key{length} of a path is the number of
-edges in it.
-For example, the above graph contains
-a path $1 \rightarrow 3 \rightarrow 4 \rightarrow 5$
-of length 3
-from node 1 to node 5:
+Un \key{camino} va del nodo $a$ al nodo $b$
+a través de aristas del grafo.
+La \key{longitud} de un camino es el número de
+aristas en él.
+Por ejemplo, el grafo anterior contiene
+un camino $1 \rightarrow 3 \rightarrow 4 \rightarrow 5$
+de longitud 3
+desde el nodo 1 al nodo 5:
 
 \begin{center}
 \begin{tikzpicture}[scale=0.9]
@@ -82,14 +82,14 @@ from node 1 to node 5:
 \end{tikzpicture}
 \end{center}
 
-\index{cycle}
+\index{ciclo}
 
-A path is a \key{cycle} if the first and last
-node is the same.
-For example, the above graph contains
-a cycle $1 \rightarrow 3 \rightarrow 4 \rightarrow 1$.
-A path is \key{simple} if each node appears
-at most once in the path.
+Un camino es un \key{ciclo} si el primer y último
+nodo es el mismo.
+Por ejemplo, el grafo anterior contiene
+un ciclo $1 \rightarrow 3 \rightarrow 4 \rightarrow 1$.
+Un camino es \key{simple} si cada nodo aparece
+a lo sumo una vez en el camino.
 
 
 % 
@@ -102,13 +102,13 @@ at most once in the path.
 % \item $1 \rightarrow 3 \rightarrow 4 \rightarrow 2 \rightarrow 5$ (length 4)
 % \end{itemize}
 
-\subsubsection{Connectivity}
+\subsubsection{Conectividad}
 
-\index{connected graph}
+\index{grafo conectado}
 
-A graph is \key{connected} if there is a path
-between any two nodes.
-For example, the following graph is connected:
+Un grafo es \key{conectado} si hay un camino
+entre cualquier par de nodos.
+Por ejemplo, el siguiente grafo está conectado:
 \begin{center}
 \begin{tikzpicture}[scale=0.9]
 \node[draw, circle] (1) at (1,3) {$1$};
@@ -123,9 +123,9 @@ For example, the following graph is connected:
 \end{tikzpicture}
 \end{center}
 
-The following graph is not connected,
-because it is not possible to get
-from node 4 to any other node:
+El siguiente grafo no está conectado,
+porque no es posible llegar
+desde el nodo 4 a cualquier otro nodo:
 \begin{center}
 \begin{tikzpicture}[scale=0.9]
 \node[draw, circle] (1) at (1,3) {$1$};
@@ -138,14 +138,14 @@ from node 4 to any other node:
 \end{tikzpicture}
 \end{center}
 
-\index{component}
+\index{componente}
 
-The connected parts of a graph are
-called its \key{components}.
-For example, the following graph
-contains three components:
+Las partes conectadas de un grafo son
+llamadas sus \key{componentes}.
+Por ejemplo, el siguiente grafo
+contiene tres componentes:
 $\{1,\,2,\,3\}$,
-$\{4,\,5,\,6,\,7\}$ and
+$\{4,\,5,\,6,\,7\}$ y
 $\{8\}$.
 \begin{center}
 \begin{tikzpicture}[scale=0.8]
