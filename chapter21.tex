@@ -1,19 +1,19 @@
-\chapter{Number theory}
+\chapter{Teoría de números}
 
-\index{number theory}
+\index{teoría de números}
 
-\key{Number theory} is a branch of mathematics
-that studies integers.
-Number theory is a fascinating field,
-because many questions involving integers
-are very difficult to solve even if they
-seem simple at first glance.
+La \key{teoría de números} es una rama de las matemáticas
+que estudia los enteros.
+La teoría de números es un campo fascinante,
+porque muchas preguntas que involucran enteros
+son muy difíciles de resolver incluso si parecen
+simples a primera vista.
 
-As an example, consider the following equation:
+Como ejemplo, considere la siguiente ecuación:
 \[x^3 + y^3 + z^3 = 33\]
-It is easy to find three real numbers $x$, $y$ and $z$
-that satisfy the equation.
-For example, we can choose
+Es fácil encontrar tres números reales $x$, $y$ y $z$
+que satisfagan la ecuación.
+Por ejemplo, podemos elegir
 \[
 \begin{array}{lcl}
 x = 3, \\
@@ -21,54 +21,54 @@ y = \sqrt[3]{3}, \\
 z = \sqrt[3]{3}.\\
 \end{array}
 \]
-However, it is an open problem in number theory
-if there are any three
-\emph{integers} $x$, $y$ and $z$
-that would satisfy the equation \cite{bec07}.
+Sin embargo, es un problema abierto en teoría de números
+si hay tres
+\emph{enteros} $x$, $y$ y $z$
+que satisfagan la ecuación \cite{bec07}.
 
-In this chapter, we will focus on basic concepts
-and algorithms in number theory.
-Throughout the chapter, we will assume that all numbers
-are integers, if not otherwise stated.
+En este capítulo, nos centraremos en conceptos básicos
+y algoritmos en teoría de números.
+A lo largo del capítulo, asumiremos que todos los números
+son enteros, si no se indica lo contrario.
 
-\section{Primes and factors}
+\section{Números primos y factores}
 
-\index{divisibility}
+\index{divisibilidad}
 \index{factor}
 \index{divisor}
 
-A number $a$ is called a \key{factor} or a \key{divisor} of a number $b$
-if $a$ divides $b$.
-If $a$ is a factor of $b$,
-we write $a \mid b$, and otherwise we write $a \nmid b$.
-For example, the factors of 24 are
-1, 2, 3, 4, 6, 8, 12 and 24.
+Un número $a$ se llama \key{factor} o \key{divisor} de un número $b$
+si $a$ divide a $b$.
+Si $a$ es un factor de $b$,
+escribimos $a \mid b$, y de lo contrario escribimos $a \nmid b$.
+Por ejemplo, los factores de 24 son
+1, 2, 3, 4, 6, 8, 12 y 24.
 
-\index{prime}
-\index{prime decomposition}
+\index{número primo}
+\index{descomposición en primos}
 
-A number $n>1$ is a \key{prime}
-if its only positive factors are 1 and $n$.
-For example, 7, 19 and 41 are primes,
-but 35 is not a prime, because $5 \cdot 7 = 35$.
-For every number $n>1$, there is a unique
-\key{prime factorization}
+Un número $n>1$ es un \key{primo}
+si sus únicos factores positivos son 1 y $n$.
+Por ejemplo, 7, 19 y 41 son primos,
+pero 35 no es un primo, porque $5 \cdot 7 = 35$.
+Para cada número $n>1$, existe una única
+\key{descomposición en factores primos}
 \[ n = p_1^{\alpha_1} p_2^{\alpha_2} \cdots p_k^{\alpha_k},\]
-where $p_1,p_2,\ldots,p_k$ are distinct primes and
-$\alpha_1,\alpha_2,\ldots,\alpha_k$ are positive numbers.
-For example, the prime factorization for 84 is
+donde $p_1,p_2,\ldots,p_k$ son primos distintos y
+$\alpha_1,\alpha_2,\ldots,\alpha_k$ son números positivos.
+Por ejemplo, la descomposición en factores primos de 84 es
 \[84 = 2^2 \cdot 3^1 \cdot 7^1.\]
 
-The \key{number of factors} of a number $n$ is
+El \key{número de factores} de un número $n$ es
 \[\tau(n)=\prod_{i=1}^k (\alpha_i+1),\]
-because for each prime $p_i$, there are
-$\alpha_i+1$ ways to choose how many times
-it appears in the factor.
-For example, the number of factors
-of 84 is
+porque para cada primo $p_i$, hay
+$\alpha_i+1$ formas de elegir cuántas veces
+aparece en el factor.
+Por ejemplo, el número de factores
+de 84 es
 $\tau(84)=3 \cdot 2 \cdot 2 = 12$.
-The factors are
-1, 2, 3, 4, 6, 7, 12, 14, 21, 28, 42 and 84.
+Los factores son
+1, 2, 3, 4, 6, 7, 12, 14, 21, 28, 42 y 84.
 
 The \key{sum of factors} of $n$ is
 \[\sigma(n)=\prod_{i=1}^k (1+p_i+\ldots+p_i^{\alpha_i}) = \prod_{i=1}^k \frac{p_i^{a_i+1}-1}{p_i-1},\]
