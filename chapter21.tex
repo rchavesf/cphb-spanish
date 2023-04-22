@@ -349,53 +349,53 @@ int mcd(int a, int b) {
 }
 \end{lstlisting}
 
-It can be shown that Euclid's algorithm works
-in $O(\log n)$ time, where $n=\min(a,b)$.
-The worst case for the algorithm is
-the case when $a$ and $b$ are consecutive Fibonacci numbers.
-For example,
-\[\textrm{gcd}(13,8)=\textrm{gcd}(8,5)
-=\textrm{gcd}(5,3)=\textrm{gcd}(3,2)=\textrm{gcd}(2,1)=\textrm{gcd}(1,0)=1.\]
+Se puede demostrar que el algoritmo de Euclides funciona
+en tiempo $O(\log n)$, donde $n=\min(a,b)$.
+El peor caso para el algoritmo es
+cuando $a$ y $b$ son números consecutivos de Fibonacci.
+Por ejemplo,
+\[\textrm{mcd}(13,8)=\textrm{mcd}(8,5)
+=\textrm{mcd}(5,3)=\textrm{mcd}(3,2)=\textrm{mcd}(2,1)=\textrm{mcd}(1,0)=1.\]
 
-\subsubsection{Euler's totient function}
+\subsubsection{Función $\varphi$ de Euler}
 
-\index{coprime}
-\index{Euler's totient function}
+\index{coprimo}
+\index{Función $\varphi$ de Euler}
 
-Numbers $a$ and $b$ are \key{coprime}
-if $\textrm{gcd}(a,b)=1$.
-\key{Euler's totient function} $\varphi(n)$
-%\footnote{Euler presented this function in 1763.}
-gives the number of coprime numbers to $n$
-between $1$ and $n$.
-For example, $\varphi(12)=4$,
-because 1, 5, 7 and 11
-are coprime to 12.
+Los números $a$ y $b$ son \key{coprimos}
+si $\textrm{mcd}(a,b)=1$.
+La \key{función $\varphi$ de Euler} $\varphi(n)$
+%\footnote{Euler presentó esta función en 1763.}
+da la cantidad de números coprimos a $n$
+entre $1$ y $n$.
+Por ejemplo, $\varphi(12)=4$,
+porque 1, 5, 7 y 11
+son coprimos a 12.
 
-The value of $\varphi(n)$ can be calculated
-from the prime factorization of $n$
-using the formula
+El valor de $\varphi(n)$ se puede calcular
+a partir de la factorización en primos de $n$
+usando la fórmula
 \[ \varphi(n) = \prod_{i=1}^k p_i^{\alpha_i-1}(p_i-1). \]
-For example, $\varphi(12)=2^1 \cdot (2-1) \cdot 3^0 \cdot (3-1)=4$.
-Note that $\varphi(n)=n-1$ if $n$ is prime.
+Por ejemplo, $\varphi(12)=2^1 \cdot (2-1) \cdot 3^0 \cdot (3-1)=4$.
+Nótese que $\varphi(n)=n-1$ si $n$ es primo.
 
-\section{Modular arithmetic}
+\section{Aritmética modular}
 
-\index{modular arithmetic}
+\index{aritmética modular}
 
-In \key{modular arithmetic},
-the set of numbers is limited so
-that only numbers $0,1,2,\ldots,m-1$ are used,
-where $m$ is a constant.
-Each number $x$ is
-represented by the number $x \bmod m$:
-the remainder after dividing $x$ by $m$.
-For example, if $m=17$, then $75$
-is represented by $75 \bmod 17 = 7$.
+En la \key{aritmética modular},
+el conjunto de números está limitado de tal manera que
+solo se utilizan los números $0,1,2,\ldots,m-1$,
+donde $m$ es una constante.
+Cada número $x$ es
+representado por el número $x \bmod m$:
+el residuo después de dividir $x$ entre $m$.
+Por ejemplo, si $m=17$, entonces $75$
+es representado por $75 \bmod 17 = 7$.
 
-Often we can take remainders before doing
-calculations.
-In particular, the following formulas hold:
+A menudo podemos tomar residuos antes de realizar
+cálculos.
+En particular, se cumplen las siguientes fórmulas:
 \[
 \begin{array}{rcl}
 (x+y) \bmod m & = & (x \bmod m + y \bmod m) \bmod m \\
