@@ -485,10 +485,10 @@ para cada posición final de izquierda a derecha.
 
 El siguiente código implementa el algoritmo:
 \begin{lstlisting}
-int best = 0, sum = 0;
+int mejor = 0, suma = 0;
 for (int k = 0; k < n; k++) {
-    sum = max(array[k],sum+array[k]);
-    best = max(best,sum);
+    suma = max(array[k],suma+array[k]);
+    mejor = max(mejor,suma);
 }
 cout << best << "\n";
 \end{lstlisting}
