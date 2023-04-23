@@ -1,16 +1,16 @@
-\chapter{Tree algorithms}
+\chapter{Algoritmos de árboles}
 
-\index{tree}
+\index{árbol}
 
-A \key{tree} is a connected, acyclic graph
-that consists of $n$ nodes and $n-1$ edges.
-Removing any edge from a tree divides it
-into two components,
-and adding any edge to a tree creates a cycle.
-Moreover, there is always a unique path between any
-two nodes of a tree.
+Un \key{árbol} es un grafo conectado y acíclico
+que consta de $n$ nodos y $n-1$ aristas.
+Eliminar cualquier arista de un árbol lo divide
+en dos componentes,
+y agregar cualquier arista a un árbol crea un ciclo.
+Además, siempre hay un camino único entre cualquier
+dos nodos de un árbol.
 
-For example, the following tree consists of 8 nodes and 7 edges:
+Por ejemplo, el siguiente árbol consta de 8 nodos y 7 aristas:
 \begin{center}
 \begin{tikzpicture}[scale=0.9]
 \node[draw, circle] (1) at (0,3) {$1$};
@@ -31,22 +31,22 @@ For example, the following tree consists of 8 nodes and 7 edges:
 \end{tikzpicture}
 \end{center}
 
-\index{leaf}
+\index{hoja}
 
-The \key{leaves} of a tree are the nodes
-with degree 1, i.e., with only one neighbor.
-For example, the leaves of the above tree
-are nodes 3, 5, 7 and 8.
+Las \key{hojas} de un árbol son los nodos
+con grado 1, es decir, con un único vecino.
+Por ejemplo, las hojas del árbol anterior
+son los nodos 3, 5, 7 y 8.
 
-\index{root}
-\index{rooted tree}
+\index{raíz}
+\index{árbol con raíz}
 
-In a \key{rooted} tree, one of the nodes
-is appointed the \key{root} of the tree,
-and all other nodes are
-placed underneath the root.
-For example, in the following tree,
-node 1 is the root node.
+En un \key{árbol con raíz}, uno de los nodos
+se designa como la \key{raíz} del árbol,
+y todos los demás nodos son
+colocados debajo de la raíz.
+Por ejemplo, en el siguiente árbol,
+el nodo 1 es el nodo raíz.
 
 \begin{center}
 \begin{tikzpicture}[scale=0.9]
@@ -67,26 +67,26 @@ node 1 is the root node.
 \path[draw,thick,-] (6) -- (8);
 \end{tikzpicture}
 \end{center}
-\index{child}
-\index{parent}
+\index{hijo}
+\index{padre}
 
-In a rooted tree, the \key{children} of a node
-are its lower neighbors, and the \key{parent} of a node
-is its upper neighbor.
-Each node has exactly one parent,
-except for the root that does not have a parent.
-For example, in the above tree,
-the children of node 2 are nodes 5 and 6,
-and its parent is node 1.
+En un árbol con raíz, los \key{hijos} de un nodo
+son sus vecinos inferiores, y el \key{padre} de un nodo
+es su vecino superior.
+Cada nodo tiene exactamente un padre,
+excepto la raíz, que no tiene padre.
+Por ejemplo, en el árbol anterior,
+los hijos del nodo 2 son los nodos 5 y 6,
+y su padre es el nodo 1.
 
-\index{subtree}
+\index{subárbol}
 
-The structure of a rooted tree is \emph{recursive}:
-each node of the tree acts as the root of a \key{subtree}
-that contains the node itself and all nodes
-that are in the subtrees of its children.
-For example, in the above tree, the subtree of node 2
-consists of nodes 2, 5, 6 and 8:
+La estructura de un árbol con raíz es \emph{recursiva}:
+cada nodo del árbol actúa como la raíz de un \key{subárbol}
+que contiene el propio nodo y todos los nodos
+que están en los subárboles de sus hijos.
+Por ejemplo, en el árbol anterior, el subárbol del nodo 2
+consta de los nodos 2, 5, 6 y 8:
 \begin{center}
 \begin{tikzpicture}[scale=0.9]
 \node[draw, circle] (2) at (-2,1) {$2$};
