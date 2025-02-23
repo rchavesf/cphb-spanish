@@ -226,12 +226,12 @@ pero no hay un camino desde el nodo $5$ hasta el nodo $3$.
 
 \subsubsection{Pesos de las aristas}
 
-\index{grafo con pesos}
+\index{grafo ponderado}
 
-En un \key{grafo con pesos}, a cada arista se le asigna
+En un \key{grafo ponderado}, a cada arista se le asigna
 un \key{peso}.
 Los pesos a menudo se interpretan como longitudes de arista.
-Por ejemplo, el siguiente grafo es con pesos:
+Por ejemplo, el siguiente grafo es ponderado:
 \begin{center}
 \begin{tikzpicture}[scale=0.9]
 \node[draw, circle] (1) at (1,3) {$1$};
@@ -248,7 +248,7 @@ Por ejemplo, el siguiente grafo es con pesos:
 \end{tikzpicture}
 \end{center}
 
-La longitud de un camino en un grafo con pesos
+La longitud de un camino en un grafo ponderado
 es la suma de los pesos de las aristas en el camino.
 Por ejemplo, en el grafo anterior,
 la longitud del camino
@@ -456,36 +456,36 @@ Por ejemplo, el siguiente grafo \emph{no} es simple:
 \end{tikzpicture}
 \end{center}
 
-\section{Graph representation}
+\section{Representación de grafos}
 
-There are several ways to represent graphs
-in algorithms.
-The choice of a data structure
-depends on the size of the graph and
-the way the algorithm processes it.
-Next we will go through three common representations.
+Existen varias formas de representar grafos
+en algoritmos.
+La elección de una estructura de datos
+depende del tamaño del grafo y
+de la forma en que el algoritmo lo procesa.
+A continuación, veremos tres representaciones comunes.
 
-\subsubsection{Adjacency list representation}
+\subsubsection{Representación por lista de adyacencia}
 
-\index{adjacency list}
+\index{lista de adyacencia}
 
-In the adjacency list representation,
-each node $x$ in the graph is assigned an \key{adjacency list}
-that consists of nodes
-to which there is an edge from $x$.
-Adjacency lists are the most popular
-way to represent graphs, and most algorithms can be
-efficiently implemented using them.
+En la representación por lista de adyacencia,
+a cada nodo $x$ del grafo se le asigna una \key{lista de adyacencia}
+que consiste en los nodos
+a los que hay una arista desde $x$.
+Las listas de adyacencia son la forma más popular
+de representar grafos, y la mayoría de los algoritmos pueden ser
+implementados de manera eficiente utilizando esta estructura.
 
-A convenient way to store the adjacency lists is to declare
-an array of vectors as follows:
+Una forma conveniente de almacenar las listas de adyacencia es declarar
+un arreglo de vectores de la siguiente forma:
 \begin{lstlisting}
 vector<int> adj[N];
 \end{lstlisting}
 
-The constant $N$ is chosen so that all
-adjacency lists can be stored.
-For example, the graph
+La constante $N$ se elige de forma que se puedan almacenar todas
+las listas de adyacencia.
+Por ejemplo, el grafo
 
 \begin{center}
 \begin{tikzpicture}[scale=0.9]
@@ -501,7 +501,7 @@ For example, the graph
 \path[draw,thick,->,>=latex] (4) -- (1);
 \end{tikzpicture}
 \end{center}
-can be stored as follows:
+puede almacenarse de la siguiente manera:
 \begin{lstlisting}
 adj[1].push_back(2);
 adj[2].push_back(3);
@@ -510,20 +510,20 @@ adj[3].push_back(4);
 adj[4].push_back(1);
 \end{lstlisting}
 
-If the graph is undirected, it can be stored in a similar way,
-but each edge is added in both directions.
+Si el grafo es no dirigido, se puede almacenar de manera similar,
+pero cada arista se agrega en ambas direcciones.
 
-For a weighted graph, the structure can be extended
-as follows:
+Para un grafo ponderado, la estructura se puede extender
+de la siguiente manera:
 
 \begin{lstlisting}
 vector<pair<int,int>> adj[N];
 \end{lstlisting}
 
-In this case, the adjacency list of node $a$
-contains the pair $(b,w)$
-always when there is an edge from node $a$ to node $b$
-with weight $w$. For example, the graph
+En este caso, la lista de adyacencia del nodo $a$
+contiene el par $(b,w)$
+siempre que haya una arista desde el nodo $a$ hacia el nodo $b$
+con peso $w$. Por ejemplo, el grafo
 
 \begin{center}
 \begin{tikzpicture}[scale=0.9]
@@ -539,7 +539,7 @@ with weight $w$. For example, the graph
 \path[draw,thick,->,>=latex] (4) -- node[font=\small,label=left:2] {} (1);
 \end{tikzpicture}
 \end{center}
-can be stored as follows:
+puede almacenarse de la siguiente manera:
 \begin{lstlisting}
 adj[1].push_back({2,5});
 adj[2].push_back({3,7});
@@ -548,37 +548,37 @@ adj[3].push_back({4,5});
 adj[4].push_back({1,2});
 \end{lstlisting}
 
-The benefit of using adjacency lists is that
-we can efficiently find the nodes to which
-we can move from a given node through an edge.
-For example, the following loop goes through all nodes
-to which we can move from node $s$:
+El beneficio de utilizar listas de adyacencia es que
+podemos encontrar de manera eficiente los nodos a los que
+podemos movernos desde un nodo dado a través de una arista.
+Por ejemplo, el siguiente ciclo recorre todos los nodos
+a los que podemos movernos desde el nodo $s$:
 
 \begin{lstlisting}
 for (auto u : adj[s]) {
-    // process node u
+    // procesar el nodo u
 }
 \end{lstlisting}
 
-\subsubsection{Adjacency matrix representation}
+\subsubsection{Representación por matriz de adyacencia}
 
-\index{adjacency matrix}
+\index{matriz de adyacencia}
 
-An \key{adjacency matrix} is a two-dimensional array
-that indicates which edges the graph contains.
-We can efficiently check from an adjacency matrix
-if there is an edge between two nodes.
-The matrix can be stored as an array
+Una \key{matriz de adyacencia} es un arreglo bidimensional
+que indica qué aristas contiene el grafo.
+Podemos verificar de manera eficiente desde una matriz de adyacencia
+si hay una arista entre dos nodos.
+La matriz puede almacenarse como un arreglo
 \begin{lstlisting}
 int adj[N][N];
 \end{lstlisting}
-where each value $\texttt{adj}[a][b]$ indicates
-whether the graph contains an edge from
-node $a$ to node $b$.
-If the edge is included in the graph,
-then $\texttt{adj}[a][b]=1$,
-and otherwise $\texttt{adj}[a][b]=0$.
-For example, the graph
+donde cada valor $\texttt{adj}[a][b]$ indica
+si el grafo contiene una arista desde
+el nodo $a$ al nodo $b$.
+Si la arista está presente en el grafo,
+entonces $\texttt{adj}[a][b]=1$,
+y si no está presente, $\texttt{adj}[a][b]=0$.
+Por ejemplo, el grafo
 \begin{center}
 \begin{tikzpicture}[scale=0.9]
 \node[draw, circle] (1) at (1,3) {$1$};
@@ -593,7 +593,7 @@ For example, the graph
 \path[draw,thick,->,>=latex] (4) -- (1);
 \end{tikzpicture}
 \end{center}
-can be represented as follows:
+puede representarse de la siguiente manera:
 \begin{center}
 \begin{tikzpicture}[scale=0.7]
 \draw (0,0) grid (4,4);
@@ -624,11 +624,11 @@ can be represented as follows:
 \end{tikzpicture}
 \end{center}
 
-If the graph is weighted, the adjacency matrix
-representation can be extended so that
-the matrix contains the weight of the edge
-if the edge exists.
-Using this representation, the graph
+Si el grafo es ponderado, la representación de la matriz de adyacencia
+puede extenderse para que
+la matriz contenga el peso de la arista
+si existe la arista.
+Usando esta representación, el grafo
 
 \begin{center}
 \begin{tikzpicture}[scale=0.9]
@@ -645,7 +645,7 @@ Using this representation, the graph
 \end{tikzpicture}
 \end{center}
 \begin{samepage}
-corresponds to the following matrix:
+corresponde a la siguiente matriz:
 \begin{center}
 \begin{tikzpicture}[scale=0.7]
 \draw (0,0) grid (4,4);
@@ -677,30 +677,30 @@ corresponds to the following matrix:
 \end{center}
 \end{samepage}
 
-The drawback of the adjacency matrix representation
-is that the matrix contains $n^2$ elements,
-and usually most of them are zero.
-For this reason, the representation cannot be used
-if the graph is large.
+El inconveniente de la representación con la matriz de adyacencia
+es que la matriz contiene $n^2$ elementos,
+y usualmente la mayoría de ellos son ceros.
+Por esta razón, la representación no puede usarse
+si el grafo es grande.
 
-\subsubsection{Edge list representation}
+\subsubsection{Representación por lista de aristas}
 
-\index{edge list}
+\index{lista de aristas}
 
-An \key{edge list} contains all edges of a graph
-in some order.
-This is a convenient way to represent a graph
-if the algorithm processes all edges of the graph
-and it is not needed to find edges that start
-at a given node.
+Una \key{lista de aristas} contiene todas las aristas de un grafo
+en algún orden.
+Este es un modo conveniente de representar un grafo
+si el algoritmo procesa todas las aristas del grafo
+y no es necesario encontrar las aristas que parten
+de un nodo dado.
 
-The edge list can be stored in a vector
+La lista de aristas puede almacenarse en un vector
 \begin{lstlisting}
 vector<pair<int,int>> edges;
 \end{lstlisting}
-where each pair $(a,b)$ denotes that
-there is an edge from node $a$ to node $b$.
-Thus, the graph
+donde cada par $(a,b)$ indica que
+hay una arista desde el nodo $a$ al nodo $b$.
+Así, el grafo
 
 \begin{center}
 \begin{tikzpicture}[scale=0.9]
@@ -716,7 +716,7 @@ Thus, the graph
 \path[draw,thick,->,>=latex] (4) -- (1);
 \end{tikzpicture}
 \end{center}
-can be represented as follows:
+puede representarse como sigue:
 \begin{lstlisting}
 edges.push_back({1,2});
 edges.push_back({2,3});
@@ -726,15 +726,15 @@ edges.push_back({4,1});
 \end{lstlisting}
 
 \noindent
-If the graph is weighted, the structure can
-be extended as follows:
+Si el grafo es ponderado, la estructura puede
+ser extendida como sigue:
 \begin{lstlisting}
 vector<tuple<int,int,int>> edges;
 \end{lstlisting}
-Each element in this list is of the
-form $(a,b,w)$, which means that there
-is an edge from node $a$ to node $b$ with weight $w$.
-For example, the graph
+Cada elemento en esta lista tiene la
+forma $(a,b,w)$, lo que significa que existe una
+arista desde el nodo $a$ hasta el nodo $b$ con peso $w$.
+Por ejemplo, el grafo
 
 \begin{center}
 \begin{tikzpicture}[scale=0.9]
@@ -751,9 +751,9 @@ For example, the graph
 \end{tikzpicture}
 \end{center}
 \begin{samepage}
-can be represented as follows\footnote{In some older compilers, the function
-\texttt{make\_tuple} must be used instead of the braces (for example,
-\texttt{make\_tuple(1,2,5)} instead of \texttt{\{1,2,5\}}).}:
+puede representarse como sigue\footnote{En algunos compiladores antiguos,
+la función \texttt{make\_tuple} debe usarse en lugar de las llaves (por ejemplo,
+\texttt{make\_tuple(1,2,5)} en lugar de \texttt{\{1,2,5\}}).}:
 \begin{lstlisting}
 edges.push_back({1,2,5});
 edges.push_back({2,3,7});
