@@ -696,7 +696,7 @@ de un nodo dado.
 
 La lista de aristas puede almacenarse en un vector
 \begin{lstlisting}
-vector<pair<int,int>> edges;
+vector<pair<int,int>> aristas;
 \end{lstlisting}
 donde cada par $(a,b)$ indica que
 hay una arista desde el nodo $a$ al nodo $b$.
@@ -718,18 +718,18 @@ Así, el grafo
 \end{center}
 puede representarse como sigue:
 \begin{lstlisting}
-edges.push_back({1,2});
-edges.push_back({2,3});
-edges.push_back({2,4});
-edges.push_back({3,4});
-edges.push_back({4,1});
+aristas.push_back({1,2});
+aristas.push_back({2,3});
+aristas.push_back({2,4});
+aristas.push_back({3,4});
+aristas.push_back({4,1});
 \end{lstlisting}
 
 \noindent
 Si el grafo es ponderado, la estructura puede
 ser extendida como sigue:
 \begin{lstlisting}
-vector<tuple<int,int,int>> edges;
+vector<tuple<int,int,int>> aristas;
 \end{lstlisting}
 Cada elemento en esta lista tiene la
 forma $(a,b,w)$, lo que significa que existe una
@@ -755,10 +755,10 @@ puede representarse como sigue\footnote{En algunos compiladores antiguos,
 la función \texttt{make\_tuple} debe usarse en lugar de las llaves (por ejemplo,
 \texttt{make\_tuple(1,2,5)} en lugar de \texttt{\{1,2,5\}}).}:
 \begin{lstlisting}
-edges.push_back({1,2,5});
-edges.push_back({2,3,7});
-edges.push_back({2,4,6});
-edges.push_back({3,4,5});
-edges.push_back({4,1,2});
+aristas.push_back({1,2,5});
+aristas.push_back({2,3,7});
+aristas.push_back({2,4,6});
+aristas.push_back({3,4,5});
+aristas.push_back({4,1,2});
 \end{lstlisting}
 \end{samepage}
